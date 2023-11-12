@@ -1,14 +1,25 @@
 package com.cskh;
 public class cskh{
-    public static void main(String[] args) {
-                        System.out.println("Ban co the lien he voi cac thanh vien sau de duoc giai quyet voi toc do phan hoi tot nhat");
-                        System.out.println("Ten\t\t\tFacebook\t\tGmail\t\t\t\tSdt");
-                        System.out.println("Nguyen Dai Quoc\t\tfb.com/wolfdzai\t\tluutrithon1996@gmail.com\t0931454176");
-                        System.out.println("Dinh Phuc Thinh\t\tfb.com/dinfucthin\tzaikaman123@gmail.com\t\t0931816175");
-                        System.out.println("Tran Trung Viet\t\tcutt.ly/qwTNnwZY\t\t");
-                        System.out.println("Tran Dang Phat \t\tcutt.ly/TwTNb3Ur\t\t");
-                        System.out.println("Nguyen Hoang Sang\tcutt.ly/4wTNbGKf\tlesang01227982715@gmail.com\t0776592967");
-                        System.out.println("");
-                        System.out.println("");
+    private String Ten, Email, SoDienThoai, LinkMangXaHoi;
+    cskh (String Ten, String Email, String SoDienThoai, String LinkMangXaHoi){
+        this.Ten = Ten;
+        this.Email = Email;
+        this.SoDienThoai = SoDienThoai;
+        this.LinkMangXaHoi = LinkMangXaHoi;
+    }
+    public static void display(){
+        cskh dsnv[] = new cskh[]{
+            new cskh("Nguyen Dai Quoc","luutrithon1996@gmail.com","0931454176","fb.com/wolfdzai"),
+            new cskh("Dinh Phuc Thinh","zaikaman123@gmail.com","0931816175", "fb.com/dinfucthin"),
+            new cskh("Tran Trung Viet","" , "", "cutt.ly/qwTNnwZY"),
+            new cskh("Tran Dang Phat", "", "", "cutt.ly/TwTNb3Ur"),
+            new cskh("Nguyen Hoang Sang", "lesang01227982715@gmail.com", "0776592967", "cutt.ly/4wTNbGKf")
+        };
+        System.out.println("Ban co the lien he voi cac thanh vien sau de duoc giai quyet voi toc do phan hoi tot nhat");
+        System.out.println("Ten\t\t\tFacebook\t\tGmail\t\t\t\tSdt");
+        for(int i = 0; i < dsnv.length; i++){
+            System.out.println(dsnv[i].Ten + "\t\t" + dsnv[i].LinkMangXaHoi + "\t\t" + dsnv[i].Email + "\t\t" + dsnv[i].SoDienThoai);
+        }
+        
     }
 }
