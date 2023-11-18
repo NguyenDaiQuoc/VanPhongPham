@@ -9,57 +9,57 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 
+
+
 public class QuanLy extends NguoiDung {
     Scanner sc = new Scanner (System.in);
-    String TaiKhoanNhanVien, MatKhauNhanVien;
+    String sTaiKhoanNhanVien, sMatKhauNhanVien;
     String FileNameNhanVien = "Account Nhan Vien.txt";
     String FileNameQuanLy = "Account Quan Ly.txt";
-    NguoiDung NhanVien[] = new NguoiDung[999];
     int iSoLuongNhanVien = 0; //Theo doi so luong nhan vien
-    public QuanLy(String TenDangNhap, String MatKhau, String VaiTro){
-        super (TenDangNhap, MatKhau, "QuanLy");
-        
+    public QuanLy(String sTenDangNhap, String sMatKhau, String sVaiTro){
+        super (sTenDangNhap, sMatKhau, "QuanLy");
     }
     
     //Override de nhap thong tin ca nhan
     @Override
     public void NhapThongTin() {
         System.out.print("Moi Nhap Ho Ten ");
-        this.HoTen = sc.nextLine();
+        this.sHoTen = sc.nextLine();
         System.out.print("Moi nhap SoDienThoai ");
-        this.SoDienThoai = sc.nextLine();
+        this.sSoDienThoai = sc.nextLine();
         System.out.println("Moi nhap Dia Chi ");
-        this.DiaChi = sc.nextLine();
+        this.sDiaChi = sc.nextLine();
     }
     
     //getter and setter
     public String getTaiKhoanNhanVien(){
-        return TaiKhoanNhanVien;
+        return sTaiKhoanNhanVien;
     }
-    public void setTaiKhoanNhanVien(String TaiKhoanNhanVien){
+    public void setTaiKhoanNhanVien(String sTaiKhoanNhanVien){
         System.out.print("Moi nhap tai khoan Nhan Vien ");
-        TaiKhoanNhanVien = sc.nextLine();
-        this.TaiKhoanNhanVien = TaiKhoanNhanVien;
+        sTaiKhoanNhanVien = sc.nextLine();
+        this.sTaiKhoanNhanVien = sTaiKhoanNhanVien;
     }
     public String getMatKhauNhanVien(){
-        return MatKhauNhanVien;
+        return sMatKhauNhanVien;
     }
-    public void setMatKhauNhanVien(String MatKhauNhanVien){
+    public void setMatKhauNhanVien(String sMatKhauNhanVien){
         System.out.print("Moi nhap mat khau Nhan Vien ");
-        MatKhauNhanVien = sc.nextLine();
-        this.MatKhauNhanVien = MatKhauNhanVien;
+        sMatKhauNhanVien = sc.nextLine();
+        this.sMatKhauNhanVien = sMatKhauNhanVien;
     }
     
     
     //methods
     
-    public boolean DangNhapTaiKhoanQuanLy() throws IOException {
+    public int DangNhapTaiKhoanQuanLy() throws IOException {
         System.out.print("Moi nhap tai khoan Quan Ly ");
         String sTaiKhoan = sc.nextLine();
         System.out.print("Moi nhap mat khau Quan Ly ");
         String sMatKhau = sc.nextLine();
         File file = new File(FileNameQuanLy);
-        boolean bLogin = false;
+        int iLogin = 1;
         try {
             if (!file.exists()) {
                 file.createNewFile();
@@ -70,24 +70,17 @@ public class QuanLy extends NguoiDung {
         BufferedReader reader = new BufferedReader(new FileReader(FileNameQuanLy));
         String sline;
         String fiQuanLy[] = new String[999];
-        int iCnt = 5;//bien quan ly so lan dang nhap
         while ((sline = reader.readLine()) != null) {
             fiQuanLy = sline.split(",");
             if (fiQuanLy[0].trim().equals(sTaiKhoan) && fiQuanLy[1].trim().equals(sMatKhau)) {
-                System.out.println("Dang nhap thanh cong voi vai tro Quan Ly");
-                bLogin = true;
-            } else if (!fiQuanLy[0].trim().equals(sTaiKhoan) || !fiQuanLy[1].trim().equals(sMatKhau)) {
-                System.out.println("Tai khoan hoac mat khau sai, hay thu lai, ban con " + --iCnt + "lan thu");
+                iLogin = 0;
             } else if (!fiQuanLy[0].trim().equals(sTaiKhoan) && !fiQuanLy[1].trim().equals(sMatKhau)) {
-                System.out.println("Tai khoan khong ton tai, xin lien he voi bo phan cskh");
-                bLogin = false;
-            }
-            if (iCnt == 0) {
-                System.out.println("Da qua so lan thu lai, hay thu lai sau!");
-                bLogin = false;
+                return 1;
+            } else if ( !fiQuanLy[0].trim().equals(sTaiKhoan) || !fiQuanLy[1].trim().equals(sMatKhau)) {
+                iLogin = 2;
             }
         }
-        return bLogin;
+        return iLogin;
     }
 
     public void DangKyTaiKhoanNhanVien() throws IOException{        
@@ -100,13 +93,13 @@ public class QuanLy extends NguoiDung {
         catch(IOException e){
             e.printStackTrace();
         }
-        setTaiKhoanNhanVien(TaiKhoanNhanVien);
-        setMatKhauNhanVien(MatKhauNhanVien);
-        BufferedWriter writer = new BufferedWriter(new FileWriter(FileNameNhanVien,true));
+        NhanVien newNhanVien = new NhanVien("", "", "1");
+        newNhanVien.setTaiKhoanNhanVien(sTaiKhoanNhanVien);
+        newNhanVien.setMatKhauNhanVien(sMatKhauNhanVien);
+        BufferedWriter writer = new BufferedWriter(new FileWriter(FileNameNhanVien, true));
         iSoLuongNhanVien++;
-        for(int i = 0; i < iSoLuongNhanVien; i++){
-            writer.write(NhanVien[i].TenDangNhap + " " + NhanVien[i].MatKhau + "" + "NhanVien"); iSoLuongNhanVien++;  
-        }
+        writer.write(newNhanVien.getTaiKhoanNhanVien() + "," + newNhanVien.getMatKhauNhanVien() + "," + "1" + "\n");
+        writer.close();
     }
     
     public void XoaTaiKhoanNhanVien() throws IOException{
@@ -124,15 +117,29 @@ public class QuanLy extends NguoiDung {
         catch(IOException e){
             e.printStackTrace();
         }
-        while ((sLine = reader.readLine()) != null) {
+        /*while ((sLine = reader.readLine()) != null) {
             fiNhanVien = sLine.split(",");
-            if(fiNhanVien[0].equals(sTaiKhoan)){
-                this.TaiKhoanNhanVien = null;
-                this.MatKhauNhanVien = null;
-                this.VaiTro = null;
+            if((fiNhanVien[0].equals(sTaiKhoan)) && fiNhanVien[2].equals("1")){
+                fiNhanVien[0] = null;
+                fiNhanVien[1] = null;
+                fiNhanVien[2] = "0";
+                iSoLuongNhanVien--;
+                break;
             }
-            iSoLuongNhanVien--;
+        }*/
+        NhanVien nv = new NhanVien("","","1");
+        while (nv.getTaiKhoanNhanVien() != null) {
+            if(nv.getTaiKhoanNhanVien().equals(sTaiKhoan) && nv.getMatKhauNhanVien().equals(sMatKhau)){
+                nv.sTenDangNhap = "";
+                nv.sMatKhau = "";
+                nv.sVaiTro = "0";
+                iSoLuongNhanVien--;
+                break;
+            }
+            
         }
+        System.out.println("Da xoa nhan vien co tai khoan " + sTaiKhoan);
+        reader.close();
     }
     
     public void CapNhatThongTinNhanVien(){
