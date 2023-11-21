@@ -1,4 +1,0 @@
-dinhphucthinh,123456789,NhanVien,1,kOHJ6mys
-trantrungviet,123456789,NhanVien,1,9UQD6j5N
-trandangphat,123456789,NhanVien,1,Cg1w5QB4
-nguyenhoangsang,123456789,NhanVien,1,asU02ekE
