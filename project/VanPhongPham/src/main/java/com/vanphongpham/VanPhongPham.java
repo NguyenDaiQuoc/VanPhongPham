@@ -8,15 +8,20 @@ import com.cskh.Cskh;
 import com.quanly.QuanLy;
 import java.io.IOException;
 import com.nhanvien.NhanVien;
+
 public class VanPhongPham {
+
     public static void clearScreen() {
-        for (int i = 0; i < 31; ++i) System.out.println();
-}
+        for (int i = 0; i < 31; ++i) {
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         //Menu
         int lc;
-        while(true){
+        while (true) {
             clearScreen();
             System.out.println("Chao mung ban den voi: Ung dung Ban van phong pham");
             System.out.println("Welcome to Program");
@@ -33,7 +38,7 @@ public class VanPhongPham {
             System.out.println("==================================================");
             System.out.print("Moi ban nhap lua chon (Please enter your choice): ");
             lc = sc.nextInt();
-            switch(lc){
+            switch (lc) {
                 case 1: {
                     int iCnt = 5, ok = 1;
                     QuanLy quanly = new QuanLy("", "", "QuanLy");
@@ -41,44 +46,33 @@ public class VanPhongPham {
                         while (iCnt != 0) {
                             int iLogin = quanly.DangNhapTaiKhoanQuanLy();
                             if (iLogin == 0) {
-                                    clearScreen();
-                                    System.out.println("Dang nhap thanh cong voi vai tro Quan Ly");
-                                while (ok == 1) {                                    
+                                clearScreen();
+                                System.out.println("Dang nhap thanh cong voi vai tro Quan Ly");
+                                while (ok == 1) {
                                     System.out.println("Chao mung ban den voi: Ung dung Ban van phong pham");
                                     System.out.println("Welcome to Program");
                                     System.out.println("==================================================");
-                                    System.out.println("|1. Dang ky tai khoan nhan vien                  |");
-                                    System.out.println("|2. Xoa tai khoan nhan vien                      |");
-                                    System.out.println("|3. Cap nhat thong tin nhan vien                 :");
-                                    System.out.println("|4. Xem danh sach nhan vien                      :");
+                                    System.out.println("|1. Cap nhat thong tin Quan Ly                   |");
+                                    System.out.println("|2. Xem danh sach Quan Ly                        |");
+                                    System.out.println("|3. Dang ky tai khoan Nhan Vien                  |");
+                                    System.out.println("|4. Xoa tai khoan Nhan Vien                      |");
+                                    System.out.println("|5. Cap nhat thong tin Nhan Vien                 :");
+                                    System.out.println("|6. Xem danh sach Nhan Vien                      :");
                                     System.out.println("|0. Thoat vai tro Quan Ly                        |");
                                     System.out.println("==================================================");
-                                    System.out.print("Moi ban nhap mot lua chon (0-5) ");
+                                    System.out.print("Moi ban nhap mot lua chon (0-6) ");
                                     int lc1 = sc.nextInt();
                                     switch (lc1) {
                                         case 1: {
-                                            try {
-                                                quanly.DangKyTaiKhoanNhanVien();
-                                            } catch (IOException e) {
-                                                e.printStackTrace(); // hoặc xử lý theo nhu cầu của bạn
-                                            }
-                                            break;
-                                        }
-                                        case 2: {
                                             clearScreen();
                                             int ok1 = 1;
                                             while (ok1 == 1) {
-                                                try {
-                                                    quanly.XoaTaiKhoanNhanVien();
-                                                } catch (IOException e) {
-                                                    e.printStackTrace();
-                                                }
-                                                System.out.println("Ban co muon xoa tiep?  ");
-                                                System.out.println("1. Tiep tuc ");
-                                                System.out.println("0. Quay lai ");
-                                                System.out.print("Moi nhap lua chon ");
+                                                quanly.CapNhatThongTinQuanLy();
+                                                System.out.println("Ban co muon cap nhat thong tin Quan Ly tiep khong?");
+                                                System.out.println("1. Tiep tuc");
+                                                System.out.println("0. Quay lai");
                                                 int lc2 = sc.nextInt();
-                                                switch(lc2){
+                                                switch (lc2) {
                                                     case 1: {
                                                         break;
                                                     }
@@ -94,21 +88,122 @@ public class VanPhongPham {
                                             }
                                             break;
                                         }
+                                        case 2: {
+                                            int ok1 = 1;
+                                            clearScreen();
+                                            while (ok1 == 1) {
+                                                System.out.println("Ban muon them thong tin gi?");
+                                                System.out.println("1. Xem Thong tin Quan Ly");
+                                                System.out.println("2. Xem Tai khoan Quan Ly");
+                                                System.out.println("0. Quay lai");
+                                                System.out.print("Moi nhap lua chon (0 - 2) ");
+                                                int lc2 = sc.nextInt();
+                                                switch (lc2) {
+                                                    case 1: {
+                                                        clearScreen();
+                                                        quanly.XemThongTinQuanLy();
+                                                        break;
+                                                    }
+                                                    case 2: {
+                                                        clearScreen();
+                                                        quanly.XemTaiKhoanQuanLy();
+                                                        break;
+                                                    }
+                                                    case 0: {
+                                                        ok1 = 0;
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            break;
+                                        }
                                         case 3: {
-                                            quanly.CapNhatThongTinNhanVien();
+                                            clearScreen();
+                                            int ok1 = 1;
+                                            while (ok1 == 1) {
+                                                quanly.DangKyTaiKhoanNhanVien();
+                                                System.out.println("Ban co muon dang ky tai khoan Nhan Vien tiep khong?");
+                                                System.out.println("1. Tiep tuc");
+                                                System.out.println("0. Quay lai");
+                                                int lc2 = sc.nextInt();
+                                                switch (lc2) {
+                                                    case 1: {
+                                                        break;
+                                                    }
+                                                    case 0: {
+                                                        ok1 = 0;
+                                                        break;
+                                                    }
+                                                    default: {
+                                                        System.out.println("Lua chon khong hop le!");
+                                                        break;
+                                                    }
+                                                }
+                                            }
                                             break;
                                         }
                                         case 4: {
+                                            clearScreen();
+                                            int ok1 = 1;
+                                            while (ok1 == 1) {
+                                                quanly.XoaTaiKhoanNhanVien();
+                                                System.out.println("Ban co muon xoa tiep?  ");
+                                                System.out.println("1. Tiep tuc ");
+                                                System.out.println("0. Quay lai ");
+                                                System.out.print("Moi nhap lua chon ");
+                                                int lc2 = sc.nextInt();
+                                                switch (lc2) {
+                                                    case 1: {
+                                                        break;
+                                                    }
+                                                    case 0: {
+                                                        ok1 = 0;
+                                                        break;
+                                                    }
+                                                    default: {
+                                                        System.out.println("Lua chon khong hop le!");
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            break;
+                                        }
+                                        case 5: {
+                                            clearScreen();
+                                            int ok1 = 1;
+                                            while (ok1 == 1) {
+                                                quanly.CapNhatThongTinNhanVien();
+                                                System.out.println("Ban co muon cap nhat thong tin Nhan Vien tiep khong?");
+                                                System.out.println("1. Tiep tuc");
+                                                System.out.println("0. Quay lai");
+                                                int lc2 = sc.nextInt();
+                                                switch (lc2) {
+                                                    case 1: {
+                                                        break;
+                                                    }
+                                                    case 0: {
+                                                        ok1 = 0;
+                                                        break;
+                                                    }
+                                                    default: {
+                                                        System.out.println("Lua chon khong hop le!");
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            break;
+                                        }
+                                        case 6: {
                                             int ok1 = 1;
                                             clearScreen();
-                                            while(ok1 == 1){                                                
+                                            while (ok1 == 1) {
                                                 System.out.println("Ban muon them thong tin gi?");
                                                 System.out.println("1. Xem Thong tin Nhan Vien");
                                                 System.out.println("2. Xem Tai khoan Nhan Vien");
                                                 System.out.println("0. Quay lai");
                                                 System.out.print("Moi nhap lua chon (0 - 2) ");
                                                 int lc2 = sc.nextInt();
-                                                switch(lc2){
+                                                switch (lc2) {
                                                     case 1: {
                                                         clearScreen();
                                                         quanly.XemThongTinNhanVien();
@@ -119,7 +214,7 @@ public class VanPhongPham {
                                                         quanly.XemTaiKhoanNhanVien();
                                                         break;
                                                     }
-                                                    case 0 :{
+                                                    case 0: {
                                                         ok1 = 0;
                                                         break;
                                                     }
@@ -131,14 +226,16 @@ public class VanPhongPham {
                                             ok = 0;
                                             break;
                                         }
+                                        default: {
+                                            System.out.println("Lua chon khong hop le!");
+                                            break;
+                                        }
                                     }
                                 }
                                 break;
-                            }
-                            else if (iLogin == 2 && iCnt != 0) {
+                            } else if (iLogin == 2 && iCnt != 0) {
                                 System.out.println("Tai khoan hoac mat khau sai, hay thu lai, ban con " + --iCnt + " lan thu ");
-                            }
-                            else if (iLogin == 1) {
+                            } else if (iLogin == 1) {
                                 System.out.println("Tai khoan khong ton tai, xin lien he voi bo phan cskh de dang ki tai khoan Quan Ly moi");
                                 break;
                             }
@@ -151,6 +248,7 @@ public class VanPhongPham {
                         e.printStackTrace();
                     }
                 }
+
                 case 2: {
                     //User usr = new User();
                     User.main(args);
@@ -158,7 +256,7 @@ public class VanPhongPham {
                 }
                 case 4: {
                     int ok = 1;
-                    while(ok == 1){
+                    while (ok == 1) {
                         clearScreen();
                         Cskh.display();
                         System.out.println("1.Quay lai man hinh menu");
@@ -180,7 +278,7 @@ public class VanPhongPham {
                 }
                 case 5: {
                     int ok = 1;
-                    while(ok == 1){
+                    while (ok == 1) {
                         clearScreen();
                         //details.main(args);
                         ThongTinChuongTrinh.display();
@@ -207,7 +305,7 @@ public class VanPhongPham {
                 }
                 case 0: {
                     System.out.println("Cam on ban da su dung ung dung!");
-                    return ;
+                    return;
                 }
             }
         }

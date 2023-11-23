@@ -1,11 +1,15 @@
 package com.ThongTinChuongTrinh;
+
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-public class ThongTinChuongTrinh{
+
+public class ThongTinChuongTrinh {
+
     String sPhienBan, sTenChuongTrinh, sMoTa, sTeamDev;
     Date dtNgayBatDau, dtNgayKetThuc;
-    ThongTinChuongTrinh(String sPhienBan, String sTenChuongTrinh, String sMoTa,String sTeamDev, Date dtNgayBatDau, Date dtNgayKetThuc){
+
+    ThongTinChuongTrinh(String sPhienBan, String sTenChuongTrinh, String sMoTa, String sTeamDev, Date dtNgayBatDau, Date dtNgayKetThuc) {
         this.sPhienBan = sPhienBan;
         this.sTenChuongTrinh = sTenChuongTrinh;
         this.sMoTa = sMoTa;
@@ -13,9 +17,10 @@ public class ThongTinChuongTrinh{
         this.dtNgayBatDau = dtNgayBatDau;
         this.dtNgayKetThuc = dtNgayKetThuc;
     }
-    public static void display(){
+
+    public static void display() {
         Calendar calStart = Calendar.getInstance();
-        calStart.set(2023, Calendar.NOVEMBER, 8,20,30);
+        calStart.set(2023, Calendar.NOVEMBER, 8, 20, 30);
         Date startDate = calStart.getTime();
 
         Calendar calEnd = Calendar.getInstance();
@@ -49,11 +54,11 @@ public class ThongTinChuongTrinh{
         System.out.println("Chuong trinh: " + chuongTrinh.sTenChuongTrinh);
         System.out.println("Version: " + chuongTrinh.sMoTa);
         System.out.println("Release Date: " + chuongTrinh.dtNgayBatDau);
-        if(chuongTrinh.dtNgayKetThuc == check){
+        if (chuongTrinh.dtNgayKetThuc == check) {
             System.out.println("Stop Date: " + chuongTrinh.dtNgayKetThuc);
         }
         System.out.println("Dev team:");
         System.out.println(chuongTrinh.sTeamDev);
     }
-    
+
 }
