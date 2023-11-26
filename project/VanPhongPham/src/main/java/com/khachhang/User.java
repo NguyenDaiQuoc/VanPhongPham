@@ -1,4 +1,4 @@
-package com.user;
+package com.khachhang;
 //package com.vanphongpham.user;
 
 import java.io.*;

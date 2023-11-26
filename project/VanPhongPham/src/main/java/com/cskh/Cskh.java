@@ -4,12 +4,13 @@ public class Cskh {
 
     private String sTen, sEmail, sSoDienThoai, sLinkMangXaHoi;
 
-    Cskh(String sTen, String sEmail, String sSoDienThoai, String sLinkMangXaHoi) {
+    private Cskh(String sTen, String sEmail, String sSoDienThoai, String sLinkMangXaHoi) {
         this.sTen = sTen;
         this.sEmail = sEmail;
         this.sSoDienThoai = sSoDienThoai;
         this.sLinkMangXaHoi = sLinkMangXaHoi;
     }
+    private Cskh(){};
 
     public static void display() {
         Cskh dsnv[] = new Cskh[]{

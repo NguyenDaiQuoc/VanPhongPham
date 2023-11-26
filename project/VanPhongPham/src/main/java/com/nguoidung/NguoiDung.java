@@ -5,9 +5,9 @@ import java.util.Random;
 public abstract class NguoiDung {
 
     public String sTenDangNhap, sMatKhau, sVaiTro, sHoTen, sSoDienThoai, sDiaChi, sMaNguoiDung;
-    public int iTrangThai;
-
-    //constructor dung de luu thong tin dang nhap
+    int iTrangThai;
+    
+    //constructor
     public NguoiDung(String sTenDangNhap, String sMatKhau, String sVaiTro) {
         this.sTenDangNhap = sTenDangNhap;
         this.sMatKhau = sMatKhau;
@@ -15,6 +15,8 @@ public abstract class NguoiDung {
         this.iTrangThai = 1;
         this.sMaNguoiDung = GenerateUID();
     }
+    public NguoiDung(){};
+    
     // cac phuong thuc de lay thong tin ca nhan
 
     public String getTenDangNhap() {

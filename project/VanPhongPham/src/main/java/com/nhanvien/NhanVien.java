@@ -1,21 +1,53 @@
 package com.nhanvien;
 
 import com.nguoidung.NguoiDung;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class NhanVien extends NguoiDung {
 
     Scanner sc = new Scanner(System.in);
     String sTaiKhoanNhanVien, sMatKhauNhanVien, sHoTenNhanVien, sDiaChiNhanVien, sSoDienThoaiNhanVien, sMaNhanVien, sVaiTroNhanVien;
     String FileNameNhanVien = "Account Nhan Vien.txt";
-    String FileNameQuanLy = "Account Quan Ly.txt";
+    String FileThongTinNV = "Thong tin Nhan Vien.txt";
+    String FileTmp = "tmp.txt";
+    File fileTmp = new File(FileTmp);
+    File fileAcc = new File(FileNameNhanVien);
+    File fileThongTin = new File(FileThongTinNV);
     NguoiDung NhanVien[] = new NguoiDung[10];
-    int iSoLuongNhanVien = 0; //Theo doi so luong nhan vien
-
+    public int iSoLuongNhanVien = 0; //Theo doi so luong nhan vien
+    public int iTrangThai = 1;
+    String sLine, fiNhanVien[];
+    NhanVien nvDsnv[] = new NhanVien[999];
+    
+    //constructor
     public NhanVien(String sTenDangNhap, String sMatKhau, String sVaiTro) {
         super(sTenDangNhap, sMatKhau, "NhanVien");
     }
-
+    
+    public NhanVien(){}
+    
+    public NhanVien(String sTaiKhoanNhanVien, String sMatKhauNhanVien, String sVaiTroNhanVien, int iTrangThai, String sMaNhanVien){
+            this.sTaiKhoanNhanVien = sTaiKhoanNhanVien;
+            this.sMatKhauNhanVien = sMatKhauNhanVien;   
+            this.sVaiTroNhanVien = sVaiTroNhanVien;
+            this.iTrangThai = iTrangThai;
+            this.sMaNhanVien = sMaNhanVien;
+    }//lay Account NhanVien
+    public NhanVien(String sMaNhanVien, String sHoTenNhanVien, String sDiaChiNhanVien, String sSoDienThoaiNhanVien,int iTrangThai){
+        this.sMaNhanVien = sMaNhanVien;
+        this.sHoTenNhanVien = sHoTenNhanVien;
+        this.sDiaChiNhanVien = sDiaChiNhanVien;
+        this.sSoDienThoaiNhanVien = sSoDienThoaiNhanVien;
+        this.iTrangThai = iTrangThai;
+    } // lay Thong Tin NhanVien
+    
+    
     //Override de nhap thong tin ca nhan
     @Override
     public void NhapThongTin() {
@@ -120,7 +152,7 @@ public class NhanVien extends NguoiDung {
 
     public void setVaiTroNhanVien(String sVaiTroNhanVien) {
         for (;;) {
-            System.out.println("Moi nhap vai tro cua Nhan Vien ");
+            System.out.print("Moi nhap vai tro cua Nhan Vien ");
             sVaiTroNhanVien = sc.nextLine();
             if (sVaiTroNhanVien.equals("TuVan") || sVaiTroNhanVien.equals("ThuNgan") || sVaiTroNhanVien.equals("Kho") || sVaiTroNhanVien.equals("TrucQuay")) {
                 break;
@@ -129,4 +161,77 @@ public class NhanVien extends NguoiDung {
         }
     }
 
+    public int getTrangThaiNhanVien() {
+        return iTrangThai;
+    }
+
+    public void setTrangThaiNhanVien(int iTrangThai) {
+        this.iTrangThai = iTrangThai;
+    }
+    
+    //method
+    public void DocFileAccNhanVien() throws IOException{
+        if(!fileAcc.exists()){
+             fileAcc.createNewFile();
+            }
+        try{
+        int i = 0;
+        BufferedReader reader = new BufferedReader(new FileReader(fileAcc));
+        while((sLine = reader.readLine()) != null){
+            fiNhanVien = sLine.split(",");
+            nvDsnv[i] = new NhanVien(fiNhanVien[0],fiNhanVien[1],fiNhanVien[2],fiNhanVien[3].charAt(0),fiNhanVien[4]);
+            i++;
+        }
+        reader.close();
+        } catch(IOException e){
+            System.out.println("Error!");
+        }
+    }
+    
+    public void DocFileThongTinNhanVien() throws IOException{
+        if(!fileThongTin.exists())
+            fileThongTin.createNewFile();
+        try{
+            int i = 0;
+            BufferedReader reader = new BufferedReader(new FileReader(fileThongTin));
+            while((sLine = reader.readLine()) != null){
+                fiNhanVien = sLine.split(",");
+                nvDsnv[i] = new NhanVien(fiNhanVien[9],fiNhanVien[1], fiNhanVien[2],fiNhanVien[3],fiNhanVien[4].charAt(0));
+                i++;
+            }
+            reader.close();
+        } catch(IOException e){
+            System.out.println("Error!");
+        }
+    }
+    
+    public void GhiFileAccNhanVien() throws IOException{
+        if (!fileAcc.exists()) {
+            fileAcc.createNewFile();
+        }
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileAcc, true));
+            for(int i = 0; i < iSoLuongNhanVien; i++){
+                writer.write(nvDsnv[i].getTaiKhoanNhanVien() + "," + nvDsnv[i].getMatKhauNhanVien() + "," + nvDsnv[i].getVaiTroNhanVien() + "," + nvDsnv[i].getTrangThaiNhanVien() + "," + nvDsnv[i].getMaNhanVien() +"\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Error!");
+        }
+    }
+    
+    public void GhiFileThongTinNhanVien() throws IOException{
+        if (!fileThongTin.exists()) {
+            fileThongTin.createNewFile();
+        }
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileThongTin, true));
+            for(int i = 0; i < iSoLuongNhanVien; i++){
+                writer.write(nvDsnv[i].getMaNhanVien() + "," + nvDsnv[i].getHoTenNhanVien() + "," + nvDsnv[i].getDiaChiNhanVien() + "," + nvDsnv[i].getSoDienThoaiNhanVien() + "," + nvDsnv[i].getVaiTroNhanVien() +"\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Error!");
+        }
+    }
 }

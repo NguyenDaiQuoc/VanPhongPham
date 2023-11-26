@@ -9,7 +9,7 @@ public class ThongTinChuongTrinh {
     String sPhienBan, sTenChuongTrinh, sMoTa, sTeamDev;
     Date dtNgayBatDau, dtNgayKetThuc;
 
-    ThongTinChuongTrinh(String sPhienBan, String sTenChuongTrinh, String sMoTa, String sTeamDev, Date dtNgayBatDau, Date dtNgayKetThuc) {
+    private ThongTinChuongTrinh(String sPhienBan, String sTenChuongTrinh, String sMoTa, String sTeamDev, Date dtNgayBatDau, Date dtNgayKetThuc) {
         this.sPhienBan = sPhienBan;
         this.sTenChuongTrinh = sTenChuongTrinh;
         this.sMoTa = sMoTa;
@@ -17,7 +17,8 @@ public class ThongTinChuongTrinh {
         this.dtNgayBatDau = dtNgayBatDau;
         this.dtNgayKetThuc = dtNgayKetThuc;
     }
-
+    private ThongTinChuongTrinh(){};
+    
     public static void display() {
         Calendar calStart = Calendar.getInstance();
         calStart.set(2023, Calendar.NOVEMBER, 8, 20, 30);

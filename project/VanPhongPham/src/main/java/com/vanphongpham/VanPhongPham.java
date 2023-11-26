@@ -1,11 +1,12 @@
 package com.vanphongpham;
 
 import java.util.Scanner;
-import com.user.User;
+//import com.user.User;
 //hoac import com.vanphongpham.user.User;
 import com.ThongTinChuongTrinh.ThongTinChuongTrinh;
 import com.cskh.Cskh;
-import com.quanly.QuanLy;
+import com.quanly.QuanLyFile;
+import com.quanly.QuanLyArray;
 import java.io.IOException;
 import com.nhanvien.NhanVien;
 
@@ -41,7 +42,9 @@ public class VanPhongPham {
             switch (lc) {
                 case 1: {
                     int iCnt = 5, ok = 1;
-                    QuanLy quanly = new QuanLy("", "", "QuanLy");
+                    //QuanLyFile quanly = new QuanLyFile("", "", "QuanLy");
+                    QuanLyArray quanly = new QuanLyArray("","","QuanLy");
+                    NhanVien nv = new NhanVien("","","",1,"");
                     try {
                         while (iCnt != 0) {
                             int iLogin = quanly.DangNhapTaiKhoanQuanLy();
@@ -131,6 +134,7 @@ public class VanPhongPham {
                                                         break;
                                                     }
                                                     case 0: {
+                                                        quanly.GhiFileAccNhanVien();
                                                         ok1 = 0;
                                                         break;
                                                     }
@@ -251,7 +255,7 @@ public class VanPhongPham {
 
                 case 2: {
                     //User usr = new User();
-                    User.main(args);
+                    //User.main(args);
                     break;
                 }
                 case 4: {
