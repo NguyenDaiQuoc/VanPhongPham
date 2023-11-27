@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
+        
 
 public class NhanVien extends NguoiDung {
 
@@ -17,6 +18,7 @@ public class NhanVien extends NguoiDung {
     String sTaiKhoanNhanVien, sMatKhauNhanVien, sHoTenNhanVien, sDiaChiNhanVien, sSoDienThoaiNhanVien, sMaNhanVien, sVaiTroNhanVien;
     String FileNameNhanVien = "Account Nhan Vien.txt";
     String FileThongTinNV = "Thong tin Nhan Vien.txt";
+    String FileHoaDon = "File Hoa Don.txt";
     String FileTmp = "tmp.txt";
     File fileTmp = new File(FileTmp);
     File fileAcc = new File(FileNameNhanVien);
@@ -33,7 +35,7 @@ public class NhanVien extends NguoiDung {
     }
     
     public NhanVien(){}
-
+    
     public NhanVien(NhanVien other) {
         this.sTaiKhoanNhanVien = other.sTaiKhoanNhanVien;
         this.sMatKhauNhanVien = other.sMatKhauNhanVien;
@@ -44,7 +46,7 @@ public class NhanVien extends NguoiDung {
         this.sVaiTroNhanVien = other.sVaiTroNhanVien;
         this.iTrangThai = other.iTrangThai;
     }
-
+    
     public NhanVien(String sTaiKhoanNhanVien, String sMatKhauNhanVien, String sVaiTroNhanVien, int iTrangThai, String sMaNhanVien){
             this.sTaiKhoanNhanVien = sTaiKhoanNhanVien;
             this.sMatKhauNhanVien = sMatKhauNhanVien;   
@@ -52,7 +54,6 @@ public class NhanVien extends NguoiDung {
             this.iTrangThai = iTrangThai;
             this.sMaNhanVien = sMaNhanVien;
     }//lay Account NhanVien
-    
     public NhanVien(String sMaNhanVien, String sHoTenNhanVien, String sDiaChiNhanVien, String sSoDienThoaiNhanVien,int iTrangThai){
         this.sMaNhanVien = sMaNhanVien;
         this.sHoTenNhanVien = sHoTenNhanVien;
@@ -60,6 +61,7 @@ public class NhanVien extends NguoiDung {
         this.sSoDienThoaiNhanVien = sSoDienThoaiNhanVien;
         this.iTrangThai = iTrangThai;
     } // lay Thong Tin NhanVien
+    
     
     //Override de nhap thong tin ca nhan
     @Override
@@ -173,7 +175,7 @@ public class NhanVien extends NguoiDung {
             this.sVaiTroNhanVien = sVaiTroNhanVien;
         }
     }
-
+    
     public int getTrangThaiNhanVien() {
         return iTrangThai;
     }
@@ -247,6 +249,8 @@ public class NhanVien extends NguoiDung {
             System.out.println("Error!");
         }
     }
+
+    
     
     public int DangNhap() throws IOException{
         setTaiKhoanNhanVien(sTaiKhoanNhanVien);
@@ -279,8 +283,93 @@ public class NhanVien extends NguoiDung {
             }
             else if(fiNhanVien[0].trim().equals(sTaiKhoanNhanVien)&&fiNhanVien[1].trim().equals(sMatKhauNhanVien)&&(fiNhanVien[2].trim().equals("TrucQuay"))){
                 iLogin= 3;
-            }
+            }        
         }
         return iLogin;
+    }
+    
+    public class HoaDon extends SanPham {
+        public HoaDon(String idSanPham, String name, float gia, int soluong, String ngaySx, String donviSx, String loai){
+            super();
+        }
+        
+        int SoLuongSP;
+        float ThanhTien;
+        float TongTien;
+
+        public HoaDon(int SoLuongSP, float ThanhTien, float TongTien) {
+            this.SoLuongSP = SoLuongSP;
+            this.ThanhTien = ThanhTien;
+            this.TongTien = TongTien;
+        }
+
+        public int getSoLuongSP() {
+            return SoLuongSP;
+        }
+
+        public void setSoLuongSP(int SoLuongSP) {
+            for(;;){
+                System.out.println("Moi nhap so luong san pham:");
+                SoLuongSP=sc.nextInt();
+                this.SoLuongSP = SoLuongSP;
+                if(SoLuongSP>0) break;
+            }
+        }
+
+        public float getThanhTien() {
+            return ThanhTien;
+        }
+
+        public void setThanhTien(float ThanhTien) {
+            ThanhTien=SoLuongSP*gia;
+            this.ThanhTien = ThanhTien;
+        }
+
+        public float getTongTien() {
+            return TongTien;
+        }
+
+        public void setTongTien(float TongTien) {
+            TongTien+=ThanhTien;
+            this.TongTien = TongTien;
+        }
+        
+        
+        public void NhapHoaDon() throws IOException{
+            //stt
+        //tensanpham
+        //soluong
+        //dongia
+        //chietkhau
+        //thanhtien
+        //tongtien
+            File file=new File(FileHoaDon);
+            try{
+                if(!file.exists()){
+                    file.createNewFile();
+                }
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+            Date ngay=java.util.Calendar.getInstance().getTime();
+            BufferedWriter writer=new BufferedWriter(new FileWriter(FileHoaDon));
+            writer.write(ngay + "/");
+            for(int i=1;;i++){
+                setSoLuongSP(0);
+                setThanhTien(0);
+                TongTien+=ThanhTien;
+                writer.write(i + "," + name + "," + SoLuongSP + "," + gia + "," + /*ChieuKhau +*/ "," + getThanhTien() + "/");
+            }
+            writer.write(TongTien +".\n");
+        
+        }   
+
+        public void XuatHoaDon(){
+
+        }
+
+        public void XemHoaDon(){
+
+        }
     }
 }
