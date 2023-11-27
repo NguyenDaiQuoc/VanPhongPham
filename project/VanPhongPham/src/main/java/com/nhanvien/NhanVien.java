@@ -245,4 +245,44 @@ public class NhanVien extends NguoiDung {
             System.out.println("Error!");
         }
     }
+    
+    public int DangNhap() throws IOException{
+        setTaiKhoanNhanVien(sTaiKhoanNhanVien);
+        setMatKhauNhanVien(sMatKhauNhanVien);
+        File file=new File(FileNameNhanVien);
+        try{
+            if(!file.exists()){
+                file.createNewFile();
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        int iLogin=1;
+        BufferedReader reader=new BufferedReader(new FileReader(FileNameNhanVien));
+        String sline;
+        String fiNhanVien[]=new String[10];
+        while((sline=reader.readLine())!=null){
+            fiNhanVien=sline.split(",");
+            if(!fiNhanVien[0].trim().equals(sTaiKhoanNhanVien)&&!fiNhanVien[1].trim().equals(sMatKhauNhanVien)){
+                iLogin= -1;
+            }
+            else if(!fiNhanVien[0].trim().equals(sTaiKhoanNhanVien)||!fiNhanVien[1].trim().equals(sMatKhauNhanVien)){
+                iLogin= 0;
+            }
+            else if(fiNhanVien[0].trim().equals(sTaiKhoanNhanVien)&&fiNhanVien[1].trim().equals(sMatKhauNhanVien)&&(fiNhanVien[2].trim().equals("Kho"))){
+                iLogin= 1;
+            }
+            else if(fiNhanVien[0].trim().equals(sTaiKhoanNhanVien)&&fiNhanVien[1].trim().equals(sMatKhauNhanVien)&&(fiNhanVien[2].trim().equals("ThuNgan"))){
+                iLogin= 2;
+            }
+            else if(fiNhanVien[0].trim().equals(sTaiKhoanNhanVien)&&fiNhanVien[1].trim().equals(sMatKhauNhanVien)&&(fiNhanVien[2].trim().equals("TrucQuay"))){
+                iLogin= 3;
+            }
+            else if(fiNhanVien[0].trim().equals(sTaiKhoanNhanVien)&&fiNhanVien[1].trim().equals(sMatKhauNhanVien)&&(fiNhanVien[2].trim().equals("TuVan"))){
+                iLogin= 4;
+            }
+
+        }
+        return iLogin;
+    }
 }
