@@ -163,9 +163,9 @@ public class NhanVien extends NguoiDung {
 
     public void setVaiTroNhanVien(String sVaiTroNhanVien) {
         for (;;) {
-            System.out.print("Moi nhap vai tro cua Nhan Vien ");
+            System.out.print("Moi nhap vai tro cua Nhan Vien (ThuNgan, Kho, TrucQuay) ");
             sVaiTroNhanVien = sc.nextLine();
-            if (sVaiTroNhanVien.equals("TuVan") || sVaiTroNhanVien.equals("ThuNgan") || sVaiTroNhanVien.equals("Kho") || sVaiTroNhanVien.equals("TrucQuay")) {
+            if (sVaiTroNhanVien.equals("ThuNgan") || sVaiTroNhanVien.equals("Kho") || sVaiTroNhanVien.equals("TrucQuay")) {
                 break;
             }
             this.sVaiTroNhanVien = sVaiTroNhanVien;
