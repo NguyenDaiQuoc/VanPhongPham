@@ -1,13 +1,15 @@
 package com.nhanvien;
 
 import com.nguoidung.NguoiDung;
+import com.sanpham.SanPham;
+import java.util.Scanner;
+import java.io.File;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
-import java.util.Scanner;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 
 public class NhanVien extends NguoiDung {
 
