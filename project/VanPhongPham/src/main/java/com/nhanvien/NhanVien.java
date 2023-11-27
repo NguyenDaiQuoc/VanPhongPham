@@ -31,7 +31,18 @@ public class NhanVien extends NguoiDung {
     }
     
     public NhanVien(){}
-    
+
+    public NhanVien(NhanVien other) {
+        this.sTaiKhoanNhanVien = other.sTaiKhoanNhanVien;
+        this.sMatKhauNhanVien = other.sMatKhauNhanVien;
+        this.sHoTenNhanVien = other.sHoTenNhanVien;
+        this.sDiaChiNhanVien = other.sDiaChiNhanVien;
+        this.sSoDienThoaiNhanVien = other.sSoDienThoaiNhanVien;
+        this.sMaNhanVien = other.sMaNhanVien;
+        this.sVaiTroNhanVien = other.sVaiTroNhanVien;
+        this.iTrangThai = other.iTrangThai;
+    }
+
     public NhanVien(String sTaiKhoanNhanVien, String sMatKhauNhanVien, String sVaiTroNhanVien, int iTrangThai, String sMaNhanVien){
             this.sTaiKhoanNhanVien = sTaiKhoanNhanVien;
             this.sMatKhauNhanVien = sMatKhauNhanVien;   
@@ -39,6 +50,7 @@ public class NhanVien extends NguoiDung {
             this.iTrangThai = iTrangThai;
             this.sMaNhanVien = sMaNhanVien;
     }//lay Account NhanVien
+    
     public NhanVien(String sMaNhanVien, String sHoTenNhanVien, String sDiaChiNhanVien, String sSoDienThoaiNhanVien,int iTrangThai){
         this.sMaNhanVien = sMaNhanVien;
         this.sHoTenNhanVien = sHoTenNhanVien;
@@ -46,7 +58,6 @@ public class NhanVien extends NguoiDung {
         this.sSoDienThoaiNhanVien = sSoDienThoaiNhanVien;
         this.iTrangThai = iTrangThai;
     } // lay Thong Tin NhanVien
-    
     
     //Override de nhap thong tin ca nhan
     @Override
