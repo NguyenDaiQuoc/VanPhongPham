@@ -278,10 +278,6 @@ public class NhanVien extends NguoiDung {
             else if(fiNhanVien[0].trim().equals(sTaiKhoanNhanVien)&&fiNhanVien[1].trim().equals(sMatKhauNhanVien)&&(fiNhanVien[2].trim().equals("TrucQuay"))){
                 iLogin= 3;
             }
-            else if(fiNhanVien[0].trim().equals(sTaiKhoanNhanVien)&&fiNhanVien[1].trim().equals(sMatKhauNhanVien)&&(fiNhanVien[2].trim().equals("TuVan"))){
-                iLogin= 4;
-            }
-
         }
         return iLogin;
     }
