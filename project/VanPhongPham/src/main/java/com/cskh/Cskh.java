@@ -4,14 +4,57 @@ public class Cskh {
 
     private String sTen, sEmail, sSoDienThoai, sLinkMangXaHoi;
 
+    //constructor
     private Cskh(String sTen, String sEmail, String sSoDienThoai, String sLinkMangXaHoi) {
         this.sTen = sTen;
         this.sEmail = sEmail;
         this.sSoDienThoai = sSoDienThoai;
         this.sLinkMangXaHoi = sLinkMangXaHoi;
     }
-    private Cskh(){};
+    private Cskh(){
+    }
+    
+    private Cskh(Cskh a){
+        this.sTen = a.sTen;
+        this.sEmail = a.sEmail;
+        this.sSoDienThoai = a.sSoDienThoai;
+        this.sLinkMangXaHoi = a.sLinkMangXaHoi;        
+    }
 
+    //getter & setter
+    public String getsTen() {
+        return sTen;
+    }
+
+    public void setsTen(String sTen) {
+        this.sTen = sTen;
+    }
+
+    public String getsEmail() {
+        return sEmail;
+    }
+
+    public void setsEmail(String sEmail) {
+        this.sEmail = sEmail;
+    }
+
+    public String getsSoDienThoai() {
+        return sSoDienThoai;
+    }
+
+    public void setsSoDienThoai(String sSoDienThoai) {
+        this.sSoDienThoai = sSoDienThoai;
+    }
+
+    public String getsLinkMangXaHoi() {
+        return sLinkMangXaHoi;
+    }
+
+    public void setsLinkMangXaHoi(String sLinkMangXaHoi) {
+        this.sLinkMangXaHoi = sLinkMangXaHoi;
+    }
+    
+    //method
     public static void display() {
         Cskh dsnv[] = new Cskh[]{
             new Cskh("Nguyen Dai Quoc\t", "luutrithon1996@gmail.com", "0931454176", "fb.com/wolfdzai\t"),
