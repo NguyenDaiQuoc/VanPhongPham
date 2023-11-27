@@ -17,8 +17,69 @@ public class ThongTinChuongTrinh {
         this.dtNgayBatDau = dtNgayBatDau;
         this.dtNgayKetThuc = dtNgayKetThuc;
     }
-    private ThongTinChuongTrinh(){};
+    private ThongTinChuongTrinh(){
+    }
     
+    private ThongTinChuongTrinh(ThongTinChuongTrinh a) {
+        this.sPhienBan = a.sPhienBan;
+        this.sTenChuongTrinh = a.sTenChuongTrinh;
+        this.sMoTa = a.sMoTa;
+        this.sTeamDev = a.sTeamDev;
+        this.dtNgayBatDau = a.dtNgayBatDau;
+        this.dtNgayKetThuc = a.dtNgayKetThuc;
+    }
+    
+    //getter && setter
+
+    public String getsPhienBan() {
+        return sPhienBan;
+    }
+
+    public void setsPhienBan(String sPhienBan) {
+        this.sPhienBan = sPhienBan;
+    }
+
+    public String getsTenChuongTrinh() {
+        return sTenChuongTrinh;
+    }
+
+    public void setsTenChuongTrinh(String sTenChuongTrinh) {
+        this.sTenChuongTrinh = sTenChuongTrinh;
+    }
+
+    public String getsMoTa() {
+        return sMoTa;
+    }
+
+    public void setsMoTa(String sMoTa) {
+        this.sMoTa = sMoTa;
+    }
+
+    public String getsTeamDev() {
+        return sTeamDev;
+    }
+
+    public void setsTeamDev(String sTeamDev) {
+        this.sTeamDev = sTeamDev;
+    }
+
+    public Date getDtNgayBatDau() {
+        return dtNgayBatDau;
+    }
+
+    public void setDtNgayBatDau(Date dtNgayBatDau) {
+        this.dtNgayBatDau = dtNgayBatDau;
+    }
+
+    public Date getDtNgayKetThuc() {
+        return dtNgayKetThuc;
+    }
+
+    public void setDtNgayKetThuc(Date dtNgayKetThuc) {
+        this.dtNgayKetThuc = dtNgayKetThuc;
+    } 
+    
+    //method
     public static void display() {
         Calendar calStart = Calendar.getInstance();
         calStart.set(2023, Calendar.NOVEMBER, 8, 20, 30);
