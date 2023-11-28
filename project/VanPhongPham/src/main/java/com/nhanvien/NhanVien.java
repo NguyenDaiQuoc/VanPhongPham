@@ -394,7 +394,6 @@ public class NhanVien extends NguoiDung {
         }
 
         public void setTongTien(float TongTien) {
-            TongTien+=ThanhTien;
             this.TongTien = TongTien;
         }
         
