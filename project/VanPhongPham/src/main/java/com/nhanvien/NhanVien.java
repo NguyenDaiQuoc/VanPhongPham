@@ -250,6 +250,70 @@ public class NhanVien extends NguoiDung {
         }
     }
 
+        public void XoaNhanVienTheoMa(String sMaNhanVien) {
+        for (int i = 0; i < iSoLuongNhanVien; i++) {
+            if (nvDsnv[i].getMaNhanVien().equals(sMaNhanVien)) {
+                nvDsnv[i].setTrangThaiNhanVien(0);
+                System.out.println("Da xoa Nhan Vien co ma: " + sMaNhanVien);
+                return;
+            }
+        }
+        System.out.println("Khong tim thay Nhan Vien co ma: " + sMaNhanVien);
+    }
+    
+    public void XoaTatCaNhanVien() {
+        for (int i = 0; i < iSoLuongNhanVien; i++) {
+            nvDsnv[i].setTrangThaiNhanVien(0);            
+        }
+        System.out.println("Da xoa tat ca Nhan Vien");
+        return;
+    }
+    
+    public void HoanTacTatCaNhanVien() {
+        for (int i = 0; i < iSoLuongNhanVien; i++) {
+            nvDsnv[i].setTrangThaiNhanVien(1);
+        }
+        System.out.println("Da hoan tac xoa tat ca Nhan Vien.");
+    }
+    
+    public void TimKiemNhanVienTheoMa(String sMaNhanVien) {
+        for (int i = 0; i < iSoLuongNhanVien; i++) {
+            if (nvDsnv[i].getMaNhanVien().equals(sMaNhanVien)) {
+                NhanVien nv = nvDsnv[i];
+                System.out.println("Thong tin Nhan Vien co ma " + sMaNhanVien + ":");
+                System.out.println("Ho ten: " + nv.getHoTenNhanVien());
+                System.out.println("Dia chi: " + nv.getDiaChiNhanVien());
+                System.out.println("So dien thoai: " + nv.getSoDienThoaiNhanVien());
+                System.out.println("Vai tro: " + nv.getVaiTroNhanVien());
+                return;
+            }
+        }
+        System.out.println("Khong tim thay Nhan Vien co ma: " + sMaNhanVien);
+    }
+    
+    public void SuaThongTinNhanVienTheoMa(String sMaNhanVien) {
+        for (int i = 0; i < iSoLuongNhanVien; i++) {
+            if (nvDsnv[i].getMaNhanVien().equals(sMaNhanVien)) {
+                // Gọi các setter để sửa thông tin
+                nvDsnv[i].setHoTenNhanVien("");
+                nvDsnv[i].setDiaChiNhanVien("");
+                nvDsnv[i].setSoDienThoaiNhanVien("");
+                System.out.println("Da sua thong tin cho Nhan Vien co ma: " + sMaNhanVien);
+                return;
+            }
+        }
+        System.out.println("Khong tim thay Nhan Vien co ma: " + sMaNhanVien);
+    }
+    
+    public void SapXepTheoMa() {
+        Arrays.sort(nvDsnv, 0, iSoLuongNhanVien, (nv1, nv2) -> nv1.getMaNhanVien().compareTo(nv2.getMaNhanVien()));
+        System.out.println("Da sap xep Nhan Vien theo ma.");
+    }
+    
+    public void SapXepTheoVaiTro() {
+        Arrays.sort(nvDsnv, 0, iSoLuongNhanVien, (nv1, nv2) -> nv1.getVaiTroNhanVien().compareTo(nv2.getVaiTroNhanVien()));
+        System.out.println("Da sap xep Nhan Vien theo vai tro.");
+    }
     
     
     public int DangNhap() throws IOException{
