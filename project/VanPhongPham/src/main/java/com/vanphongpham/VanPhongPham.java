@@ -283,7 +283,17 @@ public class VanPhongPham {
                 }
 
                 case 2: {
-                    //User usr = new User();
+                                        
+                    try{
+                        NhanVien nv = new NhanVien("","","",1,"");
+                        int iLogin=nv.DangNhap();
+                        if(iLogin==2){
+                            nv.hd.NhapHoaDon();
+                        }
+                    }
+                    catch(IOException e){
+                        e.printStackTrace();
+                    }
                     break;
                 }
                 case 4: {
