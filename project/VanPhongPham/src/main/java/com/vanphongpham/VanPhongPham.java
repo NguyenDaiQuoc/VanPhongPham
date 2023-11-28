@@ -42,6 +42,7 @@ public class VanPhongPham {
                 case 1: {
                     int iCnt = 5, ok = 1;
                     QuanLy quanly = new QuanLy("", "", "QuanLy");
+                    NhanVien nhanvien= new NhanVien("","","",0,"");
                     try {
                         while (iCnt != 0) {
                             int iLogin = quanly.DangNhapTaiKhoanQuanLy();
