@@ -30,6 +30,16 @@ public class SanPham {
         this.loai = loai;
     }
 
+    public SanPham(SanPham a){
+        this.idSanPham = a.idSanPham;
+        this.name = a.name;
+        this.gia = a.gia;
+        this.soluong = a.soluong;
+        this.ngaySx = a.ngaySx;
+        this.donviSx = a.donxiSx;
+        this.loai = a.loai;
+    }
+
     public String getIdSanPham() {
         return idSanPham;
     }
