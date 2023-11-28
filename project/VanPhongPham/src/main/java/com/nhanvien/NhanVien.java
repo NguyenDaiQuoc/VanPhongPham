@@ -396,16 +396,16 @@ public class NhanVien extends NguoiDung {
         public void setTongTien(float TongTien) {
             this.TongTien = TongTien;
         }
-        
+
+        public String[] NhapTTHoaDon(){
+        setSoLuongSP(sc.nextInt());
+        setThanhTien(0);
+        setTongTien(0);
+            String[] TTHoaDon = {name, Integer.toString(getSoLuongSP()),Float.toString(gia), Float.toString(getThanhTien())};
+        return TTHoaDon;
+        }
         
         public void NhapHoaDon() throws IOException{
-            //stt
-        //tensanpham
-        //soluong
-        //dongia
-        //chietkhau
-        //thanhtien
-        //tongtien
             File file=new File(FileHoaDon);
             try{
                 if(!file.exists()){
@@ -418,12 +418,9 @@ public class NhanVien extends NguoiDung {
             BufferedWriter writer=new BufferedWriter(new FileWriter(FileHoaDon));
             writer.write(ngay + "/");
             for(int i=1;;i++){
-                setSoLuongSP(0);
-                setThanhTien(0);
-                TongTien+=ThanhTien;
-                writer.write(i + "," + name + "," + SoLuongSP + "," + gia + "," + /*ChieuKhau +*/ "," + getThanhTien() + "/");
+
             }
-            writer.write(TongTien +".\n");
+
         
         }   
 
