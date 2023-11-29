@@ -397,11 +397,18 @@ public class NhanVien extends NguoiDung {
             this.TongTien = TongTien;
         }
 
-        public String[] NhapTTHoaDon(){
-        setSoLuongSP(sc.nextInt());
+        public HoaDon[] NhapTTHoaDon(){
+        setSoLuongSP(0);
         setThanhTien(0);
         setTongTien(0);
-            String[] TTHoaDon = {name, Integer.toString(getSoLuongSP()),Float.toString(gia), Float.toString(getThanhTien())};
+        HoaDon[] TTHoaDon=new HoaDon[99];
+        int c=1;
+        for(int i=1;c!=0;i++){
+            System.out.println("Moi nhap thong tin hoa don:");
+            TTHoaDon[i] = new HoaDon(name,getSoLuongSP(),gia, getThanhTien());
+            System.out.println("Nhan 0 neu muon dung nhap hoa don:");
+            c=sc.nextInt();
+        }
         return TTHoaDon;
         }
         
