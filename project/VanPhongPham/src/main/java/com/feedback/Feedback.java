@@ -8,28 +8,18 @@ import java.io.FileReader;
 import java.io.FileWriter;
 public class Feedback{
     Scanner sc= new Scanner(System.in);
-    String sMaNguoiDung;
     int iRating;
     String sFeedBack;
     public Feedback(){};
-    public Feedback(String Mnsd,int Rt,String Fb){
-        this.sMaNguoiDung=Mnsd;
+    public Feedback(int Rt,String Fb){
         this.iRating=Rt;
         this.sFeedBack=Fb;
     }
     public Feedback(Feedback fb){
-        this.sMaNguoiDung=fb.sMaNguoiDung;
         this.iRating=fb.iRating;
         this.sFeedBack=fb.sFeedBack;
     }
-    public String getMaNguoiDung() {
-        return sMaNguoiDung;
-    }
 
-    public void setMaNguoiDung(String sMaNguoiDung) {
-        this.sMaNguoiDung = sMaNguoiDung;
-    }
-    
     public int getRating() {
         return iRating;
     }
@@ -56,7 +46,7 @@ public class Feedback{
         this.sFeedBack=sFeedBack;
     }
 
-    public void AddFeedback(String sMaNguoiDung)throws IOException{
+    public void AddFeedback()throws IOException{
         String Fb = "Feedback.txt";
         File fFeedback = new File(Fb);
          try {
@@ -66,11 +56,11 @@ public class Feedback{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Feedback fb = new Feedback(sMaNguoiDung,0,"");
+        Feedback fb = new Feedback(0,"");
         setRating(iRating);
         setFeedBack(sFeedBack);
         BufferedWriter writer = new BufferedWriter(new FileWriter(Fb,true));
-        writer.write(sMaNguoiDung + ","+getRating()+","+getFeedBack()+"\n");
+        writer.write(getRating()+","+getFeedBack()+","+java.time.LocalDate.now()+"\n");
         writer.close();
     }
 }
