@@ -420,9 +420,9 @@ public class VanPhongPham {
                 }
                     
                 case 6: {
-                    Feedback fb = new Feedback("",0,"");
+                    Feedback fb = new Feedback(0,"");
                     try {
-                        fb.AddFeedback("conchoDPT");
+                        fb.AddFeedback();
                         }
                     catch(IOException e){
                             e.printStackTrace();
