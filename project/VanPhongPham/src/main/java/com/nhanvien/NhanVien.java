@@ -683,7 +683,7 @@ public class NhanVien extends NguoiDung {
     }
     
     public class HoaDon extends SanPham {
-        public HoaDon(String idSanPham, String name, float gia, int soluong, String ngaySx, String donviSx, String loai){
+        public HoaDon(String name,int SoLuongSP,float gia,float ThanhTien){
             super();
         }
         
