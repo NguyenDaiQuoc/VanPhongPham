@@ -4,33 +4,41 @@ import java.io.File;
 import java.io.IOException;
 import com.nguoidung.NguoiDung;
 import java.util.Scanner;
-import com.nhanvien.NhanVien;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
+import com.sanpham.SanPham;
 
 public class QuanLyFile extends NguoiDung {
 
     Scanner sc = new Scanner(System.in);
-    String sTaiKhoanNhanVien, sMatKhauNhanVien, sTaiKhoanQuanLy, sMatKhauQuanLy;
-    String FileNameNhanVien = "Account Nhan Vien.txt";
+    String sTaiKhoanQuanLy, sMatKhauQuanLy;
     String FileNameQuanLy = "Account Quan Ly.txt";
-    String FileThongTinNV = "Thong tin Nhan Vien.txt";
     String FileThongTinQL = "Thong tin Quan Ly.txt";
     String FileTmp = "tmp.txt";
-    public static int iSoLuongNhanVien = 0; //Theo doi so luong nhan vien
     String sHoTenQuanLy, sSoDienThoaiQuanLy, sDiaChiQuanLy;
-    
+    SanPham[] danhSachSanPham = new SanPham[10];
+
     //constructor
     public QuanLyFile(String sTenDangNhap, String sMatKhau, String sVaiTro) {
         super(sTenDangNhap, sMatKhau, "QuanLy");
     }
-    public QuanLyFile(){};
-    
-    public QuanLyFile(String sTaiKhoanQuanLy, String sMatKhauQuanLy){
+
+    public QuanLyFile() {
+    }
+
+    public QuanLyFile(String sTaiKhoanQuanLy, String sMatKhauQuanLy) {
         this.sTaiKhoanQuanLy = sTaiKhoanQuanLy;
         this.sMatKhauQuanLy = sMatKhauQuanLy;
+    }
+
+    public QuanLyFile(QuanLyFile a) {
+        this.sTaiKhoanQuanLy = a.sTaiKhoanQuanLy;
+        this.sMatKhauQuanLy = a.sMatKhauQuanLy;
+        this.sVaiTro = a.sVaiTro;
+        this.iTrangThai = a.iTrangThai;
+        this.sMaNguoiDung = GenerateUID();
     }
 
     //getter & setter 
@@ -159,7 +167,9 @@ public class QuanLyFile extends NguoiDung {
         writer.close();
         reader.close();
         if (bFound == true) {
-                if(!fileTTQL.delete()) System.out.println("Khong the xoa file!");
+            if (!fileTTQL.delete()) {
+                System.out.println("Khong the xoa file!");
+            }
             fileTmp.renameTo(new File(FileThongTinQL));
             System.out.println("Da cap nhat thong tin Quan Ly ID = " + ID);
         } else {
@@ -225,216 +235,10 @@ public class QuanLyFile extends NguoiDung {
         if (bFound == false) {
             System.out.println("Khong co thong tin tai khoan Quan Ly");
         }
-
     }
 
-    public void DangKyTaiKhoanNhanVien() throws IOException {
-        File file = new File(FileNameNhanVien);
-        try {
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        boolean bExists = false;
-        NhanVien newNhanVien = new NhanVien("", "", "NhanVien");
-        newNhanVien.setTaiKhoanNhanVien(sTaiKhoanNhanVien);
-        newNhanVien.setMatKhauNhanVien(sMatKhauNhanVien);
-        newNhanVien.setVaiTroNhanVien(sTaiKhoanNhanVien);
-        //UID = newNhanVien.GenerateUID();
-        BufferedReader reader = new BufferedReader(new FileReader(FileNameNhanVien));
-        String sLine;
-        String fiNhanVien[] = new String[10];
-        while ((sLine = reader.readLine()) != null) {
-            fiNhanVien = sLine.split(",");
-            if (fiNhanVien[0].equals(newNhanVien.getTaiKhoanNhanVien())) {
-                System.out.println("Tai khoan nhan vien " + newNhanVien.getTaiKhoanNhanVien() + " da ton tai!");
-                bExists = true;
-                break;
-            }
-        }
-        if (bExists == false) {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(FileNameNhanVien, true));
-            iSoLuongNhanVien++;
-            //writer.write(newNhanVien.getTaiKhoanNhanVien() + "," + newNhanVien.getMatKhauNhanVien() + "," + newNhanVien.sVaiTro + "," + newNhanVien.iTrangThai + "," + UID + "\n");
-            writer.write(newNhanVien.getTaiKhoanNhanVien() + "," + newNhanVien.getMatKhauNhanVien() + "," + newNhanVien.getVaiTroNhanVien() + "," + newNhanVien.iTrangThai + "," + newNhanVien.getMaNguoiDung() + "\n");
-            writer.close();
-            BufferedWriter writer1 = new BufferedWriter(new FileWriter(FileThongTinNV, true));
-            //writer1.write(UID + "\n");
-            writer1.write(newNhanVien.getMaNguoiDung() + ",,,,1\n");
-            writer1.close();
-        }
+    public void XemSanPham() {
+        SanPham.XemDanhSachSanPham(danhSachSanPham);
     }
 
-    public void XoaTaiKhoanNhanVien() throws IOException {
-        File file = new File(FileNameNhanVien);
-        File fileTmp = new File(FileTmp);
-        File fileTT = new File(FileThongTinNV);
-        System.out.print("Moi nhap tai khoan Nhan Vien can xoa ");
-        String sTaiKhoan = sc.nextLine();
-        String fiNhanVien[] = new String[10]; //dung de quan ly thong tin nhan vien
-        String sLine;
-        BufferedReader reader = new BufferedReader(new FileReader(FileNameNhanVien));
-        BufferedWriter writer = new BufferedWriter(new FileWriter(FileTmp, true));
-        try {
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        boolean bFound = false;
-        String ID = "";
-        while ((sLine = reader.readLine()) != null) {
-            fiNhanVien = sLine.split(",");
-            if ((fiNhanVien[0].equals(sTaiKhoan) && fiNhanVien[3].equals("1"))) {
-                bFound = true;
-                ID = fiNhanVien[4];
-                System.out.println(fiNhanVien[4]);
-                writer.write(fiNhanVien[0] + "," + fiNhanVien[1] + "," + fiNhanVien[2] + ",0," + fiNhanVien[4] + "\n");
-            } else {
-                writer.write(fiNhanVien[0] + "," + fiNhanVien[1] + "," + fiNhanVien[2] + ",1," + fiNhanVien[4] + "\n");
-            }
-        }
-        reader.close();
-        writer.close();
-        if (bFound == true) {
-            file.delete();
-            fileTmp.renameTo(new File(FileNameNhanVien));
-            System.out.println("Da xoa nhan vien co tai khoan " + sTaiKhoan);
-            String sLine1;
-            String fiNhanVien1[] = new String[10];
-            BufferedWriter writer1 = new BufferedWriter(new FileWriter(FileTmp, true));
-            BufferedReader reader1 = new BufferedReader(new FileReader(FileThongTinNV));
-            while ((sLine1 = reader1.readLine()) != null) {
-                fiNhanVien1 = sLine1.trim().split(",");
-                if (fiNhanVien1[4].equals("1") && fiNhanVien1[0].equals(ID)) {
-                    writer1.write(fiNhanVien1[0] + "," + fiNhanVien1[1] + "," + fiNhanVien1[2] + "," + fiNhanVien1[3] + ",0\n");
-                } else {
-                    writer1.write(fiNhanVien1[0] + "," + fiNhanVien1[1] + "," + fiNhanVien1[2] + "," + fiNhanVien1[3] + "," + fiNhanVien1[4] + "\n");
-                }
-            }
-            writer1.close();
-            reader1.close();
-            fileTT.delete();
-            fileTmp.renameTo(new File(FileThongTinNV));
-        } else {
-            System.out.println("Khong tim thay tai khoan Nhan Vien can xoa");
-            fileTmp.delete();
-        }
-    }
-
-    public void CapNhatThongTinNhanVien() throws IOException {
-        File fileTmp = new File(FileTmp);
-        try {
-            if (!fileTmp.exists()) {
-                fileTmp.createNewFile();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        File file1 = new File(FileNameNhanVien);
-        File fileTT = new File(FileThongTinNV);
-        BufferedWriter writer = new BufferedWriter(new FileWriter(FileTmp));
-        //BufferedReader reader = new BufferedReader(new FileReader(FileNameNhanVien));
-        BufferedReader reader1 = new BufferedReader(new FileReader(FileThongTinNV));
-        NhanVien nv = new NhanVien("", "", "NhanVien");
-        System.out.print("Moi nhap ID cua Nhan Vien can cap nhat thong tin ");
-        String ID = sc.nextLine();
-        String sLine, sLine1;
-        //String fiNhanVien[] = new String[10];
-        String fiNhanVien1[] = new String[10];
-        boolean bFound = false;
-        //while ((sLine = reader.readLine()) != null) {
-        //reader1 = new BufferedReader(new FileReader(FileThongTinNV));
-        nv.NhapThongTin();
-        while ((sLine1 = reader1.readLine()) != null) {
-            //fiNhanVien = sLine.split(",");
-            fiNhanVien1 = sLine1.split(",");
-            //if (fiNhanVien[3].equals("1") && fiNhanVien[4].equals(ID) && fiNhanVien1[0].equals(ID)) {
-            if (fiNhanVien1[0].equals(ID)) {
-                nv.setHoTenNhanVien(sHoTen);
-                nv.setDiaChiNhanVien(sDiaChi);
-                nv.setSoDienThoaiNhanVien(sSoDienThoai);
-                writer.write(ID + "," + nv.getHoTenNhanVien() + "," + nv.getDiaChiNhanVien() + "," + nv.getSoDienThoaiNhanVien() + ",1\n");
-                bFound = true;
-            } //else if(!fiNhanVien[4].equals(fiNhanVien1[0]) && (fiNhanVien1[4].equals("1") || fiNhanVien1[4].equals("0"))){
-            else {
-                writer.write(fiNhanVien1[0] + "," + fiNhanVien1[1] + "," + fiNhanVien1[2] + "," + fiNhanVien1[3] + ",1\n");
-            }
-        }
-        //}
-        writer.close();
-        reader1.close();
-        if (bFound == true) {
-            //reader.close();
-            fileTT.delete();
-            fileTmp.renameTo(new File(FileThongTinNV));
-            System.out.println("Da cap nhat thong tin Nhan Vien ID = " + ID);
-        } else {
-            fileTmp.delete();
-            System.out.println("Khong tim thay Nhan Vien mang ID = " + ID);
-        }
-    }
-
-    public void XemThongTinNhanVien() throws IOException {
-        File file = new File(FileThongTinNV);
-        String fiNhanVien[] = new String[10]; //dung de quan ly thong tin nhan vien
-        String sLine;
-        BufferedReader reader = new BufferedReader(new FileReader(FileThongTinNV));
-        try {
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        NhanVien nv = new NhanVien("", "", "");
-        nv.LayThongTin();
-        boolean bFound = false;
-        System.out.printf("%-12s%-25s%-20s%-15s\n", "Ma NV", "Ho & ten", "Dia chi", "So dien thoai");
-
-        while ((sLine = reader.readLine()) != null) {
-            fiNhanVien = sLine.split(",");
-            if (fiNhanVien[4].equals("1")) {
-                bFound = true;
-                System.out.printf("%-12s%-25s%-20s%-15s\n", fiNhanVien[0], fiNhanVien[1], fiNhanVien[2], fiNhanVien[3]);
-            } else {
-                continue;
-            }
-        }
-        if (bFound == false) {
-            System.out.println("Khong co thong tin Nhan Vien");
-        }
-    }
-
-    public void XemTaiKhoanNhanVien() throws IOException {
-        File file = new File(FileNameNhanVien);
-        String fiNhanVien[] = new String[10]; //dung de quan ly thong tin nhan vien
-        String sLine;
-        BufferedReader reader = new BufferedReader(new FileReader(FileNameNhanVien));
-        NhanVien nv = new NhanVien("", "", "");
-        nv.LayTaiKhoan();
-        System.out.printf("%-20s%-30s%-16s\n", "Tai khoan", "Mat khau", "Vai Tro");
-        try {
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        boolean bFound = false;
-        while ((sLine = reader.readLine()) != null) {
-            fiNhanVien = sLine.split(",");
-            if (fiNhanVien[3].equals("1")) {
-                bFound = true;
-                System.out.printf("%-20s%-30s%-16s\n", fiNhanVien[0], fiNhanVien[1], fiNhanVien[2]);
-            }
-        }
-        if (bFound == false) {
-            System.out.println("Khong co thong tin tai khoan Nhan Vien");
-        }
-
-    }
 }
