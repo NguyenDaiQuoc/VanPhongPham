@@ -1,10 +1,12 @@
 package com.vanphongpham;
 
 import java.util.Scanner;
+//import com.user.User;
 //hoac import com.vanphongpham.user.User;
 import com.ThongTinChuongTrinh.ThongTinChuongTrinh;
 import com.cskh.Cskh;
-import com.quanly.QuanLy;
+import com.quanly.QuanLyFile;
+import com.quanly.QuanLyArray;
 import java.io.IOException;
 import com.nhanvien.NhanVien;
 import com.feedback.Feedback;
@@ -33,7 +35,6 @@ public class VanPhongPham {
             System.out.println("|4. CSKH (Customer care)                         |");
             System.out.println("|5. Thong tin ve chuong trinh (Details)          |");
             System.out.println("|6. Gop y ve chuong trinh (Feedback) (1 File) --> Viet|");
-            // UID, nd, date/time
             System.out.println("|0. Thoat ung dung (Exit application)            |");
             System.out.println("==================================================");
             System.out.print("Moi ban nhap lua chon (Please enter your choice): ");
@@ -353,27 +354,13 @@ public class VanPhongPham {
                 }
 
                 case 2: {
-                                        
-                    for(;;){
-                     try{
-                        NhanVien nv = new NhanVien("","","",1,"");
-                        int iLogin=nv.DangNhap();
-                        if(iLogin==2){
-                            nv.NhapHoaDon();
-                        }
-                    }
-                    catch(IOException e){
-                        e.printStackTrace();
-                    }
-                     break;
-                    }
+                    clearScreen();
                     break;
                 }
-                    
                 case 3: {
-                    
+                    clearScreen();
+                    break;
                 }
-                    
                 case 4: {
                     int ok = 1;
                     while (ok == 1) {
@@ -396,12 +383,10 @@ public class VanPhongPham {
                     }
                     break;
                 }
-                    
                 case 5: {
                     int ok = 1;
                     while (ok == 1) {
                         clearScreen();
-                        //details.main(args);
                         ThongTinChuongTrinh.display();
                         System.out.println("1.Quay lai man hinh menu");
                         System.out.println("0.Thoat chuong trinh");
@@ -421,7 +406,6 @@ public class VanPhongPham {
                     }
                     break;
                 }
-                    
                 case 6: {
                     Feedback fb = new Feedback(0,"");
                     try {
