@@ -41,8 +41,9 @@ public class VanPhongPham {
             switch (lc) {
                 case 1: {
                     int iCnt = 5, ok = 1;
-                    QuanLy quanly = new QuanLy("", "", "QuanLy");
-                    NhanVien nhanvien= new NhanVien("","","",0,"");
+                    //QuanLyFile quanly = new QuanLyFile("", "", "QuanLy");
+                    QuanLyArray quanly = new QuanLyArray("","","QuanLy");
+                    NhanVien nhanvien = new NhanVien("","","",1,"");
                     try {
                         while (iCnt != 0) {
                             int iLogin = quanly.DangNhapTaiKhoanQuanLy();
@@ -57,8 +58,9 @@ public class VanPhongPham {
                                     System.out.println("|2. Xem danh sach Quan Ly                        |");
                                     System.out.println("|3. Dang ky tai khoan Nhan Vien                  |");
                                     System.out.println("|4. Xoa tai khoan Nhan Vien                      |");
-                                    System.out.println("|5. Cap nhat thong tin Nhan Vien                 :");
-                                    System.out.println("|6. Xem danh sach Nhan Vien                      :");
+                                    System.out.println("|5. Cap nhat thong tin Nhan Vien                 |");
+                                    System.out.println("|6. Tim kiem Nhan Vien                           |");
+                                    System.out.println("|7. Xem danh sach Nhan Vien                      |");
                                     System.out.println("|0. Thoat vai tro Quan Ly                        |");
                                     System.out.println("==================================================");
                                     System.out.print("Moi ban nhap mot lua chon (0-6) ");
@@ -93,7 +95,7 @@ public class VanPhongPham {
                                             int ok1 = 1;
                                             clearScreen();
                                             while (ok1 == 1) {
-                                                System.out.println("Ban muon xem thong tin gi?");
+                                                System.out.println("Ban muon them thong tin gi?");
                                                 System.out.println("1. Xem Thong tin Quan Ly");
                                                 System.out.println("2. Xem Tai khoan Quan Ly");
                                                 System.out.println("0. Quay lai");
@@ -121,8 +123,8 @@ public class VanPhongPham {
                                         case 3: {
                                             clearScreen();
                                             int ok1 = 1;
-                                            while (ok1 == 1) {
-                                                quanly.DangKyTaiKhoanNhanVien();
+                                            while (ok1 == 1) {                                                
+                                                nhanvien.DangKyTaiKhoanNhanVien();
                                                 System.out.println("Ban co muon dang ky tai khoan Nhan Vien tiep khong?");
                                                 System.out.println("1. Tiep tuc");
                                                 System.out.println("0. Quay lai");
@@ -143,49 +145,91 @@ public class VanPhongPham {
                                             }
                                             break;
                                         }
-                                        case 4: { 
+                                        case 4: {
                                             clearScreen();
                                             int ok1 = 1;
                                             while (ok1 == 1) {
                                                 System.out.println("1. Xoa Nhan Vien theo ID");
-                                                System.out.println("2. Xoa tat ca Nhan Vien");
+                                                System.out.println("2. Xoa Nhan Vien theo tai khoan");
+                                                System.out.println("3. Xoa tat ca Nhan Vien");
                                                 System.out.println("0. Quay lai");
                                                 System.out.print("Moi nhap lua chon cua ban ");
                                                 int lc2 = sc.nextInt();
                                                 switch(lc2){
                                                     case 1: {
-                                                        int t = 1;
-                                                        while (t != 0) {
-                                                            nhanvien.DocFileAccNhanVien();
-                                                            sc.nextLine();
-                                                            System.out.print("Moi nhap ID Nhan Vien can xoa ");
-                                                            String sID = sc.nextLine();
-                                                            nhanvien.XoaNhanVienTheoMa(sID);
-                                                            System.out.print("Nhap 0 neu ban khong muon xoa nua ");
-                                                            t = sc.nextInt();
+                                                        clearScreen();
+                                                        int ok2 = 1;
+                                                        while (ok2 == 1) {                                                            
+                                                            nhanvien.XoaNhanVienTheoMa();
+                                                            System.out.print("Ban co muon xoa tiep khong?");
+                                                            System.out.println("1. Tiep tuc");
+                                                            System.out.println("0.Quay lai");
+                                                            System.out.print("Moi nhap lua chon cua ban ");
+                                                            int lc3 = sc.nextInt();
+                                                            switch(lc3){
+                                                                case 1: {
+                                                                    break;
+                                                                }
+                                                                case 0: {
+                                                                    ok2 = 0;
+                                                                    break;
+                                                                }
+                                                                default: {
+                                                                    System.out.println("Lua chon khong hop le!");
+                                                                    break;
+                                                                }
+                                                            }
                                                         }
-                                                        nhanvien.GhiFileAccNhanVien();
                                                         break;
                                                     }
                                                     case 2: {
-                                                        nhanvien.DocFileAccNhanVien();
-                                                        nhanvien.XoaTatCaNhanVien();
-                                                        System.out.println("1. Hoan tac");
-                                                        System.out.println("0. Quay lai");
-                                                        System.out.print("Xin moi nhap lua chon ");
-                                                        int lc3 = sc.nextInt();
-                                                        switch(lc3){
-                                                            case 1:{
-                                                                nhanvien.HoanTacTatCaNhanVien();
-                                                                break;
+                                                        clearScreen();
+                                                        int ok2 = 1;
+                                                        while (ok2 == 1) {
+                                                            nhanvien.XoaTaiKhoanNhanVienTheoTaiKhoan();
+                                                            System.out.print("Ban co muon xoa tiep khong?");
+                                                            System.out.println("1. Tiep tuc");
+                                                            System.out.println("0.Quay lai");
+                                                            System.out.print("Moi nhap lua chon cua ban ");
+                                                            int lc3 = sc.nextInt();
+                                                            switch (lc3) {
+                                                                case 1: {
+                                                                    break;
+                                                                }
+                                                                case 0: {
+                                                                    ok2 = 0;
+                                                                    break;
+                                                                }
+                                                                default: {
+                                                                    System.out.println("Lua chon khong hop le!");
+                                                                    break;
+                                                                }
                                                             }
-                                                            case 0: {
-                                                                nhanvien.GhiFileAccNhanVien();
-                                                                break;
-                                                            }
-                                                            default: {
-                                                                System.out.println("Lua chon khong hop le!");
-                                                                break;
+                                                        }
+                                                        break;
+                                                    }
+                                                    case 3: {
+                                                        clearScreen();
+                                                        int ok2 = 1;
+                                                        while (ok2 == 1) {
+                                                            nhanvien.XoaTatCaNhanVien();
+                                                            System.out.println("1. Hoan tac");
+                                                            System.out.println("0. Quay lai");
+                                                            System.out.print("Xin moi nhap lua chon ");
+                                                            int lc3 = sc.nextInt();
+                                                            switch (lc3) {
+                                                                case 1: {
+                                                                    nhanvien.HoanTacXoaTatCaNhanVien();
+                                                                    break;
+                                                                }
+                                                                case 0: {
+                                                                    ok2 = 0;
+                                                                    break;
+                                                                }
+                                                                default: {
+                                                                    System.out.println("Lua chon khong hop le!");
+                                                                    break;
+                                                                }
                                                             }
                                                         }
                                                         break;
@@ -206,7 +250,7 @@ public class VanPhongPham {
                                             clearScreen();
                                             int ok1 = 1;
                                             while (ok1 == 1) {
-                                                quanly.CapNhatThongTinNhanVien();
+                                                nhanvien.CapNhatThongTinNhanVien();
                                                 System.out.println("Ban co muon cap nhat thong tin Nhan Vien tiep khong?");
                                                 System.out.println("1. Tiep tuc");
                                                 System.out.println("0. Quay lai");
@@ -230,8 +274,33 @@ public class VanPhongPham {
                                         case 6: {
                                             int ok1 = 1;
                                             clearScreen();
+                                            while(ok1 == 1){
+                                                nhanvien.TimKiemNhanVienTheoMa();
+                                                System.out.println("Ban co muon tim kiem Nhan Vien tiep khong?");
+                                                System.out.println("1. Tiep tuc");
+                                                System.out.println("0. Quay lai");
+                                                int lc2 = sc.nextInt();
+                                                switch (lc2) {
+                                                    case 1: {
+                                                        break;
+                                                    }
+                                                    case 0: {
+                                                        ok1 = 0;
+                                                        break;
+                                                    }
+                                                    default: {
+                                                        System.out.println("Lua chon khong hop le!");
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            break;
+                                        }
+                                        case 7: {
+                                            int ok1 = 1;
+                                            clearScreen();
                                             while (ok1 == 1) {
-                                                System.out.println("Ban muon them thong tin gi?");
+                                                System.out.println("Ban muon xem thong tin gi?");
                                                 System.out.println("1. Xem Thong tin Nhan Vien");
                                                 System.out.println("2. Xem Tai khoan Nhan Vien");
                                                 System.out.println("0. Quay lai");
@@ -240,12 +309,12 @@ public class VanPhongPham {
                                                 switch (lc2) {
                                                     case 1: {
                                                         clearScreen();
-                                                        quanly.XemThongTinNhanVien();
+                                                        nhanvien.XemThongTinNhanVien();
                                                         break;
                                                     }
                                                     case 2: {
                                                         clearScreen();
-                                                        quanly.XemTaiKhoanNhanVien();
+                                                        nhanvien.XemTaiKhoanNhanVien();
                                                         break;
                                                     }
                                                     case 0: {
@@ -297,6 +366,11 @@ public class VanPhongPham {
                     }
                     break;
                 }
+                    
+                case 3: {
+                    
+                }
+                    
                 case 4: {
                     int ok = 1;
                     while (ok == 1) {
@@ -319,6 +393,7 @@ public class VanPhongPham {
                     }
                     break;
                 }
+                    
                 case 5: {
                     int ok = 1;
                     while (ok == 1) {
@@ -343,6 +418,7 @@ public class VanPhongPham {
                     }
                     break;
                 }
+                    
                 case 6: {
                     Feedback fb = new Feedback("",0,"");
                     try {
