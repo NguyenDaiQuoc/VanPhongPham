@@ -354,15 +354,18 @@ public class VanPhongPham {
 
                 case 2: {
                                         
-                    try{
+                    for(;;){
+                     try{
                         NhanVien nv = new NhanVien("","","",1,"");
                         int iLogin=nv.DangNhap();
                         if(iLogin==2){
-                            nv.hd.NhapHoaDon();
+                            nv.NhapHoaDon();
                         }
                     }
                     catch(IOException e){
                         e.printStackTrace();
+                    }
+                     break;
                     }
                     break;
                 }
