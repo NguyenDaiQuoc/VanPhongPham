@@ -28,7 +28,7 @@ public class NhanVien extends NguoiDung {
     public int iTrangThai = 1;
     String sLine, fiNhanVien[];
     NhanVien nvDsnv[] = new NhanVien[999];
-    public HoaDon hd = new HoaDon("","",0,0,"","","");
+    public HoaDon hd = new HoaDon("",0,0,0);
     //constructor
     public NhanVien(String sTenDangNhap, String sMatKhau, String sVaiTro) {
         super(sTenDangNhap, sMatKhau, "NhanVien");
