@@ -31,7 +31,7 @@ public class VanPhongPham {
             System.out.println("==================================================");
             System.out.println("|Moi ban chon thao tac ung voi nhu cau cua minh  |");
             System.out.println("|1. Quan ly (Adminstrator) (2 File)  --> Quoc    |");
-            System.out.println("|2. Nguoi dung (User)      (n File)  --> Thinh, Sang|");
+            System.out.println("|2. Khach Hang (Customer)      (n File)  --> Thinh, Sang|");
             System.out.println("|3. Nhan vien (Staff)      (1 File)  --> Phat    |");
             System.out.println("|4. CSKH (Customer care)                         |");
             System.out.println("|5. Thong tin ve chuong trinh (Details)          |");
