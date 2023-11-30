@@ -79,7 +79,7 @@ public class BinhLuan {
 
     public void luuBinhLuan() {
         try {
-            File file = new File("BinhLuan.txt");
+            File file = new File("Binh Luan.txt");
     
             // Create the file if it doesn't exist
             if (!file.exists()) {
