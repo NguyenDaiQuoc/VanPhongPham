@@ -1,4 +1,16 @@
-// Lớp KhachHang là một loại NguoiDung
+package com.KhachHang;
+
+import java.io.*;
+import java.util.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.Calendar;
+
 public class KhachHang {
     private String maNguoiDung;
     private String tenDangNhap;
