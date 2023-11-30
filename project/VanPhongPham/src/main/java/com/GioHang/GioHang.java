@@ -143,10 +143,6 @@ class GioHang {
             displayMenu = false;
         }
     }
-    SanPham[] getGioHang() {
-        return gioHang;
-    }
-
     private String generateMaDonHang() {
         int lastOrderId = 0;
         File file = new File("lastorderid.txt");
@@ -269,9 +265,5 @@ class GioHang {
         for (int i = 0; i < soLuongSanPhamTrongGio; i++) {
             System.out.println((i + 1) + ". " + gioHang[i].getTen() + " - " + gioHang[i].getGia() + "VND");
         }
-    }
-
-    int getSoLuongSanPhamTrongGio() {
-        return soLuongSanPhamTrongGio;
     }
 }
