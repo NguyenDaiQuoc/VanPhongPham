@@ -1,3 +1,16 @@
+package com.PhuongThucThanhToan
+
+import java.io.*;
+import java.util.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.Calendar;
+
 public class PhuongThucThanhToan {
     private String maPhuongThuc;
     private String ten;
