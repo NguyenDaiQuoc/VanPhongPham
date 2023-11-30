@@ -13,6 +13,11 @@ import java.io.ObjectOutputStream;
 import java.util.Calendar;
 
 class KhachHang extends NguoiDung {
+    // Default constructor
+    KhachHang() {
+        super("", "", "KhachHang");
+    }
+
     KhachHang(String tenDangNhap, String matKhau) {
         super(sTenDangNhap, sMatKhau, "KhachHang");
     }
@@ -27,5 +32,3 @@ class KhachHang extends NguoiDung {
         this.sDiaChi = scanner.nextLine();
     }
 }
-
-
