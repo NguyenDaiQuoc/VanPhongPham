@@ -2,6 +2,7 @@ package com.nhanvien;
 
 import com.nguoidung.NguoiDung;
 import com.sanpham.SanPham;
+import com.hoadon.HoaDon;
 import java.util.Scanner;
 import java.io.File;
 import java.io.BufferedReader;
