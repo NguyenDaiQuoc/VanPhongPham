@@ -20,6 +20,23 @@ class DonHang {
         this.phuongThucThanhToan = phuongThucThanhToan;
     }
 
+    // Copy constructor
+    public DonHang(DonHang other) {
+        this.maDonHang = other.maDonHang;
+        this.khachHang = other.khachHang;  // This assumes that KhachHang is immutable or that it's okay to share references
+        this.gioHang = other.gioHang;  // This assumes that GioHang is immutable or that it's okay to share references
+        this.ngayDatHang = other.ngayDatHang;
+        this.trangThaiDonHang = other.trangThaiDonHang;
+        this.phuongThucThanhToan = other.phuongThucThanhToan;  // This assumes that PhuongThucThanhToan is immutable or that it's okay to share references
+    }
+    
+    // Constructor with only maDonHang
+    public DonHang(String maDonHang) {
+        this.maDonHang = maDonHang;
+        this.trangThaiDonHang = "Chua xu ly";
+        this.ngayDatHang = new Date();
+    }
+
     public void luuDonHang() {
         try {
             FileWriter writer = new FileWriter("donhang.txt", true);
