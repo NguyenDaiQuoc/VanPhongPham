@@ -10,19 +10,17 @@ public class BinhLuan {
     private String noiDung;
     private Date ngayDang;
     private SanPham sanPham;
-    private String maKhachHang;
 
     // Default constructor
     public BinhLuan() {
     }
 
     // Constructor with all fields
-    public BinhLuan(String maBinhLuan, String noiDung, Date ngayDang, SanPham sanPham, String maKhachHang) {
+    public BinhLuan(String maBinhLuan, String noiDung, Date ngayDang, SanPham sanPham) {
         this.maBinhLuan = maBinhLuan;
         this.noiDung = noiDung;
         this.ngayDang = ngayDang;
         this.sanPham = sanPham;
-        this.maKhachHang = maKhachHang;
     }
 
     // Copy constructor
@@ -31,12 +29,11 @@ public class BinhLuan {
         this.noiDung = other.noiDung;
         this.ngayDang = other.ngayDang;
         this.sanPham = other.sanPham;  // This assumes that SanPham is immutable or that it's okay to share references
-        this.maKhachHang = other.maKhachHang;
     }
 
     // Existing constructor
-    public BinhLuan(String maBinhLuan, String noiDung, SanPham sanPham, String maKhachHang) {
-        this(maBinhLuan, noiDung, new Date(), sanPham, maKhachHang);
+    public BinhLuan(String maBinhLuan, String noiDung, SanPham sanPham) {
+        this(maBinhLuan, noiDung, new Date(), sanPham);
     }
 
     // Getter and Setter methods for maBinhLuan
@@ -75,15 +72,6 @@ public class BinhLuan {
         this.sanPham = sanPham;
     }
 
-    // Getter and Setter methods for maKhachHang
-    public String getMaKhachHang() {
-        return maKhachHang;
-    }
-
-    public void setMaKhachHang(String maKhachHang) {
-        this.maKhachHang = maKhachHang;
-    }
-
     public void luuBinhLuan() {
         try {
             File file = new File("Binh Luan.txt");
@@ -100,7 +88,7 @@ public class BinhLuan {
             FileWriter writer = new FileWriter(file, true);
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
             String strDate = formatter.format(ngayDang);  
-            writer.write(maBinhLuan + ", " + noiDung + ", " + strDate + ", " + sanPham.getName() + ", " + maKhachHang + "\n");
+            writer.write(maBinhLuan + ", " + noiDung + ", " + strDate + ", " + sanPham.getName() + "\n");
             writer.close();
         } catch (IOException e) {
             System.out.println("Co loi xay ra khi luu binh luan.");
