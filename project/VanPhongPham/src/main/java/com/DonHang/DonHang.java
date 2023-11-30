@@ -1,3 +1,14 @@
+package com.DonHang;
+
+import com.khachhang.KhachHang;
+import com.PhuongThucThanhToan.PhuongThucThanhToan;
+import com.giohang.GioHang;
+import com.sanpham.SanPham;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 class DonHang {
     private String maDonHang;
     private KhachHang khachHang;
@@ -56,7 +67,7 @@ class DonHang {
     
             // Write the product information to the file
             for (int i = 0; i < gioHang.getSoLuongSanPhamTrongGio(); i++) {
-                writer.write(", " + sanPhamTrongGio[i].getTen());
+                writer.write(", " + sanPhamTrongGio[i].getName());
             }
     
             writer.write("\n");
