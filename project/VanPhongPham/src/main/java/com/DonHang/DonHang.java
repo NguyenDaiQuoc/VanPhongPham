@@ -6,6 +6,11 @@ class DonHang {
     private String trangThaiDonHang;
     private PhuongThucThanhToan phuongThucThanhToan;
 
+    public DonHang() {
+        this.trangThaiDonHang = "Chua xu ly";
+        this.ngayDatHang = new Date();
+    }
+
     public DonHang(String maDonHang, KhachHang khachHang, GioHang gioHang, PhuongThucThanhToan phuongThucThanhToan) {
         this.maDonHang = maDonHang;
         this.khachHang = khachHang;
@@ -67,5 +72,13 @@ class DonHang {
 
     public void setTrangThaiDonHang(String trangThaiDonHang) {
         this.trangThaiDonHang = trangThaiDonHang;
+    }
+
+    public PhuongThucThanhToan getPhuongThucThanhToan() {
+        return phuongThucThanhToan;
+    }
+
+    public void setPhuongThucThanhToan(PhuongThucThanhToan phuongThucThanhToan) {
+        this.phuongThucThanhToan = phuongThucThanhToan;
     }
 }
