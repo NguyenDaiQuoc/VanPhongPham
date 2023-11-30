@@ -2,7 +2,7 @@
 class TaiKhoan {
     private NguoiDung[] nguoiDung = new NguoiDung[100]; // Sử dụng mảng cố định với một kích thước tối đa
     private int soLuongNguoiDung = 0; // Biến để theo dõi số lượng người dùng
-    private String tenFile = "nguoidung.txt";
+    private String tenFile = "Tai khoan Khach Hang.txt";
 
     // Default constructor
     public TaiKhoan() {
@@ -67,7 +67,7 @@ class TaiKhoan {
     }
 
     void docThongTinNguoiDung(KhachHang khachHang) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("thongtin.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("Thong tin Khach Hang.txt"));
         String line;
    
         while ((line = reader.readLine()) != null) {
@@ -176,7 +176,7 @@ void xoaThongTinNguoiDung(String tenDangNhap) throws IOException {
         return found;
     }
     void saveUserInfoToFile(NguoiDung nguoiDung) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter("thongtin.txt", true));
+        BufferedWriter writer = new BufferedWriter(new FileWriter("Thong tin Khach Hang.txt", true));
         writer.write(nguoiDung.maNguoiDung + "," + nguoiDung.tenDangNhap + "," + nguoiDung.hoTen + "," +
                 nguoiDung.soDienThoai + "," + nguoiDung.diaChi + "\n");
         writer.close();
