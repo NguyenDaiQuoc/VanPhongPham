@@ -19,6 +19,15 @@ public class KhachHang {
         this.diaChi = diaChi;
     }
 
+    // Copy constructor
+    public KhachHang(KhachHang other) {
+        this.maNguoiDung = other.maNguoiDung;
+        this.tenDangNhap = other.tenDangNhap;
+        this.hoTen = other.hoTen;
+        this.soDienThoai = other.soDienThoai;
+        this.diaChi = other.diaChi;
+    }
+
     // Getters
     public String getMaNguoiDung() {
         return maNguoiDung;
