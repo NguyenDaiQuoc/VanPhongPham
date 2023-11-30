@@ -1,3 +1,18 @@
+package com.TaiKhoan;
+
+import com.NguoiDung;
+import com.KhachHang;
+import java.io.*;
+import java.util.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.Calendar;
+
 // Lớp TaiKhoan quản lý đăng ký và đăng nhập người dùng
 class TaiKhoan {
     private NguoiDung[] nguoiDung = new NguoiDung[100]; // Sử dụng mảng cố định với một kích thước tối đa
