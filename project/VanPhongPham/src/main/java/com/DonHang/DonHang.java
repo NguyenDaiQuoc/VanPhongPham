@@ -91,6 +91,22 @@ class DonHang {
         this.trangThaiDonHang = trangThaiDonHang;
     }
 
+    public void setMaDonHang(String maDonHang) {
+    this.maDonHang = maDonHang;
+    }
+
+    public void setKhachHang(KhachHang khachHang) {
+    this.khachHang = khachHang;
+    }
+
+    public void setGioHang(GioHang gioHang) {
+    this.gioHang = gioHang;
+    }
+
+    public void setNgayDatHang(Date ngayDatHang) {
+    this.ngayDatHang = ngayDatHang;
+    }
+
     public PhuongThucThanhToan getPhuongThucThanhToan() {
         return phuongThucThanhToan;
     }
