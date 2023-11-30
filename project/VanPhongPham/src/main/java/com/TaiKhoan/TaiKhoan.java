@@ -1,8 +1,52 @@
 // Lớp TaiKhoan quản lý đăng ký và đăng nhập người dùng
 class TaiKhoan {
-    NguoiDung[] nguoiDung = new NguoiDung[100]; // Sử dụng mảng cố định với một kích thước tối đa
-    int soLuongNguoiDung = 0; // Biến để theo dõi số lượng người dùng
-    String tenFile = "nguoidung.txt";
+    private NguoiDung[] nguoiDung = new NguoiDung[100]; // Sử dụng mảng cố định với một kích thước tối đa
+    private int soLuongNguoiDung = 0; // Biến để theo dõi số lượng người dùng
+    private String tenFile = "nguoidung.txt";
+
+    // Default constructor
+    public TaiKhoan() {
+    }
+
+    // Constructor with all fields
+    public TaiKhoan(NguoiDung[] nguoiDung, int soLuongNguoiDung, String tenFile) {
+        this.nguoiDung = nguoiDung;
+        this.soLuongNguoiDung = soLuongNguoiDung;
+        this.tenFile = tenFile;
+    }
+
+    // Copy constructor
+    public TaiKhoan(TaiKhoan other) {
+        this.nguoiDung = other.nguoiDung.clone();  // This creates a new array that is a copy of the original
+        this.soLuongNguoiDung = other.soLuongNguoiDung;
+        this.tenFile = other.tenFile;
+    }
+
+    // Getters
+    public NguoiDung[] getNguoiDung() {
+        return nguoiDung;
+    }
+
+    public int getSoLuongNguoiDung() {
+        return soLuongNguoiDung;
+    }
+
+    public String getTenFile() {
+        return tenFile;
+    }
+
+    // Setters
+    public void setNguoiDung(NguoiDung[] nguoiDung) {
+        this.nguoiDung = nguoiDung;
+    }
+
+    public void setSoLuongNguoiDung(int soLuongNguoiDung) {
+        this.soLuongNguoiDung = soLuongNguoiDung;
+    }
+
+    public void setTenFile(String tenFile) {
+        this.tenFile = tenFile;
+    }
 
     void dangKy(NguoiDung nguoiDung) throws IOException {
         docDanhSachNguoiDung(); // Đọc danh sách tài khoản từ tệp trước khi thêm tài khoản mới
