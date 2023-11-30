@@ -39,7 +39,7 @@ class DonHang {
 
     public void luuDonHang() {
         try {
-            FileWriter writer = new FileWriter("donhang.txt", true);
+            FileWriter writer = new FileWriter("Don Hang.txt", true);
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
             String strDate = formatter.format(ngayDatHang);  
             writer.write(khachHang.getMaNguoiDung() + ", " + maDonHang + ", " + khachHang.getHoTen() + ", " + strDate + ", " + trangThaiDonHang);
