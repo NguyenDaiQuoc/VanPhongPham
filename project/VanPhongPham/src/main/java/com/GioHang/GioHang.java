@@ -1,5 +1,5 @@
 package com.GioHang;
-import com.sanpham.SanPham;
+import com.SanPham;
 import com.PhuongThucThanhToan;
 import com.DonHang;
 import com.KhachHang;
