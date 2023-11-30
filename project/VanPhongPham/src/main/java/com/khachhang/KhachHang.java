@@ -1,6 +1,6 @@
 package com.KhachHang;
 
-import com.NguoiDung;
+import com.nguoidung;
 import java.io.*;
 import java.util.*;
 import java.io.BufferedWriter;
