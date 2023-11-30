@@ -73,7 +73,7 @@ class TaiKhoan {
 }
 
     void docThongTinNguoiDung(KhachHang khachHang) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("Thong tin Khach Hang.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("thongtin.txt"));
         String line;
    
         while ((line = reader.readLine()) != null) {
