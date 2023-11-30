@@ -12,7 +12,7 @@ import java.io.File;
 
     public class HoaDon extends SanPham {
         Scanner sc=new Scanner(System.in);
-        String FileHoaDon=("File Hoa Don.txt");
+        String FileHoaDon=("Hoa Don.txt");
         File file=new File(FileHoaDon);
         public HoaDon(String name,int SoLuongSP,float gia,float ThanhTien){
             super();
