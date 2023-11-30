@@ -12,7 +12,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.Calendar;
 
-public class KhachHang {
+public class KhachHang extends NguoiDung {
     private String maNguoiDung;
     private String tenDangNhap;
     private String hoTen;
