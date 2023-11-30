@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-class DonHang {
+public class DonHang {
     private String maDonHang;
     private KhachHang khachHang;
     private GioHang gioHang;
