@@ -1,4 +1,4 @@
-class BinhLuan {
+public class BinhLuan {
     private String maBinhLuan;
     private String noiDung;
     private Date ngayDang;
@@ -16,6 +16,15 @@ class BinhLuan {
         this.ngayDang = ngayDang;
         this.sanPham = sanPham;
         this.maKhachHang = maKhachHang;
+    }
+
+    // Copy constructor
+    public BinhLuan(BinhLuan other) {
+        this.maBinhLuan = other.maBinhLuan;
+        this.noiDung = other.noiDung;
+        this.ngayDang = other.ngayDang;
+        this.sanPham = other.sanPham;  // This assumes that SanPham is immutable or that it's okay to share references
+        this.maKhachHang = other.maKhachHang;
     }
 
     // Existing constructor
