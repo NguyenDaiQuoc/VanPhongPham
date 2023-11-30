@@ -82,6 +82,15 @@ public class KhachHang extends NguoiDung {
     public void setDiaChi(String diaChi) {
         this.diaChi = diaChi;
     }
+    @Override
+    void nhapThongTin(Scanner scanner) {
+        System.out.print("Nhap ho ten: ");
+        this.hoTen = scanner.nextLine();
+        System.out.print("Nhap so dien thoai: ");
+        this.soDienThoai = scanner.nextLine();
+        System.out.print("Nhap dia chi: ");
+        this.diaChi = scanner.nextLine();
+    }
 }
 
 
