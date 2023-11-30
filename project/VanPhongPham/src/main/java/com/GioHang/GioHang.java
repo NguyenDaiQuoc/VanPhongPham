@@ -1,3 +1,20 @@
+package com.GioHang
+import com.sanpham.SanPham;
+import com.PhuongThucThanhToan;
+import com.DonHang;
+import com.KhachHang;
+    
+import java.io.*;
+import java.util.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.Calendar;
+
 class GioHang {
     private SanPham[] gioHang = new SanPham[100]; // Assuming a maximum of 100 products in the cart
     private int soLuongDonHang;
