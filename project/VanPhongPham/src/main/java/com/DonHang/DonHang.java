@@ -1,9 +1,9 @@
 package com.DonHang;
 
-import com.khachhang.KhachHang;
-import com.PhuongThucThanhToan.PhuongThucThanhToan;
-import com.giohang.GioHang;
-import com.sanpham.SanPham;
+import com.KhachHang;
+import com.PhuongThucThanhToan;
+import com.GioHang;
+import com.SanPham;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
