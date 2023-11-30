@@ -122,27 +122,28 @@ public class VanPhongPham {
                                             break;
                                         }
                                         case 3: {
-                                            clearScreen();
+                                                                                       clearScreen();
                                             int ok1 = 1;
-                                            while (ok1 == 1) {                                                
+                                            while (ok1 == 1) {
                                                 nhanvien.DangKyTaiKhoanNhanVien();
-                                                System.out.println("Ban co muon dang ky tai khoan Nhan Vien tiep khong?");
-                                                System.out.println("1. Tiep tuc");
-                                                System.out.println("0. Quay lai");
-                                                int lc2 = sc.nextInt();
-                                                switch (lc2) {
-                                                    case 1: {
-                                                        break;
+                                                int lc2;
+                                                do {
+                                                    System.out.println("Ban co muon dang ky tai khoan Nhan Vien tiep khong?");
+                                                    System.out.println("1. Tiep tuc");
+                                                    System.out.println("0. Quay lai");
+                                                    String input = sc.next();
+                                                    if (input.length() == 1 && (input.charAt(0) == '0' || input.charAt(0) == '1')) {
+                                                        lc2 = Integer.parseInt(input); 
+                                                        if(lc2 == 0){
+                                                            ok1 = 0;
+                                                            break;
+                                                        }
+                                                    } else {
+                                                        System.out.println("Lua chon khong hop le! Vui long nhap lai.");
+                                                        lc2 = -1;
                                                     }
-                                                    case 0: {
-                                                        ok1 = 0;
-                                                        break;
-                                                    }
-                                                    default: {
-                                                        System.out.println("Lua chon khong hop le!");
-                                                        break;
-                                                    }
-                                                }
+
+                                                } while (lc2 != 0 && lc2 != 1);
                                             }
                                             break;
                                         }
