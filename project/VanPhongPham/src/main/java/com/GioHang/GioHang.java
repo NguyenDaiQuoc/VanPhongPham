@@ -14,6 +14,23 @@ class GioHang {
         phuongThucThanhToans[2] = new PhuongThucThanhToan("3", "COD", "Thanh toán khi nhận hàng (COD)");
     }
 
+    // Copy constructor
+    public GioHang(GioHang other) {
+        this.gioHang = other.gioHang.clone();  // This creates a new array that is a copy of the original
+        this.soLuongDonHang = other.soLuongDonHang;
+        this.soLuongSanPhamTrongGio = other.soLuongSanPhamTrongGio;
+        this.phuongThucThanhToans = other.phuongThucThanhToans.clone();  // This creates a new array that is a copy of the original
+        this.maDonHang = other.maDonHang;
+    }
+
+    public GioHang(SanPham[] gioHang, int soLuongDonHang, int soLuongSanPhamTrongGio, PhuongThucThanhToan[] phuongThucThanhToans, String maDonHang) {
+        this.gioHang = gioHang;
+        this.soLuongDonHang = soLuongDonHang;
+        this.soLuongSanPhamTrongGio = soLuongSanPhamTrongGio;
+        this.phuongThucThanhToans = phuongThucThanhToans;
+        this.maDonHang = maDonHang;
+    }
+
     // Getters
     public SanPham[] getGioHang() {
         return gioHang;
@@ -53,15 +70,6 @@ class GioHang {
     }
 
     public void setMaDonHang(String maDonHang) {
-        this.maDonHang = maDonHang;
-    }
-
-    // Constructor
-    public GioHang(SanPham[] gioHang, int soLuongDonHang, int soLuongSanPhamTrongGio, PhuongThucThanhToan[] phuongThucThanhToans, String maDonHang) {
-        this.gioHang = gioHang;
-        this.soLuongDonHang = soLuongDonHang;
-        this.soLuongSanPhamTrongGio = soLuongSanPhamTrongGio;
-        this.phuongThucThanhToans = phuongThucThanhToans;
         this.maDonHang = maDonHang;
     }
     
