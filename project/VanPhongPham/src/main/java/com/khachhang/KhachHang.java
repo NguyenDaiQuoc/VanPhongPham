@@ -1,5 +1,6 @@
 package com.KhachHang;
 
+import com.NguoiDung;
 import java.io.*;
 import java.util.*;
 import java.io.BufferedWriter;
