@@ -1,5 +1,5 @@
 package com.BinhLuan;
-import com.sanpham.SanPham;
+import com.SanPham;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
