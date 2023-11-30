@@ -1,3 +1,10 @@
+package com.BinhLuan;
+import com.sanpham.SanPham;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 public class BinhLuan {
     private String maBinhLuan;
     private String noiDung;
@@ -93,7 +100,7 @@ public class BinhLuan {
             FileWriter writer = new FileWriter(file, true);
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
             String strDate = formatter.format(ngayDang);  
-            writer.write(maBinhLuan + ", " + noiDung + ", " + strDate + ", " + sanPham.getTen() + ", " + maKhachHang + "\n");
+            writer.write(maBinhLuan + ", " + noiDung + ", " + strDate + ", " + sanPham.getName() + ", " + maKhachHang + "\n");
             writer.close();
         } catch (IOException e) {
             System.out.println("Co loi xay ra khi luu binh luan.");
