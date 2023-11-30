@@ -13,6 +13,58 @@ class GioHang {
         phuongThucThanhToans[1] = new PhuongThucThanhToan("2", "Momo", "Thanh toán bằng ví điện tử Momo");
         phuongThucThanhToans[2] = new PhuongThucThanhToan("3", "COD", "Thanh toán khi nhận hàng (COD)");
     }
+
+    // Getters
+    public SanPham[] getGioHang() {
+        return gioHang;
+    }
+
+    public int getSoLuongDonHang() {
+        return soLuongDonHang;
+    }
+
+    public int getSoLuongSanPhamTrongGio() {
+        return soLuongSanPhamTrongGio;
+    }
+
+    public PhuongThucThanhToan[] getPhuongThucThanhToans() {
+        return phuongThucThanhToans;
+    }
+
+    public String getMaDonHang() {
+        return maDonHang;
+    }
+
+    // Setters
+    public void setGioHang(SanPham[] gioHang) {
+        this.gioHang = gioHang;
+    }
+
+    public void setSoLuongDonHang(int soLuongDonHang) {
+        this.soLuongDonHang = soLuongDonHang;
+    }
+
+    public void setSoLuongSanPhamTrongGio(int soLuongSanPhamTrongGio) {
+        this.soLuongSanPhamTrongGio = soLuongSanPhamTrongGio;
+    }
+
+    public void setPhuongThucThanhToans(PhuongThucThanhToan[] phuongThucThanhToans) {
+        this.phuongThucThanhToans = phuongThucThanhToans;
+    }
+
+    public void setMaDonHang(String maDonHang) {
+        this.maDonHang = maDonHang;
+    }
+
+    // Constructor
+    public GioHang(SanPham[] gioHang, int soLuongDonHang, int soLuongSanPhamTrongGio, PhuongThucThanhToan[] phuongThucThanhToans, String maDonHang) {
+        this.gioHang = gioHang;
+        this.soLuongDonHang = soLuongDonHang;
+        this.soLuongSanPhamTrongGio = soLuongSanPhamTrongGio;
+        this.phuongThucThanhToans = phuongThucThanhToans;
+        this.maDonHang = maDonHang;
+    }
+    
     void muaSanPham(SanPham[] sanPhamList, Scanner scanner) {
         boolean displayMenu = true;
 
