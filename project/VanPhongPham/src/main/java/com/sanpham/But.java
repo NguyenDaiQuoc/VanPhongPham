@@ -34,6 +34,16 @@ public class But implements SanPham{
         this.donviSx = donviSx;
         this.loai = loai;
     }
+    
+    public But(But a){
+        this.idSanpham = a.idSanpham;
+        this.name = a.name;
+        this.gia = a.gia;
+        this.soluong = a.soluong;
+        this.ngaySx = a.ngaySx;
+        this.donviSx = a.donviSx;
+        this.loai = a.loai;
+    }
 
     public String getIdSanpham() {
         return idSanpham;
