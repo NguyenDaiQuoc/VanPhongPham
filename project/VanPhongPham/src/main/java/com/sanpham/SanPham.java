@@ -15,8 +15,6 @@ public interface SanPham {
     
     public abstract String getDonviSx();
     
-    public abstract String getLoai();
-    
     public abstract void nhapSanpham();
     
     public abstract void xuatSanpham();
