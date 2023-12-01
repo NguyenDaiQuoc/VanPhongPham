@@ -2,7 +2,7 @@ package com.GioHang;
 
 import com.PhuongThucThanhToan.PhuongThucThanhToan;
 import com.SanPham.SanPham;
-import com.HienThiSanPham.HienThiSanPham;
+//import com.HienThiSanPham.HienThiSanPham;
 import com.DonHang.DonHang;
 import com.KhachHang.KhachHang;
 import java.io.File;
@@ -108,7 +108,7 @@ public class GioHang {
             if (productChoice >= 1 && productChoice <= 3) {
                 int startIndex = (productChoice - 1) * 10;
                 int endIndex = productChoice * 10 - 1;
-                HienThiSanPham.hienThiSanPham(sanPhamList, startIndex, endIndex);
+                //HienThiSanPham.hienThiSanPham(sanPhamList, startIndex, endIndex);
 
                 // User choice for buying the product
                 int buyChoice;
