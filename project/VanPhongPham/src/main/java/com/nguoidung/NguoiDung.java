@@ -1,4 +1,4 @@
-package com.nguoidung;
+package com.NguoiDung;
 
 import java.util.Random;
 
