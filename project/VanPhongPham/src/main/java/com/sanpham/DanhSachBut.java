@@ -23,13 +23,15 @@ public class DanhSachBut {
         this.ds = ds;
     }
     
-    But but = new But();
+    SanPham but = new But();
     
     public void nhapDSBut(){
-        but.setSoluong(0);
-        int n = but.getSoluong();
+        int n;
+        System.out.print("Moi ban nhap so luong loai but: ");
+        n = Integer.parseInt(sc.nextLine());
         ds = new But[n];     
         for(int i = 0; i < ds.length; i++){
+            System.out.print("Moi ban nhap loai but thu " + (i + 1));
             ds[i] = new But();
             ds[i].nhapSanpham();
         }
@@ -49,7 +51,7 @@ public class DanhSachBut {
     }
     
     public void deleteBut(){
-        System.out.println("Moi ban nhap ten sach can xoa: ");
+        System.out.println("Moi ban nhap ten But can xoa: ");
         String tmp = sc.nextLine();
         for(int i = 0; i < ds.length; i++){
             if((ds[i].getName().compareTo(tmp)) == 1){
@@ -62,7 +64,7 @@ public class DanhSachBut {
     }
     
     public void updateBut(){
-        System.out.print("Moi ban nhap id sach can xoa: ");
+        System.out.print("Moi ban nhap id But can sua: ");
         String tmp = sc.nextLine();
         for(int i = 0; i < ds.length; i++){
             if((ds[i].getIdSanpham().compareTo(tmp)) == 1){

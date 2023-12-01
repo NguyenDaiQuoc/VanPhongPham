@@ -35,32 +35,26 @@ public class But implements SanPham{
         this.loai = loai;
     }
 
-    @Override
     public String getIdSanpham() {
         return idSanpham;
     }
 
-    @Override
     public String getName() {
         return name;
     }
 
-    @Override
     public float getGia() {
         return gia;
     }
 
-    @Override
     public int getSoluong() {
         return soluong;
     }
 
-    @Override
     public String getNgaySx() {
         return ngaySx;
     }
 
-    @Override
     public String getDonviSx() {
         return donviSx;
     }
@@ -106,11 +100,8 @@ public class But implements SanPham{
     }
 
     public void setNgaySx(String ngaySx) {
-        for(;;){
-            System.out.print("Moi ban nhap ngay san xuat cua But: ");
-            ngaySx = sc.nextLine();
-            if(ngaySx.length() == 8) break;
-        }
+        Date date = new Date();
+        ngaySx = date.toString();
         this.ngaySx = ngaySx;
     }
 
