@@ -4,53 +4,56 @@
  */
 package com.mycompany.first.DoAn;
 
-import java.util.Scanner;
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  *
  * @author ADMIN
  */
-public class DanhSachBut {
+public class DanhSachVo {
     private SanPham [] ds;
     
     Scanner sc = new Scanner(System.in);
 
-    public DanhSachBut() {
+    public DanhSachVo() {
     }
 
-    public DanhSachBut(SanPham[] ds) {
+    public SanPham[] getDs() {
+        return ds;
+    }
+
+    public void setDs(SanPham[] ds) {
         this.ds = ds;
     }
     
-    public void nhapDSBut(){
+    public void nhapDSVo(){
         int n;
-        System.out.print("Moi ban nhap so loai but: ");
+        System.out.print("Moi ban nhap so loai Vo: ");
         n = Integer.parseInt(sc.nextLine());
-        ds = new But[n];     
-        for(int i = 0; i < ds.length; i++){
-            System.out.println("Moi ban nhap loai but thu " + (i + 1));
-            ds[i] = new But();
+        for(int i = 0; i < n; i++){
+            System.out.println("Moi ban nhap loai Vo thu " + (i + 1));
+            ds[i] = new Vo();
             ds[i].nhapSanpham();
         }
     }
     
-    public void xuatDSBut(){
+    public void xuatDSVo(){
         for(var x : ds){
             x.xuatSanpham();
             System.out.println();
         }
     }
     
-    public void addBut(){
-        SanPham a = new But();
+    public void addVo(){
+        SanPham a = new Vo();
         a.nhapSanpham();
         ds = Arrays.copyOf(ds, ds.length + 1);
         ds[ds.length - 1] = a;
     }
     
-    public void deleteBut(){
-        System.out.println("Moi ban nhap ten But can xoa: ");
+    public void deleteVo(){
+        System.out.println("Moi ban nhap ten Vo can xoa: ");
         String tmp = sc.nextLine();
         for(int i = 0; i < ds.length; i++){
             if((ds[i].getName().compareTo(tmp)) == 1){
@@ -62,8 +65,8 @@ public class DanhSachBut {
         }
     }
     
-    public void updateBut(){
-        System.out.print("Moi ban nhap id But can sua: ");
+    public void updateSach(){
+        System.out.print("Moi ban nhap id Sach can sua: ");
         String tmp = sc.nextLine();
         for(int i = 0; i < ds.length; i++){
             if((ds[i].getIdSanpham().compareTo(tmp)) == 1){
@@ -71,5 +74,4 @@ public class DanhSachBut {
             }
         }
     }
-    
 }
