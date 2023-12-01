@@ -1,28 +1,25 @@
 package com.GioHang;
-import com.SanPham;
-import com.PhuongThucThanhToan;
-import com.DonHang;
-import com.KhachHang;
-    
-import java.io.*;
-import java.util.*;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.util.Calendar;
 
-class GioHang {
+import com.PhuongThucThanhToan.PhuongThucThanhToan;
+import com.SanPham.SanPham;
+import com.HienThiSanPham.HienThiSanPham;
+import com.DonHang.DonHang;
+import com.KhachHang.KhachHang;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.io.IOException;
+import java.io.FileWriter;
+
+public class GioHang {
     private SanPham[] gioHang = new SanPham[100]; // Assuming a maximum of 100 products in the cart
     private int soLuongDonHang;
     private int soLuongSanPhamTrongGio = 0;
     // Define phuongThucThanhToans
     private PhuongThucThanhToan[] phuongThucThanhToans;
-    String maDonHang = generateMaDonHang();
+    private String maDonHang = generateMaDonHang();
 
+    // Default constructor
     public GioHang() {
         // Initialize phuongThucThanhToans in the constructor
         phuongThucThanhToans = new PhuongThucThanhToan[3];
@@ -33,13 +30,14 @@ class GioHang {
 
     // Copy constructor
     public GioHang(GioHang other) {
-        this.gioHang = other.gioHang.clone();  // This creates a new array that is a copy of the original
+        this.gioHang = other.gioHang.clone(); // This creates a new array that is a copy of the original
         this.soLuongDonHang = other.soLuongDonHang;
         this.soLuongSanPhamTrongGio = other.soLuongSanPhamTrongGio;
-        this.phuongThucThanhToans = other.phuongThucThanhToans.clone();  // This creates a new array that is a copy of the original
+        this.phuongThucThanhToans = other.phuongThucThanhToans.clone(); // This creates a new array that is a copy of the original
         this.maDonHang = other.maDonHang;
     }
 
+    // Parameterized constructor
     public GioHang(SanPham[] gioHang, int soLuongDonHang, int soLuongSanPhamTrongGio, PhuongThucThanhToan[] phuongThucThanhToans, String maDonHang) {
         this.gioHang = gioHang;
         this.soLuongDonHang = soLuongDonHang;
@@ -48,48 +46,49 @@ class GioHang {
         this.maDonHang = maDonHang;
     }
 
-    // Getters
+    // Getters and Setters
     public SanPham[] getGioHang() {
         return gioHang;
+    }
+
+    public void setGioHang(SanPham[] gioHang) {
+        this.gioHang = gioHang;
     }
 
     public int getSoLuongDonHang() {
         return soLuongDonHang;
     }
 
-    public int getSoLuongSanPhamTrongGio() {
-        return soLuongSanPhamTrongGio;
-    }
-
-    public PhuongThucThanhToan[] getPhuongThucThanhToans() {
-        return phuongThucThanhToans;
-    }
-
-    public String getMaDonHang() {
-        return maDonHang;
-    }
-
-    // Setters
-    public void setGioHang(SanPham[] gioHang) {
-        this.gioHang = gioHang;
-    }
-
     public void setSoLuongDonHang(int soLuongDonHang) {
         this.soLuongDonHang = soLuongDonHang;
+    }
+
+    public int getSoLuongSanPhamTrongGio() {
+        return soLuongSanPhamTrongGio;
     }
 
     public void setSoLuongSanPhamTrongGio(int soLuongSanPhamTrongGio) {
         this.soLuongSanPhamTrongGio = soLuongSanPhamTrongGio;
     }
 
+    public PhuongThucThanhToan[] getPhuongThucThanhToans() {
+        return phuongThucThanhToans;
+    }
+
     public void setPhuongThucThanhToans(PhuongThucThanhToan[] phuongThucThanhToans) {
         this.phuongThucThanhToans = phuongThucThanhToans;
+    }
+
+    public String getMaDonHang() {
+        return maDonHang;
     }
 
     public void setMaDonHang(String maDonHang) {
         this.maDonHang = maDonHang;
     }
-    
+
+    // Other methods
+
     void muaSanPham(SanPham[] sanPhamList, Scanner scanner) {
         boolean displayMenu = true;
 
@@ -109,7 +108,7 @@ class GioHang {
             if (productChoice >= 1 && productChoice <= 3) {
                 int startIndex = (productChoice - 1) * 10;
                 int endIndex = productChoice * 10 - 1;
-                SanPham.hienThiSanPham(sanPhamList, startIndex, endIndex);
+                HienThiSanPham.hienThiSanPham(sanPhamList, startIndex, endIndex);
 
                 // User choice for buying the product
                 int buyChoice;
@@ -125,7 +124,7 @@ class GioHang {
                             System.out.println("Da them san pham vao gio hang.");
                         } else {
                             System.out.println("Gio hang da day, khong the them san pham.");
-                            break;  // Break out of the do-while loop
+                            break; // Break out of the do-while loop
                         }
                     } else if (buyChoice == 11) {
                         displayMenu = true; // Go back to the main menu
@@ -133,7 +132,7 @@ class GioHang {
                     } else {
                         System.out.println("Lua chon khong hop le.");
                     }
-                } while (true);  // Continue until the user chooses to go back
+                } while (true); // Continue until the user chooses to go back
             } else if (productChoice == 11) {
                 break; // Quay lai trang truoc
             } else {
@@ -143,10 +142,11 @@ class GioHang {
             displayMenu = false;
         }
     }
+
     private String generateMaDonHang() {
         int lastOrderId = 0;
         File file = new File("lastorderid.txt");
-    
+
         // Create the file if it doesn't exist
         if (!file.exists()) {
             try {
@@ -160,7 +160,7 @@ class GioHang {
                 e.printStackTrace();
             }
         }
-    
+
         // Read the last order ID from the file
         try {
             Scanner scanner = new Scanner(file);
@@ -172,9 +172,9 @@ class GioHang {
             System.out.println("Could not find lastorderid.txt.");
             e.printStackTrace();
         }
-    
-        lastOrderId++;  // Increment the last order ID
-    
+
+        lastOrderId++; // Increment the last order ID
+
         // Write the new last order ID to the file
         try {
             FileWriter writer = new FileWriter("lastorderid.txt");
@@ -184,15 +184,15 @@ class GioHang {
             System.out.println("An error occurred while writing to lastorderid.txt.");
             e.printStackTrace();
         }
-    
-        return "DH" + lastOrderId;  // Return the new order ID
+
+        return "DH" + lastOrderId; // Return the new order ID
     }
-        
+
     public void docDonHang(KhachHang khachHang) {
         try {
             File file = new File("donhang.txt");
             Scanner reader = new Scanner(file);
-    
+
             System.out.println("Cac don hang da dat:");
             while (reader.hasNextLine()) {
                 String data = reader.nextLine();
@@ -206,7 +206,7 @@ class GioHang {
                     System.out.println("Trang Thai Don Hang: " + orderInfo[4]);
                     System.out.println("Tong So Tien: " + orderInfo[5] + " VND");
                     System.out.println("Phuong Thuc Thanh Toan: " + orderInfo[6]);
-    
+
                     // Display the product information
                     for (int i = 7; i < orderInfo.length; i++) {
                         System.out.println("San Pham: " + orderInfo[i]);
@@ -218,8 +218,8 @@ class GioHang {
             System.out.println("Khong tim thay tep don hang.");
             e.printStackTrace();
         }
-    }        
-    
+    }
+
     DonHang[] donHangArray = new DonHang[100000];
 
     void datDonHang(Scanner scanner, KhachHang khachHang) {
@@ -229,9 +229,9 @@ class GioHang {
         }
         System.out.print("Nhap lua chon (1, 2 hoac 3): ");
         int luaChon = scanner.nextInt();
-        scanner.nextLine();  // Consume newline left-over
-    
-        PhuongThucThanhToan phuongThucThanhToan = phuongThucThanhToans[luaChon - 1];  // Get the chosen payment method
+        scanner.nextLine(); // Consume newline left-over
+
+        PhuongThucThanhToan phuongThucThanhToan = phuongThucThanhToans[luaChon - 1]; // Get the chosen payment method
         DonHang donHang = new DonHang(maDonHang, khachHang, this, phuongThucThanhToan);
         switch (luaChon) {
             case 1:
@@ -244,26 +244,26 @@ class GioHang {
                 // Here you would usually send this information securely to your payment processor
                 // But for this example, we'll just print a success message
                 System.out.println("Da thanh toan thanh cong bang the tin dung!");
-                donHang.luuDonHang();  // Save the order to the file
+                donHang.luuDonHang(); // Save the order to the file
                 break;
             case 2:
                 System.out.println("Hay chuyen tien cho tai khoan nay: 0931816175, Ten: Dinh Phuc Thinh");
-                donHang.luuDonHang();  // Save the order to the file
+                donHang.luuDonHang(); // Save the order to the file
                 break;
             case 3:
                 System.out.println("Dat hang thanh cong! San pham se duoc thanh toan khi nhan hang");
-                donHang.luuDonHang();  // Save the order to the file
+                donHang.luuDonHang(); // Save the order to the file
                 break;
             default:
                 System.out.println("Lua chon khong hop le.");
                 break;
         }
     }
-    
+
     void xemGioHang() {
         System.out.println("Danh sach san pham trong gio hang:");
         for (int i = 0; i < soLuongSanPhamTrongGio; i++) {
-            System.out.println((i + 1) + ". " + gioHang[i].getTen() + " - " + gioHang[i].getGia() + "VND");
+            System.out.println((i + 1) + ". " + gioHang[i].getName() + " - " + gioHang[i].getGia() + "VND");
         }
     }
 }
