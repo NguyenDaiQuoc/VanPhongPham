@@ -1,7 +1,7 @@
 package com.TaiKhoan;
 
-import com.NguoiDung;
-import com.KhachHang;
+import com.NguoiDung.NguoiDung;
+import com.KhachHang.KhachHang;
 import java.io.*;
 import java.util.*;
 import java.io.BufferedWriter;
@@ -14,7 +14,7 @@ import java.io.ObjectOutputStream;
 import java.util.Calendar;
 
 // Lớp TaiKhoan quản lý đăng ký và đăng nhập người dùng
-class TaiKhoan {
+public class TaiKhoan {
     private NguoiDung[] nguoiDung = new NguoiDung[100]; // Sử dụng mảng cố định với một kích thước tối đa
     private int soLuongNguoiDung = 0; // Biến để theo dõi số lượng người dùng
     private String tenFile = "Tai khoan Khach Hang.txt";
@@ -67,14 +67,14 @@ class TaiKhoan {
     docDanhSachNguoiDung(); // Đọc danh sách tài khoản từ tệp trước khi thêm tài khoản mới
 
     for (int i = 0; i < soLuongNguoiDung; i++) {
-        if (this.nguoiDung[i].tenDangNhap.equals(nguoiDung.tenDangNhap)) {
+        if (this.nguoiDung[i].sTenDangNhap.equals(nguoiDung.sTenDangNhap)) {
             System.out.println("Ten dang nhap da ton tai. Vui long chon mot ten dang nhap khac");
             return; // Không thực hiện đăng ký nếu tên đăng nhập đã tồn tại
         }
     }
 
     // Check if the username and password are at least 6 characters long
-    if (nguoiDung.tenDangNhap.length() < 6 || nguoiDung.matKhau.length() < 6) {
+    if (nguoiDung.sTenDangNhap.length() < 6 || nguoiDung.sMatKhau.length() < 6) {
         System.out.println("Ten dang nhap va mat khau phai co it nhat 6 ky tu.");
         return;
     }
@@ -93,11 +93,11 @@ class TaiKhoan {
    
         while ((line = reader.readLine()) != null) {
             String[] parts = line.split(",");
-            if (parts.length == 5 && parts[1].equals(khachHang.tenDangNhap)) {
-                khachHang.maNguoiDung = parts[0];
-                khachHang.hoTen = parts[2];
-                khachHang.soDienThoai = parts[3];
-                khachHang.diaChi = parts[4];
+            if (parts.length == 5 && parts[1].equals(khachHang.sTenDangNhap)) {
+                khachHang.sMaNguoiDung = parts[0];
+                khachHang.sHoTen = parts[2];
+                khachHang.sSoDienThoai = parts[3];
+                khachHang.sDiaChi = parts[4];
                 break;
             }
         }
@@ -131,7 +131,7 @@ class TaiKhoan {
     void ghiDanhSachNguoiDung() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(tenFile));
         for (int i = 0; i < soLuongNguoiDung; i++) {
-            writer.write(nguoiDung[i].tenDangNhap + "," + nguoiDung[i].matKhau + "," + nguoiDung[i].vaiTro + "\n");
+            writer.write(nguoiDung[i].sTenDangNhap + "," + nguoiDung[i].sMatKhau + "," + nguoiDung[i].sVaiTro + "\n");
         }
         writer.close();
     }
@@ -140,10 +140,10 @@ class TaiKhoan {
     docDanhSachNguoiDung(); // Đọc danh sách tài khoản từ tệp trước khi thực hiện sửa đổi
 
     for (int i = 0; i < soLuongNguoiDung; i++) {
-        if (this.nguoiDung[i].tenDangNhap.equals(tenDangNhap)) {
-            this.nguoiDung[i].hoTen = hoTenMoi;
-            this.nguoiDung[i].soDienThoai = soDienThoaiMoi;
-            this.nguoiDung[i].diaChi = diaChiMoi;
+        if (this.nguoiDung[i].sTenDangNhap.equals(tenDangNhap)) {
+            this.nguoiDung[i].sHoTen = hoTenMoi;
+            this.nguoiDung[i].sSoDienThoai = soDienThoaiMoi;
+            this.nguoiDung[i].sDiaChi = diaChiMoi;
             break;
         }
     }
@@ -153,12 +153,12 @@ class TaiKhoan {
     System.out.println("Sua thong tin thanh cong!");
 }
 
-void xoaThongTinNguoiDung(String tenDangNhap) throws IOException {
+void xoaThongTinNguoiDung(String sTenDangNhap) throws IOException {
     docDanhSachNguoiDung(); // Đọc danh sách tài khoản từ tệp trước khi thực hiện xóa
 
     int index = -1;
     for (int i = 0; i < soLuongNguoiDung; i++) {
-        if (this.nguoiDung[i].tenDangNhap.equals(tenDangNhap)) {
+        if (this.nguoiDung[i].sTenDangNhap.equals(sTenDangNhap)) {
             index = i;
             break;
         }
@@ -209,10 +209,10 @@ void xoaThongTinNguoiDung(String tenDangNhap) throws IOException {
     return found;
 }
 
-    void saveUserInfoToFile(NguoiDung nguoiDung) throws IOException {
+    public void saveUserInfoToFile(NguoiDung nguoiDung) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter("Thong tin Khach Hang.txt", true));
-        writer.write(nguoiDung.maNguoiDung + "," + nguoiDung.tenDangNhap + "," + nguoiDung.hoTen + "," +
-                nguoiDung.soDienThoai + "," + nguoiDung.diaChi + "\n");
+        writer.write(nguoiDung.sMaNguoiDung + "," + nguoiDung.sTenDangNhap + "," + nguoiDung.sHoTen + "," +
+                nguoiDung.sSoDienThoai + "," + nguoiDung.sDiaChi + "\n");
         writer.close();
     }    
 }
