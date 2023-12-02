@@ -20,4 +20,6 @@ public interface SanPham {
     public abstract void nhapSanpham();
     
     public abstract void xuatSanpham();
+    
+    public double getFinalPrice();
 }
