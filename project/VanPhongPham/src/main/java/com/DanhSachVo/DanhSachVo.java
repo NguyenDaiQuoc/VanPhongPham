@@ -32,6 +32,35 @@ public class DanhSachVo {
             ds[i].nhapSanpham();
         }
     }
+
+    public void ghiFileDSVo(){
+        try{
+            FileWriter fr = new FileWriter("DSVo.txt");
+            BufferedWriter bw = new BufferedWriter(fr);
+            for(var x : ds){
+                bw.write(x.toString());
+                bw.newLine();
+            }
+            bw.close();
+            fr.close();
+        }
+        catch(IOException ex){}
+    }
+
+    public void docFileDSVo(){
+        try{
+            FileReader fr = new FileReader("DSVo.txt");
+            BufferedReader br = new BufferedReader(fr);
+            String tmp = "";
+            while(tmp != null){
+                System.out.println(tmp);
+                tmp = br.readLine();
+            }
+            br.close();
+            fr.close();
+        }
+        catch(IOException ex){}
+    }
     
     public void xuatDSVo(){
         if (ds == null) {
@@ -49,19 +78,40 @@ public class DanhSachVo {
         a.nhapSanpham();
         ds = Arrays.copyOf(ds, ds.length + 1);
         ds[ds.length - 1] = (Vo) a;
+        try{
+            FileWriter fw = new FileWriter("DSVo.txt", true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(a.toString());
+            bw.newLine();
+        }
+        catch(IOException ex){}
     }
     
     public void deleteVo(){
         System.out.println("Moi ban nhap ten Vo can xoa: ");
         String tmp = sc.nextLine();
         for(int i = 0; i < ds.length; i++){
-            if((ds[i].getName().compareTo(tmp)) == 1){
-                for(int j = i; j < ds.length; j++){
+            if((ds[i].getName().equals(tmp)) == true){
+                if(i == ds.length - 1) ds = Arrays.copyOf(ds, ds.length - 1);
+                else{
+                    for(int j = i; j < ds.length - 1; j++){
                     ds[j] = ds[j + 1];
                     ds = Arrays.copyOf(ds, ds.length - 1);
+                    }
                 }
             }
         }
+        try{
+            FileWriter fr = new FileWriter("DSVo.txt");
+            BufferedWriter bw = new BufferedWriter(fr);
+            for(var x : ds){
+                bw.write(x.toString());
+                bw.newLine();
+            }
+            bw.close();
+            fr.close();
+        }
+        catch(IOException ex){}
     }
     
     public void updateSach(){
@@ -72,6 +122,17 @@ public class DanhSachVo {
                 ds[i].nhapSanpham();
             }
         }
+        try{
+            FileWriter fr = new FileWriter("DSVo.txt");
+            BufferedWriter bw = new BufferedWriter(fr);
+            for(var x : ds){
+                bw.write(x.toString());
+                bw.newLine();
+            }
+            bw.close();
+            fr.close();
+        }
+        catch(IOException ex){}
     }
     
     public void timKiemVo(String keyword) {
