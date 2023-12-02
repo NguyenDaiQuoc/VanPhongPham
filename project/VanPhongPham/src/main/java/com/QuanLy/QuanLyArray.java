@@ -9,9 +9,9 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import com.SanPham.SanPham;
-import com.SanPham.DanhSachVo;
-import com.SanPham.DanhSachSach;
-import com.SanPham.DanhSachBut;
+import com.DanhSachVo.DanhSachVo;
+import com.DanhSachSach.DanhSachSach;
+import com.DanhSachBut.DanhSachBut;
 
 public class QuanLyArray extends NguoiDung {
 
