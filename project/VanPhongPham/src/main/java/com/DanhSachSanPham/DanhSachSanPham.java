@@ -65,11 +65,17 @@ public class DanhSachSanPham {
                         if(choose1 == 0) break;
                         switch(choose1){
                             case 1:
-                                dsBut.nhapDSBut(); break;
+                                dsBut.nhapDSBut(); 
+                                dsBut.ghiFileDSBut();
+                                break;
                             case 2:
-                                dsSach.nhapDSSach(); break;
+                                dsSach.nhapDSSach();
+                                dsBut.ghiFileDSSach();
+                                break;
                             case 3:
-                                dsVo.nhapDSVo(); break;
+                                dsVo.nhapDSVo();
+                                dsBut.ghiFileDSVo();
+                                break;
                         }
                     }
                     break;
@@ -83,11 +89,11 @@ public class DanhSachSanPham {
                         if(choose2 == 0) break;
                         switch(choose2){
                             case 1:
-                                dsBut.xuatDSBut(); break;
+                                dsBut.docFileDSBut(); break;
                             case 2:
-                                dsSach.xuatDSSach(); break;
+                                dsSach.docFileDSSach(); break;
                             case 3:
-                                dsVo.xuatDSVo(); break;
+                                dsVo.docFileDSVo(); break;
                                 
                         }
                     }
