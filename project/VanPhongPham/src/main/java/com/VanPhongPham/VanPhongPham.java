@@ -590,6 +590,8 @@ System.arraycopy(ds3, 0, sanPhamList, ds1.length + ds2.length, ds3.length);
     }
 }
                 case 3: {
+                    
+                    
                     clearScreen();
                     break;
                 }
