@@ -1,15 +1,19 @@
 package com.GioHang;
 
+import com.DanhSachBut.DanhSachBut;
+import com.DanhSachSach.DanhSachSach;
+import com.DanhSachVo.DanhSachVo;
 import com.PhuongThucThanhToan.PhuongThucThanhToan;
 import com.SanPham.SanPham;
-//import com.HienThiSanPham.HienThiSanPham;
 import com.DonHang.DonHang;
 import com.KhachHang.KhachHang;
+import com.HienThiSanPham.HienThiSanPham;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.IOException;
 import java.io.FileWriter;
+import java.util.Arrays;
 
 public class GioHang {
     private SanPham[] gioHang = new SanPham[100]; // Assuming a maximum of 100 products in the cart
@@ -89,59 +93,74 @@ public class GioHang {
 
     // Other methods
 
-    void muaSanPham(SanPham[] sanPhamList, Scanner scanner) {
-        boolean displayMenu = true;
+    public void muaSanPham(SanPham[] sanPhamList, Scanner scanner, DanhSachSach danhSachSach, DanhSachVo danhSachVo, DanhSachBut danhSachBut) {
+    boolean displayMenu = true;
 
-        while (true) {
-            if (displayMenu) {
-                System.out.println("Chon loai san pham de mua:");
-                System.out.println("1. Sach");
-                System.out.println("2. Vo");
-                System.out.println("3. But");
-                System.out.println("11. Quay lai");
-                System.out.print("Nhap lua chon (1, 2, 3 hoac 11): ");
-            }
-
-            int productChoice = scanner.nextInt();
-            scanner.nextLine();
-
-            if (productChoice >= 1 && productChoice <= 3) {
-                int startIndex = (productChoice - 1) * 10;
-                int endIndex = productChoice * 10 - 1;
-                //HienThiSanPham.hienThiSanPham(sanPhamList, startIndex, endIndex);
-
-                // User choice for buying the product
-                int buyChoice;
-                do {
-                    System.out.print("Nhap lua chon san pham (1 den 10) hoac 11 de quay lai: ");
-                    buyChoice = scanner.nextInt();
-                    scanner.nextLine();
-
-                    if (buyChoice >= 1 && buyChoice <= 10) {
-                        if (soLuongSanPhamTrongGio < 100) { // Check if the cart is not full
-                            gioHang[soLuongSanPhamTrongGio] = sanPhamList[startIndex + buyChoice - 1];
-                            soLuongSanPhamTrongGio++;
-                            System.out.println("Da them san pham vao gio hang.");
-                        } else {
-                            System.out.println("Gio hang da day, khong the them san pham.");
-                            break; // Break out of the do-while loop
-                        }
-                    } else if (buyChoice == 11) {
-                        displayMenu = true; // Go back to the main menu
-                        return;
-                    } else {
-                        System.out.println("Lua chon khong hop le.");
-                    }
-                } while (true); // Continue until the user chooses to go back
-            } else if (productChoice == 11) {
-                break; // Quay lai trang truoc
-            } else {
-                System.out.println("Lua chon khong hop le.");
-            }
-
-            displayMenu = false;
+    while (true) {
+        if (displayMenu) {
+            System.out.println("Chon loai san pham de mua:");
+            System.out.println("1. Sach");
+            System.out.println("2. Vo");
+            System.out.println("3. But");
+            System.out.println("11. Quay lai");
+            System.out.print("Nhap lua chon (1, 2, 3 hoac 11): ");
         }
+
+        int productChoice = scanner.nextInt();
+        scanner.nextLine();
+
+        if (productChoice >= 1 && productChoice <= 3) {
+            switch (productChoice) {
+                case 1:
+                    danhSachSach.xuatDSSach();
+                    break;
+                case 2:
+                    danhSachVo.xuatDSVo();
+                    break;
+                case 3:
+                    danhSachBut.xuatDSBut();
+                    break;
+            }
+
+            int startIndex = (productChoice - 1) * 10;
+            int endIndex = Math.min(productChoice * 10, sanPhamList.length);
+
+            // Tạo một mảng tạm thời để chứa danh sách sản phẩm
+            SanPham[] tempArray = Arrays.copyOfRange(sanPhamList, startIndex, endIndex);
+
+            // User choice for buying the product
+            int buyChoice;
+            do {
+                System.out.print("Nhap lua chon san pham (1 den 10) hoac 11 de quay lai: ");
+                buyChoice = scanner.nextInt();
+                scanner.nextLine();
+
+                if (buyChoice >= 1 && buyChoice <= tempArray.length) {
+                    if (soLuongSanPhamTrongGio < 100) { // Check if the cart is not full
+                        gioHang[soLuongSanPhamTrongGio] = tempArray[buyChoice - 1];
+                        soLuongSanPhamTrongGio++;
+                        System.out.println("Da them san pham vao gio hang.");
+                    } else {
+                        System.out.println("Gio hang da day, khong the them san pham.");
+                        break; // Break out of the do-while loop
+                    }
+                } else if (buyChoice == 11) {
+                    displayMenu = true; // Go back to the main menu
+                    return;
+                } else {
+                    System.out.println("Lua chon khong hop le.");
+                }
+            } while (true); // Continue until the user chooses to go back
+        } else if (productChoice == 11) {
+            break; // Quay lai trang truoc
+        } else {
+            System.out.println("Lua chon khong hop le.");
+        }
+
+        displayMenu = false;
     }
+}
+
 
     private String generateMaDonHang() {
         int lastOrderId = 0;
@@ -222,7 +241,7 @@ public class GioHang {
 
     DonHang[] donHangArray = new DonHang[100000];
 
-    void datDonHang(Scanner scanner, KhachHang khachHang) {
+    public void datDonHang(Scanner scanner, KhachHang khachHang) {
         System.out.println("Chon phuong thuc thanh toan:");
         for (PhuongThucThanhToan pttt : phuongThucThanhToans) {
             System.out.println(pttt.getMaPhuongThuc() + ". " + pttt.getTen());
@@ -241,18 +260,17 @@ public class GioHang {
                 String maCVV = scanner.nextLine();
                 System.out.print("Nhap ngay het han (mm/yy): ");
                 String ngayHetHan = scanner.nextLine();
-                // Here you would usually send this information securely to your payment processor
-                // But for this example, we'll just print a success message
+                
                 System.out.println("Da thanh toan thanh cong bang the tin dung!");
-                donHang.luuDonHang(); // Save the order to the file
+                donHang.luuDonHang(); 
                 break;
             case 2:
                 System.out.println("Hay chuyen tien cho tai khoan nay: 0931816175, Ten: Dinh Phuc Thinh");
-                donHang.luuDonHang(); // Save the order to the file
+                donHang.luuDonHang(); 
                 break;
             case 3:
                 System.out.println("Dat hang thanh cong! San pham se duoc thanh toan khi nhan hang");
-                donHang.luuDonHang(); // Save the order to the file
+                donHang.luuDonHang(); 
                 break;
             default:
                 System.out.println("Lua chon khong hop le.");
@@ -260,10 +278,16 @@ public class GioHang {
         }
     }
 
-    void xemGioHang() {
-        System.out.println("Danh sach san pham trong gio hang:");
-        for (int i = 0; i < soLuongSanPhamTrongGio; i++) {
-            System.out.println((i + 1) + ". " + gioHang[i].getName() + " - " + gioHang[i].getGia() + "VND");
+    public void xemGioHang() {
+    System.out.println("Danh sach san pham trong gio hang:");
+    for (int i = 0; i < soLuongSanPhamTrongGio; i++) {
+        if (gioHang[i] != null) {  // Check if the SanPham object is not null
+            System.out.println((i + 1) + ". " + gioHang[i].getName() +                          
+                               " - Gia: " + gioHang[i].getGia() + "VND" +
+                               " - So luong: " + gioHang[i].getSoluong() +
+                               " - Ngay san xuat: " + gioHang[i].getNgaySx() +
+                               " - Don vi san xuat: " + gioHang[i].getDonviSx());
         }
     }
+}
 }
