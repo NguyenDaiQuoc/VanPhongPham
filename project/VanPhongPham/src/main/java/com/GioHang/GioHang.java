@@ -140,7 +140,7 @@ public class GioHang {
             // User choice for buying the product
             int buyChoice;
             do {
-                System.out.print("Nhap lua chon san pham hoac quay lai: ");
+                System.out.print("Nhap lua chon san pham hoac 11 de quay lai: ");
                 buyChoice = scanner.nextInt();
                 scanner.nextLine();
 
