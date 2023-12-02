@@ -164,7 +164,7 @@ public class GioHang {
 
     private String generateMaDonHang() {
         int lastOrderId = 0;
-        File file = new File("lastorderid.txt");
+        File file = new File("Lastorderid.txt");
 
         // Create the file if it doesn't exist
         if (!file.exists()) {
@@ -196,7 +196,7 @@ public class GioHang {
 
         // Write the new last order ID to the file
         try {
-            FileWriter writer = new FileWriter("lastorderid.txt");
+            FileWriter writer = new FileWriter("Lastorderid.txt");
             writer.write(String.valueOf(lastOrderId));
             writer.close();
         } catch (IOException e) {
@@ -209,7 +209,7 @@ public class GioHang {
 
     public void docDonHang(KhachHang khachHang) {
         try {
-            File file = new File("donhang.txt");
+            File file = new File("Don Hang.txt");
             Scanner reader = new Scanner(file);
 
             System.out.println("Cac don hang da dat:");
