@@ -80,7 +80,7 @@ public class BinhLuan {
 
     public void luuBinhLuan() {
         try {
-            File file = new File("binhluan.txt");
+            File file = new File("Binh Luan.txt");
     
             // Create the file if it doesn't exist
             if (!file.exists()) {
@@ -104,7 +104,7 @@ public class BinhLuan {
 
     public void xemBinhLuan(SanPham chosenProduct) {
     try {
-        File file = new File("binhluan.txt");
+        File file = new File("Binh Luan.txt");
         Scanner reader = new Scanner(file);
 
         System.out.println("Binh luan cho san pham: " + chosenProduct.getName());
