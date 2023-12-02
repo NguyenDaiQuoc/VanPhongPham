@@ -70,11 +70,11 @@ public class DanhSachSanPham {
                                 break;
                             case 2:
                                 dsSach.nhapDSSach();
-                                dsBut.ghiFileDSSach();
+                                dsSach.ghiFileDSSach();
                                 break;
                             case 3:
                                 dsVo.nhapDSVo();
-                                dsBut.ghiFileDSVo();
+                                dsVo.ghiFileDSVo();
                                 break;
                         }
                     }
