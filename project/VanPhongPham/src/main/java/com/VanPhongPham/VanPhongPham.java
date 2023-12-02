@@ -1,8 +1,21 @@
 package com.vanphongpham;
 
 import java.util.Scanner;
-//import com.user.User;
-//hoac import com.vanphongpham.user.User;
+import java.util.Arrays;
+import com.GioHang.GioHang;
+import com.KhachHang.KhachHang;
+import com.SanPham.SanPham;
+import com.TaiKhoan.TaiKhoan;
+import com.NguoiDung.NguoiDung;
+import com.DonHang.DonHang;
+import com.PhuongThucThanhToan.PhuongThucThanhToan;
+import com.BinhLuan.BinhLuan;
+import com.But.But;
+import com.DanhSachBut.DanhSachBut;
+import com.DanhSachSach.DanhSachSach;
+import com.DanhSachVo.DanhSachVo;
+import com.Sach.Sach;
+import com.Vo.Vo;
 import com.ThongTinChuongTrinh.ThongTinChuongTrinh;
 import com.Cskh.Cskh;
 import com.QuanLy.QuanLyFile;
@@ -363,7 +376,85 @@ public class VanPhongPham {
                 }
 
                 case 2: {
-    while (!loggedIn) {
+        GioHang gioHang = new GioHang();
+        Scanner scanner = new Scanner(System.in);
+        boolean loggedIn = false;
+        SanPham[] sanPhamList = new SanPham[30];  // Adjust the size as needed
+
+        // Initialize the book list (danhSachSach)
+        DanhSachSach danhSachSach = new DanhSachSach();
+        
+        Sach[] ds1 = new Sach[10];  // Create an array of 10 Sach objects
+
+for (int i = 0; i < ds1.length; i++) {
+    // Initialize each Sach object in the array with predefined data
+    ds1[i] = new Sach(
+        "ID" + (i+1),
+        "Book Title " + (i+1),
+        "Author " + (i+1),
+        i * 10.0f + 50.0f,
+        i * 5 + 10,
+        "2023-12-01",
+        "Publisher " + (i+1),
+        "Genre " + (i+1)
+    );
+}
+
+danhSachSach.setDs(ds1);  // Set the ds array in danhSachSach
+
+
+        // Initialize the notebook list (danhSachVo)
+        DanhSachVo danhSachVo = new DanhSachVo();
+        
+        Vo[] ds2 = new Vo[10];  // Create an array of 10 Vo objects
+
+for (int i = 0; i < ds2.length; i++) {
+    // Initialize each Vo object in the array with predefined data
+    ds2[i] = new Vo(
+        "ID" + (i+1),
+        "Notebook Title " + (i+1),
+        i * 5.0f + 20.0f,
+        i * 5 + 10,
+        "2023-12-01",
+        "Publisher " + (i+1),
+        "Size " + (i+1)
+    );
+}
+
+danhSachVo.setDs(ds2);  // Set the ds array in danhSachVo
+
+        // Initialize the pen list (danhSachBut)
+        DanhSachBut danhSachBut = new DanhSachBut(); 
+        
+        But[] ds3 = new But[10];  // Create an array of 10 But objects
+
+for (int i = 0; i < ds3.length; i++) {
+    // Initialize each But object in the array with predefined data
+    ds3[i] = new But(
+        "ID" + (i+1),
+        "Pen Title " + (i+1),
+        i * 2.0f + 10.0f,
+        i * 5 + 10,
+        "2023-12-01",
+        "Publisher " + (i+1),
+        "Type " + (i+1)
+    );
+}
+
+danhSachBut.setDs(ds3);  // Set the ds array in danhSachBut
+
+        // Add Sach objects to sanPhamList
+System.arraycopy(ds1, 0, sanPhamList, 0, ds1.length);
+
+// Add Vo objects to sanPhamList
+System.arraycopy(ds2, 0, sanPhamList, ds1.length, ds2.length);
+
+// Add But objects to sanPhamList
+System.arraycopy(ds3, 0, sanPhamList, ds1.length + ds2.length, ds3.length);
+        
+        KhachHang khachHang = null;
+        TaiKhoan taiKhoan = new TaiKhoan(); // You need to instantiate TaiKhoan
+        while (!loggedIn) {
         System.out.println("Chao mung ban den voi ung dung van phong pham!");
         System.out.println("Chon tuy chon:");
         System.out.println("1. Dang ky");
@@ -421,16 +512,16 @@ public class VanPhongPham {
             System.out.println("5. Dat don hang");
             System.out.println("6. Xem don hang");
             System.out.println("7. Xem binh luan");
-            System.out.println("8. Dang xuat");
+            System.out.println("8. Dang xuat va thoat chuong trinh");
             System.out.println("Hay nhap thong tin nguoi dung truoc khi mua hang nhe!");
             System.out.print("Nhap lua chon (1, 2, 3, 4, 5, 6, 7, hoac 8): ");
             int userChoice = scanner.nextInt();
             scanner.nextLine();
 
             if (userChoice == 1) {
-                // Người dùng chọn mua sản phẩm
-                gioHang.muaSanPham(sanPhamList, scanner);
-            } else if (userChoice == 2) {
+                gioHang.muaSanPham(sanPhamList, scanner, danhSachSach, danhSachVo, danhSachBut);
+            }
+            else if (userChoice == 2) {
                 // Người dùng chọn xem gio hang
                 gioHang.xemGioHang();
             } else if (userChoice == 3) {
@@ -449,57 +540,57 @@ public class VanPhongPham {
             } else if (userChoice == 6) {
                 gioHang.docDonHang(khachHang);
             } else if (userChoice == 7) {
-                // User chooses to view comments
-                System.out.println("Xem binh luan cua:");
-                System.out.println("1. Sach");
-                System.out.println("2. Vo");
-                System.out.println("3. But");
-                System.out.print("Nhap lua chon (1, 2 hoac 3): ");
-                int productType = scanner.nextInt();
-                scanner.nextLine();
+    // User chooses to view comments
+    System.out.println("Xem binh luan cua:");
+    System.out.println("1. Sach");
+    System.out.println("2. Vo");
+    System.out.println("3. But");
+    System.out.print("Nhap lua chon (1, 2 hoac 3): ");
+    int productType = scanner.nextInt();
+    scanner.nextLine();
 
-                if (productType >= 1 && productType <= 3) {
-                    int startIndex = (productType - 1) * 10;
-                    hienThiSanPham(Arrays.copyOfRange(sanPhamList, startIndex, startIndex + 10));
-                    System.out.print("Nhap lua chon san pham (1 den 10): ");
-                    int productChoice = scanner.nextInt();
-                    scanner.nextLine();
+    if (productType >= 1 && productType <= 3) {
+        int startIndex = (productType - 1) * 10;
+        hienThiSanPham(Arrays.copyOfRange(sanPhamList, startIndex, startIndex + 10));
+        System.out.print("Nhap lua chon san pham (1 den 10): ");
+        int productChoice = scanner.nextInt();
+        scanner.nextLine();
 
-                    boolean continueLoop = true;
-                    while (loggedIn && continueLoop) {
-                        if (productChoice >= 1 && productChoice <= 10) {
-                            SanPham chosenProduct = sanPhamList[startIndex + productChoice - 1];
-                            BinhLuan binhLuan = new BinhLuan("BL" + (taiKhoan.soLuongNguoiDung + 1), "", chosenProduct);
-                            binhLuan.xemBinhLuan(chosenProduct);
-                            while (true) {
-                                System.out.print("Ban co muon binh luan san pham nay khong? (y/n): ");
-                                String commentChoice = scanner.nextLine();
+        boolean continueLoop = true;
+        while (loggedIn && continueLoop) {
+            if (productChoice >= 1 && productChoice <= 10) {
+                SanPham chosenProduct = sanPhamList[startIndex + productChoice - 1];
+                BinhLuan binhLuan = new BinhLuan("BL" + (taiKhoan.soLuongNguoiDung + 1), "", chosenProduct);
+                binhLuan.xemBinhLuan(chosenProduct);
+                while (true) {
+                    System.out.print("Ban co muon binh luan san pham nay khong? (y/n): ");
+                    String commentChoice = scanner.nextLine();
 
-                                if (commentChoice.equalsIgnoreCase("y")) {
-                                    System.out.print("Nhap noi dung binh luan: ");
-                                    String commentContent = scanner.nextLine();
-                                    binhLuan.setNoiDung(commentContent);  // Update the comment content
-                                    binhLuan.luuBinhLuan();
-                                } else if (commentChoice.equalsIgnoreCase("n")) {
-                                    continueLoop = false;
-                                    break;  // Return to the main menu
-                                } else {
-                                    System.out.println("Lua chon khong hop le.");
-                                }
-                            }
-                        } else {
-                            System.out.println("Lua chon khong hop le.");
-                        }
+                    if (commentChoice.equalsIgnoreCase("y")) {
+                        System.out.print("Nhap noi dung binh luan: ");
+                        String commentContent = scanner.nextLine();
+                        binhLuan.setNoiDung(commentContent);  // Update the comment content
+                        binhLuan.luuBinhLuan();
+                    } else if (commentChoice.equalsIgnoreCase("n")) {
+                        continueLoop = false;
+                        break;  // Return to the main menu
+                    } else {
+                        System.out.println("Lua chon khong hop le.");
                     }
-                } else {
-                    System.out.println("Lua chon khong hop le.");
                 }
-            } // case 8 is missing here
-            case 8: {
-                System.out.println("Đang thoát chương trình...");
-                System.exit(0);                
-                System.out.println("Chương trình kết thúc.");
+            } else {
+                System.out.println("Lua chon khong hop le.");
             }
+        }
+    } else {
+        System.out.println("Lua chon khong hop le.");
+    }
+} else if (userChoice == 8) {
+    System.out.println("Dang dang xuat va thoat chuong trinh...");
+    System.exit(0);                
+    System.out.println("Chuong trinh ket thuc.");
+}
+
         }
         clearScreen();
         break;
