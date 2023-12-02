@@ -1,4 +1,4 @@
-
+   
 package com.DanhSachSach;
 
 import com.Sach.Sach;
@@ -36,6 +36,36 @@ public class DanhSachSach {
             ds[i].nhapSanpham();
         }
     }
+
+    public void ghiFileDSSach(){
+        try{
+            FileWriter fr = new FileWriter("DSSach.txt");
+            BufferedWriter bw = new BufferedWriter(fr);
+            for(var x : ds){
+                bw.write(x.toString());
+                bw.newLine();
+            }
+            bw.close();
+            fr.close();
+        }
+        catch(IOException ex){}
+    }
+    
+    public void docFileDSSach(){
+        try{
+            FileReader fr = new FileReader("DSSach.txt");
+            BufferedReader br = new BufferedReader(fr);
+            String tmp = "";
+            while(tmp != null){
+                System.out.println(tmp);
+                tmp = br.readLine();
+            }
+            br.close();
+            fr.close();
+        }
+        catch(IOException ex){}
+    }
+
     
     public void xuatDSSach(){
     if (ds == null) {
@@ -53,29 +83,59 @@ public class DanhSachSach {
         a.nhapSanpham();
         ds = Arrays.copyOf(ds, ds.length + 1);
         ds[ds.length - 1] = (Sach) a;
+        try{
+            FileWriter fw = new FileWriter("DSSach.txt", true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(a.toString());
+            bw.newLine();
+        }
+        catch(IOException ex){}
     }
     
     public void deleteSach(){
         System.out.println("Moi ban nhap ten Sach can xoa: ");
         String tmp = sc.nextLine();
         for(int i = 0; i < ds.length; i++){
-            if((ds[i].getName().compareTo(tmp)) == 1){
+            if((ds[i].getName().equals(tmp)) == 1){
                 for(int j = i; j < ds.length; j++){
                     ds[j] = ds[j + 1];
                     ds = Arrays.copyOf(ds, ds.length - 1);
                 }
             }
         }
+        try{
+            FileWriter fr = new FileWriter("DSSach.txt");
+            BufferedWriter bw = new BufferedWriter(fr);
+            for(var x : ds){
+                bw.write(x.toString());
+                bw.newLine();
+            }
+            bw.close();
+            fr.close();
+        }
+        catch(IOException ex){}
     }
     
     public void updateSach(){
         System.out.print("Moi ban nhap id sach can sua: ");
         String tmp = sc.nextLine();
         for(int i = 0; i < ds.length; i++){
-            if((ds[i].getIdSanpham().compareTo(tmp)) == 1){
+            if((ds[i].getIdSanpham().equals(tmp)) == 1){
                 ds[i].nhapSanpham();
             }
         }
+        try{
+            FileWriter fr = new FileWriter("DSSach.txt");
+            BufferedWriter bw = new BufferedWriter(fr);
+            for(var x : ds){
+                bw.write(x.toString());
+                bw.newLine();
+            }
+            bw.close();
+            fr.close();
+        }
+        catch(IOException ex){}
+
     }
     
     public void timKiemSach(String keyword) {
