@@ -174,7 +174,7 @@ public class Sach implements SanPham {
     
     @Override
     public double getFinalPrice() {
-        double discount = CKThueVAT.CKSach;
+        double discount = CKThueVAT.dCKSach;
         double priceAfterDiscount = this.getGia() * (1 - discount);
         double finalPrice = priceAfterDiscount * (1 + CKThueVAT.dVAT);
 
