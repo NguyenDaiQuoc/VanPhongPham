@@ -1,5 +1,5 @@
 
-package com.mycompany.first.DoAn;
+package com.SanPham;
 
 
 public interface SanPham {
@@ -14,6 +14,8 @@ public interface SanPham {
     public abstract String getNgaySx();
     
     public abstract String getDonviSx();
+    
+    public abstract void setIdSanpham();
     
     public abstract void nhapSanpham();
     
