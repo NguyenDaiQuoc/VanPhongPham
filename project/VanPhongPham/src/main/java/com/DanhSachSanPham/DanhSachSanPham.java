@@ -29,6 +29,19 @@ public class DanhSachSanPham {
         System.out.print("3.Vo!");
     }
     
+    public void timKiemSanPham(String keyword) {
+    System.out.println("Ket qua tim kiem cho \"" + keyword + "\":");
+    
+    System.out.println("\nBut:");
+    dsBut.timKiemBut(keyword);
+    
+    System.out.println("\nSach:");
+    dsSach.timKiemSach(keyword);
+    
+    System.out.println("\nVo:");
+    dsVo.timKiemVo(keyword);
+}
+
     public void thucHien(){
         dsBut = new DanhSachBut();
         dsSach = new DanhSachSach();
@@ -36,7 +49,7 @@ public class DanhSachSanPham {
         while(true){
             menu();
             int choose;
-            System.out.print("Moi ban nhap luc chon: ");
+            System.out.print("Moi ban nhap lua chon: ");
             choose = Integer.parseInt(sc.nextLine());
             if(choose == 0){
                 break;
@@ -47,7 +60,7 @@ public class DanhSachSanPham {
                         menu1();
                         System.out.println();
                         int choose1;
-                        System.out.print("Moi ban nhap luc chon: ");
+                        System.out.print("Moi ban nhap lua chon: ");
                         choose1 = Integer.parseInt(sc.nextLine());
                         if(choose1 == 0) break;
                         switch(choose1){
@@ -65,7 +78,7 @@ public class DanhSachSanPham {
                         menu1();
                         int choose2;
                         System.out.println();
-                        System.out.print("Moi ban nhap luc chon: ");
+                        System.out.print("Moi ban nhap lua chon: ");
                         choose2 = Integer.parseInt(sc.nextLine());
                         if(choose2 == 0) break;
                         switch(choose2){
@@ -84,7 +97,7 @@ public class DanhSachSanPham {
                         menu1();
                         int choose3;
                         System.out.print("");
-                        System.out.print("Moi ban nhap luc chon: ");
+                        System.out.print("Moi ban nhap lua chon: ");
                         choose3 = Integer.parseInt(sc.nextLine());
                         if(choose3 == 0) break;
                         switch(choose3){
@@ -102,7 +115,7 @@ public class DanhSachSanPham {
                         menu1();
                         int choose4;
                         System.out.println();
-                        System.out.print("Moi ban nhap luc chon: ");
+                        System.out.print("Moi ban nhap lua chon: ");
                         choose4 = Integer.parseInt(sc.nextLine());
                         if(choose4 == 0) break;
                         switch(choose4){
@@ -120,7 +133,7 @@ public class DanhSachSanPham {
                         menu1();
                         int choose5;
                         System.out.println();
-                        System.out.print("Moi ban nhap luc chon: ");
+                        System.out.print("Moi ban nhap lua chon: ");
                         choose5 = Integer.parseInt(sc.nextLine());
                         if(choose5 == 0) break;
                         switch(choose5){
