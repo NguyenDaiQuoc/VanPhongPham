@@ -10,75 +10,80 @@ import java.util.Date;
 import java.util.Scanner;
 import java.io.File;
 
-public abstract class HoaDon implements SanPham {
+public class HoaDon implements SanPham {
 
     Scanner sc = new Scanner(System.in);
-    String FileHoaDon = ("Hoa Don.txt");
-    File file = new File(FileHoaDon);
+    String fileHoaDon = ("Hoa Don.txt");
+    File file = new File(fileHoaDon);
 
-    public HoaDon(String name, int SoLuongSP, float gia, float ThanhTien) {
-        super();
+    String name;
+    int soLuongSP;
+    float gia;
+    float thanhTien;
+    float tongTien;
+
+    public HoaDon(String name, int soLuongSP, float gia, float thanhTien) {
+        this.name = name;
+        this.soLuongSP = soLuongSP;
+        this.gia = gia;
+        this.thanhTien = thanhTien;
     }
 
-    int SoLuongSP;
-    float ThanhTien;
-    float TongTien;
-
-    public HoaDon(int SoLuongSP, float ThanhTien, float TongTien) {
-        this.SoLuongSP = SoLuongSP;
-        this.ThanhTien = ThanhTien;
-        this.TongTien = TongTien;
+    public HoaDon(int soLuongSP, float thanhTien, float tongTien) {
+        this.soLuongSP = soLuongSP;
+        this.thanhTien = thanhTien;
+        this.tongTien = tongTien;
     }
 
     public int getSoLuongSP() {
-        return SoLuongSP;
+        return soLuongSP;
     }
 
-    public void setSoLuongSP(int SoLuongSP) {
+    public void setSoLuongSP(int soLuongSP) {
         for (;;) {
             System.out.println("Moi nhap so luong san pham:");
-            SoLuongSP = sc.nextInt();
-            this.SoLuongSP = SoLuongSP;
-            if (SoLuongSP > 0) {
+            soLuongSP = sc.nextInt();
+            this.soLuongSP = soLuongSP;
+            if (soLuongSP > 0) {
                 break;
             }
         }
     }
 
     public float getThanhTien() {
-        return ThanhTien;
+        return thanhTien;
     }
 
-    public void setThanhTien(float ThanhTien) {
-        ThanhTien = SoLuongSP * gia;
-        this.ThanhTien = ThanhTien;
+    public void setThanhTien(float thanhTien) {
+        thanhTien = soLuongSP * gia;
+        this.thanhTien = thanhTien;
     }
 
     public float getTongTien() {
-        return TongTien;
+        return tongTien;
     }
 
-    public void setTongTien(float TongTien) {
-        TongTien += ThanhTien;
-        this.TongTien = TongTien;
+    public void setTongTien(float tongTien) {
+        tongTien += thanhTien;
+        this.tongTien = tongTien;
     }
 
-    public HoaDon[] NhapTTHoaDon() {
+    public HoaDon[] nhapTTHoaDon() {
         setSoLuongSP(0);
         setThanhTien(0);
         setTongTien(0);
-        HoaDon[] TTHoaDon = new HoaDon[99];
+        HoaDon[] ttHoaDon = new HoaDon[99];
         int c = 1;
         for (int i = 1; c != 0; i++) {
             System.out.println("Moi nhap thong tin hoa don:");
-            TTHoaDon[i] = new HoaDon(name, getSoLuongSP(), gia, getThanhTien());
+            ttHoaDon[i] = new HoaDon(name, getSoLuongSP(), gia, getThanhTien());
             System.out.println("Nhan 0 neu muon dung nhap hoa don:");
             c = sc.nextInt();
         }
-        return TTHoaDon;
+        return ttHoaDon;
     }
 
-    public void NhapHoaDonVaoFile() throws IOException {
+    public void nhapHoaDonVaoFile() throws IOException {
         try {
             if (!file.exists()) {
                 file.createNewFile();
@@ -87,16 +92,13 @@ public abstract class HoaDon implements SanPham {
             e.printStackTrace();
         }
         Date ngay = java.util.Calendar.getInstance().getTime();
-        BufferedWriter writer = new BufferedWriter(new FileWriter(FileHoaDon));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileHoaDon));
         writer.write(ngay + "/");
-        for (int i = 1;; i++) {
-
-        }
-        //writer.write(TongTien +".\n");
-
+        // Add your code here to write into the file
+        writer.close();
     }
 
-    public void XuatHoaDon() throws IOException {
+    public void xuatHoaDon() throws IOException {
         try {
             if (!file.exists()) {
                 file.createNewFile();
@@ -104,17 +106,69 @@ public abstract class HoaDon implements SanPham {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        BufferedReader reader = new BufferedReader(new FileReader(FileHoaDon));
+        BufferedReader reader = new BufferedReader(new FileReader(fileHoaDon));
         String sLine;
         String fiHoaDon[] = new String[20];
         while ((sLine = reader.readLine()) != null) {
             fiHoaDon = sLine.split(",");
             fiHoaDon = sLine.split("/");
             fiHoaDon = sLine.split(".");
-
+            // Add your code here to use the split results
         }
+        reader.close();
     }
 
-    public void XemHoaDon() {
+    public void xemHoaDon() {
+        // Add your code here
+    }
+
+    @Override
+    public String getIdSanpham() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String getName() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public float getGia() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public int getSoluong() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String getNgaySx() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String getDonviSx() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void setIdSanpham() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void nhapSanpham() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void xuatSanpham() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public double getFinalPrice() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
