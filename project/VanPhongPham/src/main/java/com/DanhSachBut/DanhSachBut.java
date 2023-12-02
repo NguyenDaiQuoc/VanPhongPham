@@ -90,10 +90,13 @@ public class DanhSachBut {
         System.out.println("Moi ban nhap ten But can xoa: ");
         String tmp = sc.nextLine();
         for(int i = 0; i < ds.length; i++){
-            if((ds[i].getName().equals(tmp)) == 1){
-                for(int j = i; j < ds.length; j++){
+            if((ds[i].getName().equals(tmp)) == true){
+                if(i == ds.length - 1) ds = Arrays.copyOf(ds, ds.length - 1);
+                else{
+                    for(int j = i; j < ds.length - 1; j++){
                     ds[j] = ds[j + 1];
                     ds = Arrays.copyOf(ds, ds.length - 1);
+                    }
                 }
             }
         }
@@ -115,7 +118,7 @@ public class DanhSachBut {
         System.out.print("Moi ban nhap id But can sua: ");
         String tmp = sc.nextLine();
         for(int i = 0; i < ds.length; i++){
-            if((ds[i].getIdSanpham().equals(tmp)) == 1){
+            if((ds[i].getIdSanpham().equals(tmp)) == true){
                 ds[i].nhapSanpham();
             }
         }
