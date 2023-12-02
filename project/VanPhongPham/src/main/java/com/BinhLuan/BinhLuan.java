@@ -2,10 +2,14 @@
 package com.BinhLuan;
 import com.SanPham.SanPham;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BinhLuan {
     private String maBinhLuan;
@@ -76,7 +80,7 @@ public class BinhLuan {
 
     public void luuBinhLuan() {
         try {
-            File file = new File("Binh Luan.txt");
+            File file = new File("binhluan.txt");
     
             // Create the file if it doesn't exist
             if (!file.exists()) {
@@ -97,4 +101,28 @@ public class BinhLuan {
             e.printStackTrace();
         }
     }
+
+    public void xemBinhLuan(SanPham chosenProduct) {
+    try {
+        File file = new File("binhluan.txt");
+        Scanner reader = new Scanner(file);
+
+        System.out.println("Binh luan cho san pham: " + chosenProduct.getName());
+        while (reader.hasNextLine()) {
+            String data = reader.nextLine();
+            String[] commentInfo = data.split(", ");
+            // Check if the product name matches
+            if (commentInfo[3].equals(chosenProduct.getName())) {
+                // Display the comment information
+                System.out.println("Ma Binh Luan: " + commentInfo[0]);
+                System.out.println("Noi Dung: " + commentInfo[1]);
+                System.out.println("Ngay Dang: " + commentInfo[2]);
+            }
+        }
+        reader.close();
+    } catch (FileNotFoundException e) {
+        System.out.println("Khong tim thay tep binh luan.");
+        e.printStackTrace();
+    }
+}
 }
