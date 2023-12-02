@@ -157,7 +157,7 @@ public class Vo implements SanPham {
 
     @Override
 public double getFinalPrice() {
-    double discount = CKThueVAT.CKVo;
+    double discount = CKThueVAT.dCKVo;
     double priceAfterDiscount = this.getGia() * (1 - discount);
     double finalPrice = priceAfterDiscount * (1 + CKThueVAT.dVAT);
 
