@@ -75,4 +75,12 @@ public class DanhSachBut {
     public void setDs(SanPham[] ds) {
         this.ds = (But[]) ds;
     }
+    
+    public void timKiemBut(String keyword) {
+    for (But but : ds) {
+        if (but.getName().contains(keyword)) {
+            but.xuatSanpham();
+        }
+    }
+}
 }
