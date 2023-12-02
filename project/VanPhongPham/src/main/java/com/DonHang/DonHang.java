@@ -61,10 +61,10 @@ public class DonHang {
                             + trangThaiDonHang);
 
             // Calculate the total amount
-            int tongSoTien = 0;
+            double tongSoTien = 0;
             SanPham[] sanPhamTrongGio = gioHang.getGioHang();
             for (int i = 0; i < gioHang.getSoLuongSanPhamTrongGio(); i++) {
-                tongSoTien += sanPhamTrongGio[i].getGia();
+                tongSoTien += sanPhamTrongGio[i].getFinalPrice();
             }
 
             // Write the total amount and the payment method to the file
