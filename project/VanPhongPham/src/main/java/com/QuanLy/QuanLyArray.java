@@ -17,8 +17,8 @@ public class QuanLyArray extends NguoiDung {
 
     Scanner sc = new Scanner(System.in);
     String sTaiKhoanQuanLy, sMatKhauQuanLy, sMaQuanLy;
-    String FileNameQuanLy = "Account Quan Ly.txt";
-    String FileThongTinQL = "Thong tin Quan Ly.txt";
+    String FileNameQuanLy = "Tai Khoan Quan Ly.txt";
+    String FileThongTinQL = "Thong Tin Quan Ly.txt";
     String FileTmp = "tmp.txt";
     String sHoTenQuanLy, sSoDienThoaiQuanLy, sDiaChiQuanLy;
     File fileTmp = new File(FileTmp);
