@@ -156,7 +156,7 @@ public class But implements SanPham{
 
     @Override
 public double getFinalPrice() {
-    double discount = CKThueVAT.CKBut;
+    double discount = CKThueVAT.dCKBut;
     double priceAfterDiscount = this.getGia() * (1 - discount);
     double finalPrice = priceAfterDiscount * (1 + CKThueVAT.dVAT);
 
