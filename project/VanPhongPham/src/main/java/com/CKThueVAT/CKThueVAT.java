@@ -1,6 +1,6 @@
 package com.CKThueVAT;
 
-interface CKThueVAT{
+public interface CKThueVAT{
     final double dVAT = 0.08;
     final double CKSach = 0.03;
     final double CKVo = 0.02;
