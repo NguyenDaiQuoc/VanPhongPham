@@ -102,14 +102,15 @@ public class GioHang {
             System.out.println("1. Sach");
             System.out.println("2. Vo");
             System.out.println("3. But");
+            System.out.println("4. Tim kiem san pham");
             System.out.println("11. Quay lai");
-            System.out.print("Nhap lua chon (1, 2, 3 hoac 11): ");
+            System.out.print("Nhap lua chon (1, 2, 3, 4 hoac 11): ");
         }
 
         int productChoice = scanner.nextInt();
         scanner.nextLine();
 
-        if (productChoice >= 1 && productChoice <= 3) {
+        if (productChoice >= 1 && productChoice <= 4) {
             switch (productChoice) {
                 case 1:
                     danhSachSach.xuatDSSach();
@@ -119,6 +120,14 @@ public class GioHang {
                     break;
                 case 3:
                     danhSachBut.xuatDSBut();
+                    break;
+                case 4:
+                    System.out.print("Nhap tu khoa tim kiem: ");
+                    String keyword = scanner.nextLine();
+                    System.out.println("Ket qua tim kiem cho \"" + keyword + "\":");
+                    danhSachSach.timKiemSach(keyword);
+                    danhSachVo.timKiemVo(keyword);
+                    danhSachBut.timKiemBut(keyword);
                     break;
             }
 
@@ -131,7 +140,7 @@ public class GioHang {
             // User choice for buying the product
             int buyChoice;
             do {
-                System.out.print("Nhap lua chon san pham (1 den 10) hoac 11 de quay lai: ");
+                System.out.print("Nhap lua chon san pham hoac quay lai: ");
                 buyChoice = scanner.nextInt();
                 scanner.nextLine();
 
@@ -164,7 +173,7 @@ public class GioHang {
 
     private String generateMaDonHang() {
         int lastOrderId = 0;
-        File file = new File("Lastorderid.txt");
+        File file = new File("lastorderid.txt");
 
         // Create the file if it doesn't exist
         if (!file.exists()) {
@@ -196,7 +205,7 @@ public class GioHang {
 
         // Write the new last order ID to the file
         try {
-            FileWriter writer = new FileWriter("Lastorderid.txt");
+            FileWriter writer = new FileWriter("lastorderid.txt");
             writer.write(String.valueOf(lastOrderId));
             writer.close();
         } catch (IOException e) {
@@ -209,7 +218,7 @@ public class GioHang {
 
     public void docDonHang(KhachHang khachHang) {
         try {
-            File file = new File("Don Hang.txt");
+            File file = new File("donhang.txt");
             Scanner reader = new Scanner(file);
 
             System.out.println("Cac don hang da dat:");
@@ -296,7 +305,7 @@ public class GioHang {
                                " - So luong: " + gioHang[i].getSoluong() +
                                " - Ngay san xuat: " + gioHang[i].getNgaySx() +
                                " - Don vi san xuat: " + gioHang[i].getDonviSx());
+            }
         }
     }
-}
 }
