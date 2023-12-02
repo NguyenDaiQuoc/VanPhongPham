@@ -16,8 +16,8 @@ import java.util.Calendar;
 // Lớp TaiKhoan quản lý đăng ký và đăng nhập người dùng
 public class TaiKhoan {
     private NguoiDung[] nguoiDung = new NguoiDung[100]; // Sử dụng mảng cố định với một kích thước tối đa
-    private int soLuongNguoiDung = 0; // Biến để theo dõi số lượng người dùng
-    private String tenFile = "Tai khoan Khach Hang.txt";
+    public int soLuongNguoiDung = 0; // Biến để theo dõi số lượng người dùng
+    private String tenFile = "thongtin.txt";
 
     // Default constructor
     public TaiKhoan() {
@@ -63,7 +63,7 @@ public class TaiKhoan {
         this.tenFile = tenFile;
     }
 
-     void dangKy(NguoiDung nguoiDung) throws IOException {
+    public void dangKy(NguoiDung nguoiDung) throws IOException {
     docDanhSachNguoiDung(); // Đọc danh sách tài khoản từ tệp trước khi thêm tài khoản mới
 
     for (int i = 0; i < soLuongNguoiDung; i++) {
@@ -87,7 +87,7 @@ public class TaiKhoan {
     System.out.println("Dang ky thanh cong!");
 }
 
-    void docThongTinNguoiDung(KhachHang khachHang) throws IOException {
+    public void docThongTinNguoiDung(KhachHang khachHang) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader("thongtin.txt"));
         String line;
    
@@ -178,7 +178,7 @@ void xoaThongTinNguoiDung(String sTenDangNhap) throws IOException {
 }
 
 
-    boolean dangNhap(String tenDangNhap, String matKhau) throws IOException {
+    public boolean dangNhap(String tenDangNhap, String matKhau) throws IOException {
     BufferedReader reader = new BufferedReader(new FileReader(tenFile));
     String line;
     boolean found = false;
