@@ -104,9 +104,13 @@ public class But implements SanPham{
         this.soluong = soluong;
     }
 
+    public String toString1(Date date){
+        return String.format("%tB %<te, %<tY", date);
+    }
+
     public void setNgaySx(String ngaySx) {
         Date date = new Date();
-        ngaySx = date.toString();
+        ngaySx = toString1(date);
         this.ngaySx = ngaySx;
     }
 
