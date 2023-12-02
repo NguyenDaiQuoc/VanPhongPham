@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.SanPham;
+package com.mycompany.first.DoAn;
 
 import java.util.Scanner;
 
@@ -56,11 +56,17 @@ public class DanhSachSanPham {
                         if(choose1 == 0) break;
                         switch(choose1){
                             case 1:
-                                dsBut.nhapDSBut(); break;
+                                dsBut.nhapDSBut(); 
+                                dsBut.ghiFileDSBut();
+                                break;
                             case 2:
-                                dsSach.nhapDSSach(); break;
+                                dsSach.nhapDSSach(); 
+                                dsSach.ghiFileDSSach();
+                                break;
                             case 3:
-                                dsVo.nhapDSVo(); break;
+                                dsVo.nhapDSVo(); 
+                                dsVo.ghiFileDSVo();
+                                break;
                         }
                     }
                     break;
@@ -74,11 +80,17 @@ public class DanhSachSanPham {
                         if(choose2 == 0) break;
                         switch(choose2){
                             case 1:
-                                dsBut.xuatDSBut(); break;
+                                dsBut.docFileDSBut(); 
+//                                dsBut.xuatDSBut();
+                                break;
                             case 2:
-                                dsSach.xuatDSSach(); break;
+                                dsSach.docFileDSSach(); 
+//                                dsSach.xuatDSSach();
+                                break;
                             case 3:
-                                dsVo.xuatDSVo(); break;
+                                dsVo.docFileDSVo(); 
+//                                dsVo.xuatDSVo();
+                                break;
                                 
                         }
                     }
@@ -87,7 +99,7 @@ public class DanhSachSanPham {
                     while(true){
                         menu1();
                         int choose3;
-                        System.out.print("");
+                        System.out.println();
                         System.out.print("Moi ban nhap luc chon: ");
                         choose3 = Integer.parseInt(sc.nextLine());
                         if(choose3 == 0) break;

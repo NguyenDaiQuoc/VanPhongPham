@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.SanPham;
+package com.mycompany.first.DoAn;
 
 import java.util.Date;
 import java.util.Scanner;
@@ -125,10 +125,14 @@ public class Sach implements SanPham {
         }
         this.soluong = soluong;
     }
+    
+    public String toString1(Date date){
+        return String.format("%tB %<te, %<tY", date);
+    }
 
     public void setNgaySx(String ngaySx) {
         Date date = new Date();
-        ngaySx = date.toString();
+        ngaySx = toString1(date);
         this.ngaySx = ngaySx;
     }
 
@@ -164,7 +168,7 @@ public class Sach implements SanPham {
     
     @Override
     public String toString() {
-        return String.format("%-15s%-15s%-15s%-15f%-15d%-15s%-15s%-15s", idSanpham, name, gia, gia, soluong, ngaySx, donviSx, loai);
+        return String.format("%-20s%-20s%-20s%-20.2f%-20d%-20s%-20s%-20s", idSanpham, name, gia, gia, soluong, ngaySx, donviSx, loai);
     }
     
     @Override

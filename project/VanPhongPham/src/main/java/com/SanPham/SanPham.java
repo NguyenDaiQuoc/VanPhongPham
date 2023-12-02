@@ -1,5 +1,5 @@
 
-package com.SanPham;
+package com.mycompany.first.DoAn;
 
 
 public interface SanPham {
