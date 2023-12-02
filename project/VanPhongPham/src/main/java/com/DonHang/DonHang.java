@@ -53,7 +53,7 @@ public class DonHang {
 
     public void luuDonHang() {
         try {
-            FileWriter writer = new FileWriter("Don Hang.txt", true);
+            FileWriter writer = new FileWriter("donhang.txt", true);
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             String strDate = formatter.format(ngayDatHang);
             writer.write(
@@ -78,7 +78,7 @@ public class DonHang {
             writer.write("\n");
             writer.close();
         } catch (IOException e) {
-            System.out.println("Có lỗi xảy ra khi lưu đơn hàng.");
+            System.out.println("Co loi xay ra khi luu don hang.");
             e.printStackTrace();
         }
     }
