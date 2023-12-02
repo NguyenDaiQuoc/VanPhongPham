@@ -17,7 +17,7 @@ import java.util.Calendar;
 public class TaiKhoan {
     private NguoiDung[] nguoiDung = new NguoiDung[100]; // Sử dụng mảng cố định với một kích thước tối đa
     public int soLuongNguoiDung = 0; // Biến để theo dõi số lượng người dùng
-    private String tenFile = "thongtin.txt";
+    private String tenFile = "Tai Khoan Nguoi Dung.txt";
 
     // Default constructor
     public TaiKhoan() {
@@ -88,7 +88,7 @@ public class TaiKhoan {
 }
 
     public void docThongTinNguoiDung(KhachHang khachHang) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("thongtin.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("Thong Tin Nguoi Dung.txt"));
         String line;
    
         while ((line = reader.readLine()) != null) {
@@ -210,7 +210,7 @@ void xoaThongTinNguoiDung(String sTenDangNhap) throws IOException {
 }
 
     public void saveUserInfoToFile(NguoiDung nguoiDung) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter("Thong tin Khach Hang.txt", true));
+        BufferedWriter writer = new BufferedWriter(new FileWriter("Thong Tin Nguoi Dung.txt", true));
         writer.write(nguoiDung.sMaNguoiDung + "," + nguoiDung.sTenDangNhap + "," + nguoiDung.sHoTen + "," +
                 nguoiDung.sSoDienThoai + "," + nguoiDung.sDiaChi + "\n");
         writer.close();
