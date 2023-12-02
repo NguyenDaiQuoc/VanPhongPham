@@ -27,13 +27,6 @@ import com.HoaDon.HoaDon;
 
 public class VanPhongPham {
 
-    GioHang gioHang = new GioHang();
-        Scanner scanner = new Scanner(System.in);
-        boolean loggedIn = false;
-        SanPham[] sanPhamList = taoDanhSachSanPham();
-        KhachHang khachHang = null;
-        TaiKhoan taiKhoan = new TaiKhoan(); // You need to instantiate TaiKhoan
-
     public static void clearScreen() {
         for (int i = 0; i < 31; ++i) {
             System.out.println();
