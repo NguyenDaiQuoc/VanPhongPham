@@ -682,7 +682,5 @@ public class NhanVien extends NguoiDung {
             }        
         }
         return iLogin;
-    }
-    
-    
+    }  
 }
