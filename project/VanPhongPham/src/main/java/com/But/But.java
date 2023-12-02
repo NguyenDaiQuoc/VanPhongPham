@@ -1,6 +1,7 @@
 
 package com.But;
 
+import com.CKThueVAT.CKThueVAT;
 import com.SanPham.SanPham;
 import java.util.Date;
 import java.util.Scanner;
@@ -151,5 +152,14 @@ public class But implements SanPham{
     @Override
     public void setIdSanpham() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+public double getFinalPrice() {
+    double discount = CKThueVAT.CKBut;
+    double priceAfterDiscount = this.getGia() * (1 - discount);
+    double finalPrice = priceAfterDiscount * (1 + CKThueVAT.dVAT);
+
+    return finalPrice;
     }
 }
