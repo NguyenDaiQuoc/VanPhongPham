@@ -661,48 +661,7 @@ System.arraycopy(ds3, 0, sanPhamList, ds1.length + ds2.length, ds3.length);
                 }
             }
         }
-    }
-     public static SanPham[] taoDanhSachSanPham() {
-        SanPham[] sanPhamList = new SanPham[30]; // Adjusted the array size to match the number of products
-
-        // Thêm sản phẩm loại Sách
-        sanPhamList[0] = new SanPham("Nha Gia Kim - Paulo Coelho", 63000);
-        sanPhamList[1] = new SanPham("Dac Nhan Tam - Dale Carnegie", 60000);
-        sanPhamList[2] = new SanPham("Cach nghi de thanh cong - Napoleon Hill", 45000);
-        sanPhamList[3] = new SanPham("Hat giong tam hon - Jack Canfield", 50000);
-        sanPhamList[4] = new SanPham("Quang ganh lo di va vui song - Dale Carnegie", 60000);
-        sanPhamList[5] = new SanPham("Doc Vi Bat Ky Ai - David J.Lieberman", 55000);
-        sanPhamList[6] = new SanPham("Tieu thuyet Bo Gia - Mario Puzo", 50000);
-        sanPhamList[7] = new SanPham("Cuoc song khong gioi han - Nick Vujicic", 80000);
-        sanPhamList[8] = new SanPham("Doi Thay Doi Khi Chung Ta Thay Doi - Andrew Matthews", 70000);
-        sanPhamList[9] = new SanPham("Nguoi giau co nhat thanh Babylon - George Samuel Clason", 65000);
-
-        // Thêm sản phẩm loại Vở
-        sanPhamList[10] = new SanPham("Vo Deli", 10000);
-        sanPhamList[11] = new SanPham("Vo Hai Tien", 9000);
-        sanPhamList[12] = new SanPham("Vo Hong Ha", 11000);
-        sanPhamList[13] = new SanPham("Vo Campus", 12000);
-        sanPhamList[14] = new SanPham("Vo Thien Long", 13000);
-        sanPhamList[15] = new SanPham("Vo Crabit", 14000);
-        sanPhamList[16] = new SanPham("Vo KLONG", 15000);
-        sanPhamList[17] = new SanPham("Vo Vinh Tien", 16000);
-        sanPhamList[18] = new SanPham("Vo Tien Phat", 17000);
-        sanPhamList[19] = new SanPham("Vo Tan Thuan Tien", 18000);
-
-        // Thêm sản phẩm loại Bút
-        sanPhamList[20] = new SanPham("But bi Thien Long TL-027", 5000);
-        sanPhamList[21] = new SanPham("But bi Pentel BK250", 6000);
-        sanPhamList[22] = new SanPham("But long bi Parker IM 2017", 7000);
-        sanPhamList[23] = new SanPham("But bi 4 mau Deli S313", 8000);
-        sanPhamList[24] = new SanPham("But bi gel Zebra Sarasa clip", 9000);
-        sanPhamList[25] = new SanPham("But muc gel Xiaomi Mijia 0.5", 10000);
-        sanPhamList[26] = new SanPham("But muc gel Stabilo Palette GP286XF", 11000);
-        sanPhamList[27] = new SanPham("But bi Ben Nghe L28", 12000);
-        sanPhamList[28] = new SanPham("But bi Flexoffice FO-069", 13000);
-        sanPhamList[29] = new SanPham("But bi xoa Pilot Frixion Ball 0.5", 14000);
-
-        return sanPhamList;
-    }       
+    }    
    
        public static void hienThiSanPham(SanPham[] sanPhamList) {
             for (int i = 0; i < sanPhamList.length; i++) {
