@@ -18,9 +18,9 @@ public class NhanVien extends NguoiDung {
 
     Scanner sc = new Scanner(System.in);
     String sTaiKhoanNhanVien, sMatKhauNhanVien, sHoTenNhanVien, sDiaChiNhanVien, sSoDienThoaiNhanVien, sMaNhanVien, sVaiTroNhanVien;
-    String FileNameNhanVien = "Account Nhan Vien.txt";
-    String FileThongTinNV = "Thong tin Nhan Vien.txt";
-    String FileHoaDon = "File Hoa Don.txt";
+    String FileNameNhanVien = "Tai Khoan Nhan Vien.txt";
+    String FileThongTinNV = "Thong Tin Nhan Vien.txt";
+    String FileHoaDon = "Hoa Don.txt";
     String FileTmp = "tmp.txt";
     File fileTmp = new File(FileTmp);
     File fileAcc = new File(FileNameNhanVien);
