@@ -704,26 +704,26 @@ System.arraycopy(ds3, 0, sanPhamList, ds1.length + ds2.length, ds3.length);
         return sanPhamList;
     }       
    
-        public static void hienThiSanPham(SanPham[] sanPhamList) {
+       public static void hienThiSanPham(SanPham[] sanPhamList) {
             for (int i = 0; i < sanPhamList.length; i++) {
                 if (sanPhamList[i] != null) {
-                    System.out.println((i + 1) + ". " + sanPhamList[i].getTen() + " - " + sanPhamList[i].getGia() + "VND");
+                    System.out.println((i + 1) + ". " + sanPhamList[i].getName() + " - " + sanPhamList[i].getGia() + "VND");
                 } else {
                     System.out.println((i + 1) + ". NULL");
                 }
             }
         }
         private static void dangNhapNhapThongTin(KhachHang khachHang, Scanner scanner, TaiKhoan taiKhoan) throws IOException {
-            khachHang.nhapThongTin(scanner);
+            khachHang.NhapThongTin();
             taiKhoan.saveUserInfoToFile(khachHang);
             System.out.println("Da nhap thong tin thanh cong.");
         }
        
         private static void xemThongTinNguoiDung(KhachHang khachHang) {
             System.out.println("Thong tin nguoi dung:");
-            System.out.println("Ma nguoi dung: " + khachHang.maNguoiDung);
-            System.out.println("Ho ten: " + khachHang.hoTen);
-            System.out.println("So dien thoai: " + khachHang.soDienThoai);
-            System.out.println("Dia chi: " + khachHang.diaChi);
+            System.out.println("Ma nguoi dung: " + khachHang.sMaNguoiDung);
+            System.out.println("Ho ten: " + khachHang.sHoTen);
+            System.out.println("So dien thoai: " + khachHang.sSoDienThoai);
+            System.out.println("Dia chi: " + khachHang.sDiaChi);
         }
 }
