@@ -78,4 +78,11 @@ public class DanhSachSach {
         }
     }
     
+    public void timKiemSach(String keyword) {
+    for (Sach sach : ds) {
+        if (sach.getName().contains(keyword)) {
+            sach.xuatSanpham();
+        }
+    }
+}   
 }
