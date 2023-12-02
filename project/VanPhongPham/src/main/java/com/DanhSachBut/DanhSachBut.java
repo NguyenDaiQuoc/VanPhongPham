@@ -30,6 +30,36 @@ public class DanhSachBut {
             ds[i].nhapSanpham();
         }
     }
+
+    public void ghiFileDSBut(){
+        try{
+            FileWriter fr = new FileWriter("DSBut.txt");
+            BufferedWriter bw = new BufferedWriter(fr);
+            for(var x : ds){
+                bw.write(x.toString());
+                bw.newLine();
+            }
+            bw.close();
+            fr.close();
+        }
+        catch(IOException ex){}
+    }
+    
+    public void docFileDSBut(){
+        try{
+            FileReader fr = new FileReader("DSBut.txt");
+            BufferedReader br = new BufferedReader(fr);
+            String tmp = "";
+            while(tmp != null){
+                System.out.println(tmp);
+                tmp = br.readLine();
+            }
+            br.close();
+            fr.close();
+        }
+        catch(IOException ex){}
+    }
+
     
      public void xuatDSBut(){
         if (ds == null) {
@@ -47,6 +77,13 @@ public class DanhSachBut {
         a.nhapSanpham();
         ds = Arrays.copyOf(ds, ds.length + 1);
         ds[ds.length - 1] = (But) a;
+        try{
+            FileWriter fw = new FileWriter("DSBut.txt", true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(a.toString());
+            bw.newLine();
+        }
+        catch(IOException ex){}
     }
     
     public void deleteBut(){
@@ -60,6 +97,18 @@ public class DanhSachBut {
                 }
             }
         }
+        try{
+            FileWriter fr = new FileWriter("DSBut.txt");
+            BufferedWriter bw = new BufferedWriter(fr);
+            for(var x : ds){
+                bw.write(x.toString());
+                bw.newLine();
+            }
+            bw.close();
+            fr.close();
+        }
+        catch(IOException ex){}
+
     }
     
     public void updateBut(){
@@ -70,6 +119,18 @@ public class DanhSachBut {
                 ds[i].nhapSanpham();
             }
         }
+        try{
+            FileWriter fr = new FileWriter("DSBut.txt");
+            BufferedWriter bw = new BufferedWriter(fr);
+            for(var x : ds){
+                bw.write(x.toString());
+                bw.newLine();
+            }
+            bw.close();
+            fr.close();
+        }
+        catch(IOException ex){}
+
     }
 
     public void setDs(SanPham[] ds) {
