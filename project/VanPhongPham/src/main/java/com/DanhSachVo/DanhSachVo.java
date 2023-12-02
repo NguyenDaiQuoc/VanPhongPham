@@ -73,4 +73,12 @@ public class DanhSachVo {
             }
         }
     }
+    
+    public void timKiemVo(String keyword) {
+    for (Vo vo : ds) {
+        if (vo.getName().contains(keyword)) {
+            vo.xuatSanpham();
+        }
+    }
+}
 }
