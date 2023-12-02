@@ -241,7 +241,16 @@ public class GioHang {
 
     DonHang[] donHangArray = new DonHang[100000];
 
-    public void datDonHang(Scanner scanner, KhachHang khachHang) {
+    public void datDonHang(Scanner scanner, KhachHang khachHang) { 
+        // Calculate the total amount
+    double tongSoTien = 0;
+    SanPham[] sanPhamTrongGio = getGioHang();
+    for (int i = 0; i < getSoLuongSanPhamTrongGio(); i++) {
+        tongSoTien += sanPhamTrongGio[i].getFinalPrice();
+    }
+
+    // Print the total amount
+        System.out.println("Tong so tien phai tra sau khi tinh thue va chiet khau la: " + tongSoTien);
         System.out.println("Chon phuong thuc thanh toan:");
         for (PhuongThucThanhToan pttt : phuongThucThanhToans) {
             System.out.println(pttt.getMaPhuongThuc() + ". " + pttt.getTen());
