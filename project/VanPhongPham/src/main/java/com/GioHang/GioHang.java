@@ -103,8 +103,8 @@ public class GioHang {
             System.out.println("2. Vo");
             System.out.println("3. But");
             System.out.println("4. Tim kiem san pham");
-            System.out.println("11. Quay lai");
-            System.out.print("Nhap lua chon (1, 2, 3, 4 hoac 11): ");
+            System.out.println("0. Quay lai");
+            System.out.print("Nhap lua chon (1, 2, 3, 4 hoac 0): ");
         }
 
         int productChoice = scanner.nextInt();
@@ -113,13 +113,13 @@ public class GioHang {
         if (productChoice >= 1 && productChoice <= 4) {
             switch (productChoice) {
                 case 1:
-                    danhSachSach.xuatDSSach();
+                    danhSachSach.docFileDSSach();
                     break;
                 case 2:
-                    danhSachVo.xuatDSVo();
+                    danhSachVo.docFileDSVo();
                     break;
                 case 3:
-                    danhSachBut.xuatDSBut();
+                    danhSachBut.docFileDSBut();
                     break;
                 case 4:
                     System.out.print("Nhap tu khoa tim kiem: ");
@@ -140,7 +140,7 @@ public class GioHang {
             // User choice for buying the product
             int buyChoice;
             do {
-                System.out.print("Nhap lua chon san pham hoac 11 de quay lai: ");
+                System.out.print("Nhap lua chon san pham hoac 0 de quay lai: ");
                 buyChoice = scanner.nextInt();
                 scanner.nextLine();
 
@@ -153,14 +153,14 @@ public class GioHang {
                         System.out.println("Gio hang da day, khong the them san pham.");
                         break; // Break out of the do-while loop
                     }
-                } else if (buyChoice == 11) {
+                } else if (buyChoice == 0) {
                     displayMenu = true; // Go back to the main menu
                     return;
                 } else {
                     System.out.println("Lua chon khong hop le.");
                 }
             } while (true); // Continue until the user chooses to go back
-        } else if (productChoice == 11) {
+        } else if (productChoice == 0) {
             break; // Quay lai trang truoc
         } else {
             System.out.println("Lua chon khong hop le.");
@@ -169,7 +169,6 @@ public class GioHang {
         displayMenu = false;
     }
 }
-
 
     private String generateMaDonHang() {
         int lastOrderId = 0;
