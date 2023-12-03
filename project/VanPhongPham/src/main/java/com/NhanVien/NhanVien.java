@@ -690,4 +690,132 @@ public class NhanVien extends NguoiDung {
     }
     return iLogin;
 }
+    // Các thao tác của ThuNgan
+    public void GhiHoaDon() throws IOException {
+        // Tạo mã hóa đơn dựa trên thời gian
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String maHoaDon = "HD" + formatter.format(new Date());
+
+        // Nhập thông tin hóa đơn
+        System.out.print("Nhap so luong san pham: ");
+        int soLuongSanPham = Integer.parseInt(sc.nextLine());
+
+        // Tạo mảng để lưu thông tin các sản phẩm trong hóa đơn
+        SanPham[] sanPhamArray = new SanPham[soLuongSanPham];
+
+        // Nhập thông tin từng sản phẩm
+        for (int i = 0; i < soLuongSanPham; i++) {
+            SanPham sanPham = new SanPham();
+            sanPham.NhapThongTin();
+            sanPhamArray[i] = sanPham;
+        }
+
+        // Tính tổng tiền hóa đơn
+        double tongTien = 0;
+        for (SanPham sanPham : sanPhamArray) {
+            tongTien += sanPham.getThanhTien();
+        }
+
+        // Hiển thị thông tin hóa đơn
+        NhanVien nv = new NhanVien();
+        System.out.println("\n=== Hoa Don ===");
+        System.out.println("Ma Hoa Don: " + maHoaDon);
+        System.out.println("Nhan Vien Lap Hoa Don: " + nv.getHoTenNhanVien());
+        System.out.println("Ngay Lap Hoa Don: " + formatter.format(new Date()));
+        System.out.println("Danh Sach San Pham:");
+        for (SanPham sanPham : sanPhamArray) {
+            System.out.println(sanPham.toString());
+        }
+        System.out.println("Tong Tien: " + tongTien);
+
+        // Ghi hóa đơn vào file
+        BufferedWriter writer = new BufferedWriter(new FileWriter(FileHoaDon, true));
+        writer.write(maHoaDon + "," + nv.getMaNhanVien() + "," + formatter.format(new Date()) + "," + tongTien + "\n");
+        for (SanPham sanPham : sanPhamArray) {
+            writer.write(maHoaDon + "," + sanPham.getMaSanPham() + "," + sanPham.getSoLuong() + "," + sanPham.getDonGia() + "\n");
+        }
+        writer.close();
+
+        System.out.println("Hoa don da duoc ghi vao file.");
+    }
+
+    public void XemHoaDon() throws IOException {
+        System.out.print("Nhap ma hoa don can xem: ");
+        String maHoaDonCanXem = sc.nextLine();
+
+        // Đọc thông tin hóa đơn từ file
+        BufferedReader reader = new BufferedReader(new FileReader(FileHoaDon));
+        String sLine;
+
+        while ((sLine = reader.readLine()) != null) {
+            String[] info = sLine.split(",");
+            String maHoaDon = info[0];
+
+            // Nếu là hóa đơn cần xem
+            if (maHoaDon.equals(maHoaDonCanXem)) {
+                String maNhanVienLap = info[1];
+                String ngayLapHoaDon = info[2];
+                double tongTien = Double.parseDouble(info[3]);
+
+                System.out.println("\n=== Hoa Don ===");
+                System.out.println("Ma Hoa Don: " + maHoaDon);
+                System.out.println("Ma Nhan Vien Lap Hoa Don: " + maNhanVienLap);
+                System.out.println("Ngay Lap Hoa Don: " + ngayLapHoaDon);
+                System.out.println("Tong Tien: " + tongTien);
+
+                // Đọc thông tin chi tiết sản phẩm trong hóa đơn
+                while ((sLine = reader.readLine()) != null && sLine.startsWith(maHoaDon)) {
+                    String[] sanPhamInfo = sLine.split(",");
+                    String maSanPham = sanPhamInfo[1];
+                    int soLuong = Integer.parseInt(sanPhamInfo[2]);
+                    double donGia = Double.parseDouble(sanPhamInfo[3]);
+
+                    System.out.println("Ma San Pham: " + maSanPham);
+                    System.out.println("So Luong: " + soLuong);
+                    System.out.println("Don Gia: " + donGia);
+                }
+
+                reader.close();
+                return;
+            }
+        }
+
+        // Nếu không tìm thấy mã hóa đơn
+        System.out.println("Khong tim thay hoa don voi ma " + maHoaDonCanXem);
+        reader.close();
+    }
+
+    public void XuatThongTinHoaDon() throws IOException {
+        // Đọc thông tin các hóa đơn từ file
+        BufferedReader reader = new BufferedReader(new FileReader(FileHoaDon));
+        String sLine;
+        while ((sLine = reader.readLine()) != null) {
+            String[] info = sLine.split(",");
+            String maHoaDon = info[0];
+            String maNhanVienLap = info[1];
+            String ngayLapHoaDon = info[2];
+            double tongTien = Double.parseDouble(info[3]);
+
+            System.out.println("\n=== Hoa Don ===");
+            System.out.println("Ma Hoa Don: " + maHoaDon);
+            System.out.println("Ma Nhan Vien Lap Hoa Don: " + maNhanVienLap);
+            System.out.println("Ngay Lap Hoa Don: " + ngayLapHoaDon);
+            System.out.println("Tong Tien: " + tongTien);
+
+            // Đọc thông tin chi tiết sản phẩm trong hóa đơn
+            while ((sLine = reader.readLine()) != null && sLine.startsWith(maHoaDon)) {
+                String[] sanPhamInfo = sLine.split(",");
+                String maSanPham = sanPhamInfo[1];
+                int soLuong = Integer.parseInt(sanPhamInfo[2]);
+                double donGia = Double.parseDouble(sanPhamInfo[3]);
+
+                System.out.println("Ma San Pham: " + maSanPham);
+                System.out.println("So Luong: " + soLuong);
+                System.out.println("Don Gia: " + donGia);
+            }
+        }
+        reader.close();
+    }
+}
+
 }
