@@ -662,34 +662,32 @@ public class NhanVien extends NguoiDung {
     }
 
     public int DangNhap() throws IOException {
-        setTaiKhoanNhanVien(sTaiKhoanNhanVien);
-        setMatKhauNhanVien(sMatKhauNhanVien);
-        File file = new File(FileNameNhanVien);
-        try {
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+    setTaiKhoanNhanVien(sTaiKhoanNhanVien);
+    setMatKhauNhanVien(sMatKhauNhanVien);
+    File file = new File(FileNameNhanVien);
+    try {
+        if (!file.exists()) {
+            file.createNewFile();
         }
-        int iLogin = 1;
-        BufferedReader reader = new BufferedReader(new FileReader(FileNameNhanVien));
-        String sline;
-        String fiNhanVien[] = new String[10];
-        while ((sline = reader.readLine()) != null) {
-            fiNhanVien = sline.split(",");
-            if (!fiNhanVien[0].trim().equals(sTaiKhoanNhanVien) && !fiNhanVien[1].trim().equals(sMatKhauNhanVien)) {
-                iLogin = -1;
-            } else if (!fiNhanVien[0].trim().equals(sTaiKhoanNhanVien) || !fiNhanVien[1].trim().equals(sMatKhauNhanVien)) {
-                iLogin = 0;
-            } else if (fiNhanVien[0].trim().equals(sTaiKhoanNhanVien) && fiNhanVien[1].trim().equals(sMatKhauNhanVien) && (fiNhanVien[2].trim().equals("Kho"))) {
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    int iLogin = -1;
+    BufferedReader reader = new BufferedReader(new FileReader(FileNameNhanVien));
+    String sline;
+    String fiNhanVien[] = new String[10];
+    while ((sline = reader.readLine()) != null) {
+        fiNhanVien = sline.split(",");
+        if (fiNhanVien[0].trim().equals(sTaiKhoanNhanVien) && fiNhanVien[1].trim().equals(sMatKhauNhanVien)) {
+            if (fiNhanVien[2].trim().equals("Kho")) {
                 iLogin = 1;
-            } else if (fiNhanVien[0].trim().equals(sTaiKhoanNhanVien) && fiNhanVien[1].trim().equals(sMatKhauNhanVien) && (fiNhanVien[2].trim().equals("ThuNgan"))) {
+            } else if (fiNhanVien[2].trim().equals("ThuNgan")) {
                 iLogin = 2;
-            } else if (fiNhanVien[0].trim().equals(sTaiKhoanNhanVien) && fiNhanVien[1].trim().equals(sMatKhauNhanVien) && (fiNhanVien[2].trim().equals("TrucQuay"))) {
+            } else if (fiNhanVien[2].trim().equals("TrucQuay")) {
                 iLogin = 3;
             }
         }
-        return iLogin;
     }
+    return iLogin;
+}
 }
