@@ -11,14 +11,15 @@ public class Cskh {
         this.sSoDienThoai = sSoDienThoai;
         this.sLinkMangXaHoi = sLinkMangXaHoi;
     }
-    private Cskh(){
+
+    private Cskh() {
     }
-    
-    private Cskh(Cskh a){
+
+    private Cskh(Cskh a) {
         this.sTen = a.sTen;
         this.sEmail = a.sEmail;
         this.sSoDienThoai = a.sSoDienThoai;
-        this.sLinkMangXaHoi = a.sLinkMangXaHoi;        
+        this.sLinkMangXaHoi = a.sLinkMangXaHoi;
     }
 
     //getter & setter
@@ -53,20 +54,20 @@ public class Cskh {
     public void setsLinkMangXaHoi(String sLinkMangXaHoi) {
         this.sLinkMangXaHoi = sLinkMangXaHoi;
     }
-    
+
     //method
     public static void display() {
         Cskh dsnv[] = new Cskh[]{
-            new Cskh("Nguyen Dai Quoc\t", "luutrithon1996@gmail.com", "0931454176", "fb.com/wolfdzai\t"),
-            new Cskh("Dinh Phuc Thinh\t", "zaikaman123@gmail.com\t", "0931816175", "fb.com/dinfucthin"),
-            new Cskh("Tran Trung Viet\t", "", "", "cutt.ly/qwTNnwZY"),
-            new Cskh("Tran Dang Phat\t", "", "", "cutt.ly/TwTNb3Ur"),
-            new Cskh("Nguyen Hoang Sang", "lesang01227982715@gmail.com", "0776592967", "cutt.ly/4wTNbGKf")
+            new Cskh("Nguyen Dai Quoc", "luutrithon1996@gmail.com", "0931454176", "https://wwww.facebook.com/wolfdzai"),
+            new Cskh("Dinh Phuc Thinh", "zaikaman123@gmail.com", "0931816175", "https://wwww.facebook.com/dinfucthin"),
+            new Cskh("Tran Trung Viet", "tr.trungviet04@gmail.com", "0937024425", "https://wwww.facebook.com/profile.php?id=100019759148684"),
+            new Cskh("Tran Dang Phat", "phattran280704@gmail.com", "0779792132", "https://www.facebook.com/profile.php?id=100022698711713"),
+            new Cskh("Nguyen Hoang Sang", "lesang01227982715@gmail.com", "0776592967", "https://www.facebook.com/profile.php?id=100041332085485")
         };
         System.out.println("Ban co the lien he voi cac thanh vien sau de duoc giai quyet voi toc do phan hoi tot nhat");
-        System.out.println("Ten\t\t\t\t\tFacebook\t\t\tGmail\t\t\t\t\tSdt");
+        System.out.printf("%-25s%-70s%-40s%-12s\n","Ten","Facebook","Gmail","Sdt");
         for (int i = 0; i < dsnv.length; i++) {
-            System.out.println(dsnv[i].sTen + "\t\t\t" + dsnv[i].sLinkMangXaHoi + "\t\t" + dsnv[i].sEmail + "\t\t" + dsnv[i].sSoDienThoai);
+            System.out.printf("%-25s%-70s%-40s%-12s\n",dsnv[i].sTen, dsnv[i].sLinkMangXaHoi, dsnv[i].sEmail, dsnv[i].sSoDienThoai);
         }
 
     }
