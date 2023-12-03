@@ -15,6 +15,9 @@ import java.util.Scanner;
 
 public class DanhSachSach {
 
+    String FileSach = "DSSach.txt";
+    String FileTmp = "Tmp.txt";
+
     private Sach[] ds;
 
     Scanner sc = new Scanner(System.in);
@@ -259,5 +262,40 @@ public class DanhSachSach {
                 sach.xuatSanpham();
             }
         }
-    }   
+    }
+
+    public void ThayDoiSach() throws IOException {
+        File fileTmp = new File(FileTmp);
+        File file = new File(FileSach);
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileTmp));
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        String ID;
+        System.out.print("Moi nhap ID sach can thay doi ");
+        ID = sc.nextLine();
+        String sLine;
+        String fiSach[] = new String[10];
+        boolean bFound = false;
+        while ((sLine = reader.readLine()) != null) {
+            fiSach = sLine.split(",");
+            if (fiSach[0].equals(ID)) {
+                System.out.print("Moi nhap so luong sach can thay doi ");
+                int sl = sc.nextInt();
+                writer.write(ID + "," + fiSach[1] + "," + fiSach[2] + "," + sl + "," + fiSach[4] + "," + fiSach[5] + "\n");
+                bFound = true;
+            } else {
+                writer.write(fiSach[0] + "," + fiSach[1] + "," + fiSach[2] + "," + fiSach[3] + "," + fiSach[4] + "," + fiSach[5] + "\n");
+            }
+        }
+        //}
+        writer.close();
+        reader.close();
+        if (bFound == true) {
+            file.delete();
+            fileTmp.renameTo(new File(FileSach));
+            System.out.println("Da cap nhat so luong Sach ID = " + ID);
+        } else {
+            fileTmp.delete();
+            System.out.println("Khong tim thay Sach mang ID = " + ID);
+        }
+    }
 }
