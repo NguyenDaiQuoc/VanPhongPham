@@ -14,19 +14,19 @@ public class DanhSachSanPham {
     Scanner sc = new Scanner(System.in);
 
     public void menu(){
-        System.out.println("0.Thoat!");
-        System.out.println("1.Nhap Danh Sach San Pham!");
-        System.out.println("2.Xuat Danh Sach San Pham!");
-        System.out.println("3.Them San Pham!");
-        System.out.println("4.Xoa San Pham!");
-        System.out.println("5.Sua San Pham!");
+        System.out.println("0.Thoat");
+        System.out.println("1.Nhap Danh Sach San Pham");
+        System.out.println("2.Xuat Danh Sach San Pham");
+        System.out.println("3.Them San Pham");
+        System.out.println("4.Xoa San Pham");
+        System.out.println("5.Sua San Pham");
     }
     
     public void menu1(){
-        System.out.println("0.Thoat!");
-        System.out.println("1. But!");
-        System.out.println("2.Sach!");
-        System.out.print("3.Vo!");
+        System.out.println("0.Thoat");
+        System.out.println("1.But");
+        System.out.println("2.Sach");
+        System.out.print("3.Vo");
     }
     
     public void timKiemSanPham(String keyword) {
@@ -102,7 +102,7 @@ public class DanhSachSanPham {
                     while(true){
                         menu1();
                         int choose3;
-                        System.out.print("");
+                        System.out.println();
                         System.out.print("Moi ban nhap lua chon: ");
                         choose3 = Integer.parseInt(sc.nextLine());
                         if(choose3 == 0) break;
