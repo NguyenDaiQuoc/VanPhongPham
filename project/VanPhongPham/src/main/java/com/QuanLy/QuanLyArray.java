@@ -282,7 +282,7 @@ public class QuanLyArray extends NguoiDung {
         BufferedReader reader = new BufferedReader(new FileReader(FileNameQuanLy));
         QuanLyArray ql = new QuanLyArray("", "", "");
         ql.LayTaiKhoan();
-        System.out.printf("%-20s%-30s%-16s\n", "Tai khoan", "Mat khau", "Vai Tro");
+        System.out.printf("%-20s%-30s%-16s\n", "Tai khoan", "Mat khau", "Ma Quan Ly");
         try {
             if (!file.exists()) {
                 file.createNewFile();
@@ -295,7 +295,7 @@ public class QuanLyArray extends NguoiDung {
             fiQuanLy = sLine.split(",");
             if (fiQuanLy[3].equals("1")) {
                 bFound = true;
-                System.out.printf("%-20s%-30s%-16s\n", fiQuanLy[0], fiQuanLy[1], fiQuanLy[2]);
+                System.out.printf("%-20s%-30s%-16s\n", fiQuanLy[0], fiQuanLy[1], fiQuanLy[4]);
             }
         }
         if (bFound == false) {
