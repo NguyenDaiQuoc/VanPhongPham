@@ -10,6 +10,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Arrays;
 
@@ -705,15 +706,65 @@ public class NhanVien extends NguoiDung {
 
         // Nhập thông tin từng sản phẩm
         for (int i = 0; i < soLuongSanPham; i++) {
-            SanPham sanPham = new SanPham();
-            sanPham.NhapThongTin();
+            SanPham sanPham = new SanPham() {
+                @Override
+                public String getIdSanpham() {
+                    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                }
+
+                @Override
+                public String getName() {
+                    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                }
+
+                @Override
+                public float getGia() {
+                    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                }
+
+                @Override
+                public int getSoluong() {
+                    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                }
+
+                @Override
+                public String getNgaySx() {
+                    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                }
+
+                @Override
+                public String getDonviSx() {
+                    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                }
+
+                @Override
+                public void setIdSanpham() {
+                    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                }
+
+                @Override
+                public void nhapSanpham() {
+                    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                }
+
+                @Override
+                public void xuatSanpham() {
+                    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                }
+
+                @Override
+                public double getFinalPrice() {
+                    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                }
+            };
+            sanPham.nhapSanpham();
             sanPhamArray[i] = sanPham;
         }
 
         // Tính tổng tiền hóa đơn
         double tongTien = 0;
         for (SanPham sanPham : sanPhamArray) {
-            tongTien += sanPham.getThanhTien();
+            tongTien += sanPham.getFinalPrice();
         }
 
         // Hiển thị thông tin hóa đơn
@@ -732,7 +783,7 @@ public class NhanVien extends NguoiDung {
         BufferedWriter writer = new BufferedWriter(new FileWriter(FileHoaDon, true));
         writer.write(maHoaDon + "," + nv.getMaNhanVien() + "," + formatter.format(new Date()) + "," + tongTien + "\n");
         for (SanPham sanPham : sanPhamArray) {
-            writer.write(maHoaDon + "," + sanPham.getMaSanPham() + "," + sanPham.getSoLuong() + "," + sanPham.getDonGia() + "\n");
+            writer.write(maHoaDon + "," + sanPham.getIdSanpham() + "," + sanPham.getSoluong() + "," + sanPham.getGia() + "\n");
         }
         writer.close();
 
@@ -816,6 +867,4 @@ public class NhanVien extends NguoiDung {
         }
         reader.close();
     }
-}
-
 }
