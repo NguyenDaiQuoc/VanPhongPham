@@ -9,7 +9,6 @@ import com.TaiKhoan.TaiKhoan;
 import com.NguoiDung.NguoiDung;
 import com.DonHang.DonHang;
 import com.PhuongThucThanhToan.PhuongThucThanhToan;
-import com.BinhLuan.BinhLuan;
 import com.But.But;
 import com.DanhSachBut.DanhSachBut;
 import com.DanhSachSach.DanhSachSach;
