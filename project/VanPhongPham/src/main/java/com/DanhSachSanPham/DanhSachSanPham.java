@@ -150,29 +150,6 @@ public class DanhSachSanPham {
                         }
                     }
                     break;
-                case 5:
-                /*while (true) {
-                        menu1();
-                        int choose5;
-                        System.out.println();
-                        System.out.print("Moi ban nhap lua chon: ");
-                        choose5 = Integer.parseInt(sc.nextLine());
-                        if (choose5 == 0) {
-                            break;
-                        }
-                        switch (choose5) {
-                            case 1:
-                                dsBut.updateBut();
-                                break;
-                            case 2:
-                                dsSach.updateSach();
-                                break;
-                            case 3:
-                                dsVo.updateSach();
-                                break;
-                        }
-                    }
-                    break;*/
             }
         }
     }
