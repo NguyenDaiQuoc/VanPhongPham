@@ -104,6 +104,15 @@ public class But implements SanPham{
         }*/
         this.soluong = soluong;
     }
+    
+    public void setSoluong2(int soluong){
+        for(;;){
+            System.out.print("Moi ban nhap so luong cua But: ");
+            soluong = Integer.parseInt(sc.nextLine());
+            if(soluong > 0) break;
+        }
+        this.soluong = soluong;
+    }
 
     public void setNgaySx(String ngaySx) {
     /*for(;;){
