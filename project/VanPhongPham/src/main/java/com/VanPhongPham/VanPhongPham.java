@@ -18,6 +18,7 @@ import com.Sach.Sach;
 import com.Vo.Vo;
 import com.ThongTinChuongTrinh.ThongTinChuongTrinh;
 import com.Cskh.Cskh;
+import com.DanhSachSanPham.DanhSachSanPham;
 import com.QuanLy.QuanLyFile;
 import com.QuanLy.QuanLyArray;
 import java.io.IOException;
@@ -33,7 +34,7 @@ public class VanPhongPham {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
         //Menu
         int lc;
@@ -372,79 +373,9 @@ public class VanPhongPham {
         GioHang gioHang = new GioHang();
         Scanner scanner = new Scanner(System.in);
         boolean loggedIn = false;
-        SanPham[] sanPhamList = new SanPham[30];  // Adjust the size as needed
-
-        // Initialize the book list (danhSachSach)
-        DanhSachSach danhSachSach = new DanhSachSach();
-        
-        Sach[] ds1 = new Sach[10];  // Create an array of 10 Sach objects
-
-for (int i = 0; i < ds1.length; i++) {
-    // Initialize each Sach object in the array with predefined data
-    ds1[i] = new Sach(
-        "ID" + (i+1),
-        "Book Title " + (i+1),
-        "Author " + (i+1),
-        i * 10.0f + 50.0f,
-        i * 5 + 10,
-        "2023-12-01",
-        "Publisher " + (i+1),
-        "Genre " + (i+1)
-    );
-}
-
-danhSachSach.setDs(ds1);  // Set the ds array in danhSachSach
+        SanPham[] sanPhamList;  // Declare the variable
 
 
-        // Initialize the notebook list (danhSachVo)
-        DanhSachVo danhSachVo = new DanhSachVo();
-        
-        Vo[] ds2 = new Vo[10];  // Create an array of 10 Vo objects
-
-for (int i = 0; i < ds2.length; i++) {
-    // Initialize each Vo object in the array with predefined data
-    ds2[i] = new Vo(
-        "ID" + (i+1),
-        "Notebook Title " + (i+1),
-        i * 5.0f + 20.0f,
-        i * 5 + 10,
-        "2023-12-01",
-        "Publisher " + (i+1),
-        "Size " + (i+1)
-    );
-}
-
-danhSachVo.setDs(ds2);  // Set the ds array in danhSachVo
-
-        // Initialize the pen list (danhSachBut)
-        DanhSachBut danhSachBut = new DanhSachBut(); 
-        
-        But[] ds3 = new But[10];  // Create an array of 10 But objects
-
-for (int i = 0; i < ds3.length; i++) {
-    // Initialize each But object in the array with predefined data
-    ds3[i] = new But(
-        "ID" + (i+1),
-        "Pen Title " + (i+1),
-        i * 2.0f + 10.0f,
-        i * 5 + 10,
-        "2023-12-01",
-        "Publisher " + (i+1),
-        "Type " + (i+1)
-    );
-}
-
-danhSachBut.setDs(ds3);  // Set the ds array in danhSachBut
-
-        // Add Sach objects to sanPhamList
-System.arraycopy(ds1, 0, sanPhamList, 0, ds1.length);
-
-// Add Vo objects to sanPhamList
-System.arraycopy(ds2, 0, sanPhamList, ds1.length, ds2.length);
-
-// Add But objects to sanPhamList
-System.arraycopy(ds3, 0, sanPhamList, ds1.length + ds2.length, ds3.length);
-        
         KhachHang khachHang = null;
         TaiKhoan taiKhoan = new TaiKhoan(); // You need to instantiate TaiKhoan
         while (!loggedIn) {
@@ -510,6 +441,19 @@ System.arraycopy(ds3, 0, sanPhamList, ds1.length + ds2.length, ds3.length);
             System.out.print("Nhap lua chon (1, 2, 3, 4, 5, 6, 7, hoac 8): ");
             int userChoice = scanner.nextInt();
             scanner.nextLine();
+            // Khởi tạo các đối tượng DanhSachBut, DanhSachVo, và DanhSachSach
+        DanhSachBut danhSachBut = new DanhSachBut();
+        DanhSachVo danhSachVo = new DanhSachVo();
+        DanhSachSach danhSachSach = new DanhSachSach();
+        
+        SanPham[] sachList = danhSachSach.docFileDSSach();
+        SanPham[] voList = danhSachVo.docFileDSVo();
+        SanPham[] butList = danhSachBut.docFileDSBut();
+
+        sanPhamList = new SanPham[sachList.length + voList.length + butList.length];
+        System.arraycopy(sachList, 0, sanPhamList, 0, sachList.length);
+        System.arraycopy(voList, 0, sanPhamList, sachList.length, voList.length);
+        System.arraycopy(butList, 0, sanPhamList, sachList.length + voList.length, butList.length);
 
             if (userChoice == 1) {
                 gioHang.muaSanPham(sanPhamList, scanner, danhSachSach, danhSachVo, danhSachBut);
@@ -590,11 +534,130 @@ System.arraycopy(ds3, 0, sanPhamList, ds1.length + ds2.length, ds3.length);
     }
 }
                 case 3: {
-                    
-                    
-                    clearScreen();
-                    break;
+                    NhanVien nhanVien = new NhanVien();
+                    int luaChon;
+                    boolean isRunning = true;
+                    boolean isLoggedIn = false;
+                    String vaiTro = "";
+                    while (isRunning) {
+                        if (!isLoggedIn) {
+                            System.out.println("==================================================");
+                            System.out.println("|Moi ban chon thao tac ung voi nhu cau cua minh  |");
+                            System.out.println("|1. Dang nhap                                    |");
+                            System.out.println("|0. Thoat ung dung                               |");
+                            System.out.println("==================================================");
+                            System.out.print("Moi ban nhap lua chon: ");
+                            luaChon = sc.nextInt();
+                            sc.nextLine();  // Consume newline left-over
+                            switch (luaChon) {
+                                case 1:                           
+                                    int iLogin = nhanVien.DangNhap();
+                                    if (iLogin == -1){
+                                        System.out.println("Tai khoan hoac mat khau khong dung. Vui long thu lai.");
+                                    } else if (iLogin == 1) {
+                                        vaiTro = "nhan vien Kho";
+                                        isLoggedIn = true;
+                                    } else if (iLogin == 2) {
+                                        vaiTro = "nhan vien Thu Ngan";
+                                        isLoggedIn = true;
+                                    } else if (iLogin == 3) {
+                                        vaiTro = "nhan vien Truc Quay";
+                                        isLoggedIn = true;
+                                    }
+                                    break;
+                                case 0:
+                                    System.out.println("Thoat ung dung...");
+                                    System.exit(0);
+                                    break;
+                                default:
+                                    System.out.println("Lua chon khong hop le. Vui long nhap lai.");
+                            }
+                        } else {
+                System.out.println("Ban da dang nhap thanh cong voi vai tro " + vaiTro);
+                boolean isUserRunning = true;
+                while (isUserRunning) {
+                    System.out.println("==================================================");
+                    if (vaiTro.equals("nhan vien Kho")) {
+                        System.out.println("|Moi ban chon thao tac ung voi nhu cau cua minh  |");
+                        System.out.println("|1. Sua so luong san pham con lai                |");
+                        System.out.println("|0. Dang xuat                                    |");
+                        System.out.println("==================================================");
+                        System.out.print("Moi ban nhap lua chon: ");
+                        luaChon = sc.nextInt();
+                        sc.nextLine();  // Consume newline left-over
+                        switch (luaChon) {
+                            case 1:
+                                // Thuc hien chuc nang 1 cho nhan vien Kho
+                                break;
+                            case 0:
+                                System.out.println("Dang xuat...");
+                                isLoggedIn = false;
+                                isUserRunning = false;
+                                break;
+                            default:
+                                System.out.println("Lua chon khong hop le. Vui long nhap lai.");
+                        }
+                    } else if (vaiTro.equals("nhan vien Truc Quay")) {
+                        System.out.println("|Moi ban chon thao tac ung voi nhu cau cua minh  |");
+                        System.out.println("|1. Nhap thong tin san pham                      |");
+                        System.out.println("|0. Dang xuat                                    |");
+                        System.out.println("==================================================");
+                        System.out.print("Moi ban nhap lua chon: ");
+                        luaChon = sc.nextInt();
+                        sc.nextLine();  // Consume newline left-over
+                        switch (luaChon) {
+                            case 1:
+                                DanhSachSanPham dsSanPham = new DanhSachSanPham();
+                                dsSanPham.thucHien();
+                                break;
+                            case 0:
+                                System.out.println("Dang xuat...");
+                                isLoggedIn = false;
+                                isUserRunning = false;
+                                break;
+                            default:
+                                System.out.println("Lua chon khong hop le. Vui long nhap lai.");
+                        }
+                    }
+
+
+                     else if (vaiTro.equals("nhan vien Thu Ngan")) {
+                        System.out.println("|Moi ban chon thao tac ung voi nhu cau cua minh  |");
+                        System.out.println("|1. Lap hoa don                                  |");
+                        System.out.println("|2. Xem hoa don                                  |");
+                        System.out.println("|3. Xuat hoa don                                 |");
+                        System.out.println("|0. Dang xuat                                    |");
+                        System.out.println("==================================================");
+                        System.out.print("Moi ban nhap lua chon: ");
+                        luaChon = sc.nextInt();
+                        sc.nextLine();  // Consume newline left-over
+                        switch (luaChon) {
+                            case 1:
+                                // Thuc hien chuc nang 1 cho nhan vien Thu Ngan
+                                break;
+                            case 2:
+                                // Thuc hien chuc nang 2 cho nhan vien Thu Ngan
+                                break;
+                            case 3:
+                                // Thuc hien chuc nang 3 cho nhan vien Thu Ngan
+                                break;
+                            case 0:
+                                System.out.println("Dang xuat...");
+                                isLoggedIn = false;
+                                isUserRunning = false;
+                                break;
+                            default:
+                                System.out.println("Lua chon khong hop le. Vui long nhap lai.");
+                        }
+                    }
                 }
+            }
+
+
+            }
+                sc.close();
+            }
+
                 case 4: {
                     int ok = 1;
                     while (ok == 1) {
