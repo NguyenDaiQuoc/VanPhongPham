@@ -7,22 +7,24 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Arrays;
+import java.util.Random;
 
 public class NhanVien extends NguoiDung {
-
+    
     Scanner sc = new Scanner(System.in);
     String sTaiKhoanNhanVien, sMatKhauNhanVien, sHoTenNhanVien, sDiaChiNhanVien, sSoDienThoaiNhanVien, sMaNhanVien, sVaiTroNhanVien;
     String FileNameNhanVien = "Tai Khoan Nhan Vien.txt";
     String FileThongTinNV = "Thong Tin Nhan Vien.txt";
-    String FileHoaDon = "Hoa Don.txt";
     String FileTmp = "Tmp.txt";
     String FileTmp2 = "Tmp2.txt";
+    static String ID;
     File fileTmp = new File(FileTmp);
     File fileAcc = new File(FileNameNhanVien);
     File fileThongTin = new File(FileThongTinNV);
@@ -674,6 +676,7 @@ public class NhanVien extends NguoiDung {
         e.printStackTrace();
     }
     int iLogin = -1;
+    
     BufferedReader reader = new BufferedReader(new FileReader(FileNameNhanVien));
     String sline;
     String fiNhanVien[] = new String[10];
@@ -682,189 +685,83 @@ public class NhanVien extends NguoiDung {
         if (fiNhanVien[0].trim().equals(sTaiKhoanNhanVien) && fiNhanVien[1].trim().equals(sMatKhauNhanVien)) {
             if (fiNhanVien[2].trim().equals("Kho")) {
                 iLogin = 1;
+                ID = fiNhanVien[4];
             } else if (fiNhanVien[2].trim().equals("ThuNgan")) {
                 iLogin = 2;
+                ID = fiNhanVien[4];
             } else if (fiNhanVien[2].trim().equals("TrucQuay")) {
                 iLogin = 3;
+                ID = fiNhanVien[4];
             }
         }
     }
     return iLogin;
 }
-    // Các thao tác của ThuNgan
-    public void GhiHoaDon() throws IOException {
-        // Tạo mã hóa đơn dựa trên thời gian
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        String maHoaDon = "HD" + formatter.format(new Date());
+    public void GhiHoaDon() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Hay nhap ma don hang muon lap hoa don(Ma don hang gom 4 ky tu): ");
+        String maDonHang = scanner.nextLine();
+        NhanVien nhanvien = new NhanVien();
 
-        // Nhập thông tin hóa đơn
-        System.out.print("Nhap so luong san pham: ");
-        int soLuongSanPham = Integer.parseInt(sc.nextLine());
+        try {
+            File file = new File("donhang.txt");
+            Scanner fileScanner = new Scanner(file);
 
-        // Tạo mảng để lưu thông tin các sản phẩm trong hóa đơn
-        SanPham[] sanPhamArray = new SanPham[soLuongSanPham];
+            while (fileScanner.hasNextLine()) {
+                String data = fileScanner.nextLine();
+                String[] donHang = data.split(", ");
 
-        // Nhập thông tin từng sản phẩm
-        for (int i = 0; i < soLuongSanPham; i++) {
-            SanPham sanPham = new SanPham() {
-                @Override
-                public String getIdSanpham() {
-                    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                if (donHang[1].equals(maDonHang)) {
+                    // Generate a random 8-character bill code
+                    String maHoaDon = new Random().ints(48, 122)
+                        .filter(i -> (i < 57 || i > 65) && (i < 90 || i > 97))
+                        .mapToObj(i -> (char) i)
+                        .limit(8)
+                        .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
+                        .toString();
+
+                    // Get the current date
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                    String ngayLapHoaDon = formatter.format(new Date());
+
+                    // Create a new bill
+                    FileWriter writer = new FileWriter("hoaDon.txt", true);
+                    writer.write("Ma hoa don: " + maHoaDon + "\n");
+                    writer.write("Ma nhan vien: " + ID + "\n");
+                    writer.write("Ngay lap hoa don: " + ngayLapHoaDon + "\n");
+                    writer.write("Ten san pham: " + donHang[8] + "\n");
+                    writer.write("Tong so tien: " + donHang[5] + "\n");
+                    writer.write("\n");
+                    writer.close();
+
+                    System.out.println("Da lap hoa don thanh cong!");
+                    return;
                 }
-
-                @Override
-                public String getName() {
-                    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-                }
-
-                @Override
-                public float getGia() {
-                    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-                }
-
-                @Override
-                public int getSoluong() {
-                    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-                }
-
-                @Override
-                public String getNgaySx() {
-                    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-                }
-
-                @Override
-                public String getDonviSx() {
-                    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-                }
-
-                @Override
-                public void setIdSanpham() {
-                    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-                }
-
-                @Override
-                public void nhapSanpham() {
-                    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-                }
-
-                @Override
-                public void xuatSanpham() {
-                    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-                }
-
-                @Override
-                public double getFinalPrice() {
-                    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-                }
-            };
-            sanPham.nhapSanpham();
-            sanPhamArray[i] = sanPham;
-        }
-
-        // Tính tổng tiền hóa đơn
-        double tongTien = 0;
-        for (SanPham sanPham : sanPhamArray) {
-            tongTien += sanPham.getFinalPrice();
-        }
-
-        // Hiển thị thông tin hóa đơn
-        NhanVien nv = new NhanVien();
-        System.out.println("\n=== Hoa Don ===");
-        System.out.println("Ma Hoa Don: " + maHoaDon);
-        System.out.println("Nhan Vien Lap Hoa Don: " + nv.getHoTenNhanVien());
-        System.out.println("Ngay Lap Hoa Don: " + formatter.format(new Date()));
-        System.out.println("Danh Sach San Pham:");
-        for (SanPham sanPham : sanPhamArray) {
-            System.out.println(sanPham.toString());
-        }
-        System.out.println("Tong Tien: " + tongTien);
-
-        // Ghi hóa đơn vào file
-        BufferedWriter writer = new BufferedWriter(new FileWriter(FileHoaDon, true));
-        writer.write(maHoaDon + "," + nv.getMaNhanVien() + "," + formatter.format(new Date()) + "," + tongTien + "\n");
-        for (SanPham sanPham : sanPhamArray) {
-            writer.write(maHoaDon + "," + sanPham.getIdSanpham() + "," + sanPham.getSoluong() + "," + sanPham.getGia() + "\n");
-        }
-        writer.close();
-
-        System.out.println("Hoa don da duoc ghi vao file.");
-    }
-
-    public void XemHoaDon() throws IOException {
-        System.out.print("Nhap ma hoa don can xem: ");
-        String maHoaDonCanXem = sc.nextLine();
-
-        // Đọc thông tin hóa đơn từ file
-        BufferedReader reader = new BufferedReader(new FileReader(FileHoaDon));
-        String sLine;
-
-        while ((sLine = reader.readLine()) != null) {
-            String[] info = sLine.split(",");
-            String maHoaDon = info[0];
-
-            // Nếu là hóa đơn cần xem
-            if (maHoaDon.equals(maHoaDonCanXem)) {
-                String maNhanVienLap = info[1];
-                String ngayLapHoaDon = info[2];
-                double tongTien = Double.parseDouble(info[3]);
-
-                System.out.println("\n=== Hoa Don ===");
-                System.out.println("Ma Hoa Don: " + maHoaDon);
-                System.out.println("Ma Nhan Vien Lap Hoa Don: " + maNhanVienLap);
-                System.out.println("Ngay Lap Hoa Don: " + ngayLapHoaDon);
-                System.out.println("Tong Tien: " + tongTien);
-
-                // Đọc thông tin chi tiết sản phẩm trong hóa đơn
-                while ((sLine = reader.readLine()) != null && sLine.startsWith(maHoaDon)) {
-                    String[] sanPhamInfo = sLine.split(",");
-                    String maSanPham = sanPhamInfo[1];
-                    int soLuong = Integer.parseInt(sanPhamInfo[2]);
-                    double donGia = Double.parseDouble(sanPhamInfo[3]);
-
-                    System.out.println("Ma San Pham: " + maSanPham);
-                    System.out.println("So Luong: " + soLuong);
-                    System.out.println("Don Gia: " + donGia);
-                }
-
-                reader.close();
-                return;
             }
-        }
 
-        // Nếu không tìm thấy mã hóa đơn
-        System.out.println("Khong tim thay hoa don voi ma " + maHoaDonCanXem);
-        reader.close();
+            System.out.println("Khong tim thay ma don hang.");
+        } catch (FileNotFoundException e) {
+            System.out.println("Co loi xay ra khi doc don hang.");
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("Co loi xay ra khi lap hoa don.");
+            e.printStackTrace();
+        }
     }
-
-    public void XuatThongTinHoaDon() throws IOException {
-        // Đọc thông tin các hóa đơn từ file
-        BufferedReader reader = new BufferedReader(new FileReader(FileHoaDon));
-        String sLine;
-        while ((sLine = reader.readLine()) != null) {
-            String[] info = sLine.split(",");
-            String maHoaDon = info[0];
-            String maNhanVienLap = info[1];
-            String ngayLapHoaDon = info[2];
-            double tongTien = Double.parseDouble(info[3]);
-
-            System.out.println("\n=== Hoa Don ===");
-            System.out.println("Ma Hoa Don: " + maHoaDon);
-            System.out.println("Ma Nhan Vien Lap Hoa Don: " + maNhanVienLap);
-            System.out.println("Ngay Lap Hoa Don: " + ngayLapHoaDon);
-            System.out.println("Tong Tien: " + tongTien);
-
-            // Đọc thông tin chi tiết sản phẩm trong hóa đơn
-            while ((sLine = reader.readLine()) != null && sLine.startsWith(maHoaDon)) {
-                String[] sanPhamInfo = sLine.split(",");
-                String maSanPham = sanPhamInfo[1];
-                int soLuong = Integer.parseInt(sanPhamInfo[2]);
-                double donGia = Double.parseDouble(sanPhamInfo[3]);
-
-                System.out.println("Ma San Pham: " + maSanPham);
-                System.out.println("So Luong: " + soLuong);
-                System.out.println("Don Gia: " + donGia);
+    
+    public void XuatHoaDon() {
+        try {
+            File file = new File("hoaDon.txt");
+            Scanner scanner = new Scanner(file);
+            System.out.println("Danh sach hoa don hien tai : ");
+            while (scanner.hasNextLine()) {
+                String data = scanner.nextLine();
+                System.out.println(data);
             }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Co loi xay ra khi doc hoa don.");
+            e.printStackTrace();
         }
-        reader.close();
     }
 }
