@@ -238,7 +238,17 @@ public class DanhSachVo {
     }
 
     public void timKiemVo(String keyword) {
-        for (Vo vo : ds) {
+        // Read the data from the file into a local Vo array
+        Vo[] voList = this.docFileDSVo();
+
+        // Check if voList is null
+        if (voList == null) {
+            System.out.println("No data found.");
+            return;
+        }
+
+        // Now search for the keyword in the voList array
+        for (Vo vo : voList) {
             if (vo.getName().contains(keyword)) {
                 vo.xuatSanpham();
             }
