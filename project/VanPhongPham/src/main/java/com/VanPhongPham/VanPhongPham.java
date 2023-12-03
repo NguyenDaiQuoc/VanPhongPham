@@ -1,4 +1,4 @@
-package com.vanphongpham;
+package com.VanPhongPham;
 
 import java.util.Scanner;
 import java.util.Arrays;
@@ -569,14 +569,13 @@ public class VanPhongPham {
 
                                             switch (choice) {
                                                 case 1:
-                                                    
-                                                                                                   
+                                                    danhSachSach.ThayDoiSach();
                                                     break;
                                                 case 2:
-                                                    
+                                                    danhSachVo.ThayDoiVo();
                                                     break;
                                                 case 3:
-                                                    
+                                                    danhSachBut.ThayDoiBut();
                                                     break;
                                                 case 0:
                                                     System.out.println("Dang xuat...");
