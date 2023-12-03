@@ -151,7 +151,7 @@ public class DanhSachSanPham {
                     }
                     break;
                 case 5:
-                    /*while (true) {
+                /*while (true) {
                         menu1();
                         int choose5;
                         System.out.println();
