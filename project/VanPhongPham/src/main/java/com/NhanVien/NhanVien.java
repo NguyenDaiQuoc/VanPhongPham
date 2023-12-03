@@ -20,10 +20,12 @@ public class NhanVien extends NguoiDung {
     String FileNameNhanVien = "Tai Khoan Nhan Vien.txt";
     String FileThongTinNV = "Thong Tin Nhan Vien.txt";
     String FileHoaDon = "Hoa Don.txt";
-    String FileTmp = "tmp.txt";
+    String FileTmp = "Tmp.txt";
+    String FileTmp2 = "Tmp2.txt";
     File fileTmp = new File(FileTmp);
     File fileAcc = new File(FileNameNhanVien);
     File fileThongTin = new File(FileThongTinNV);
+    File fileTmp2 = new File(FileTmp2);
     NguoiDung NhanVien[] = new NguoiDung[10];
     public int iSoLuongNhanVien = 0; //Theo doi so luong nhan vien
     public int iTrangThai = 1;
@@ -297,7 +299,6 @@ public class NhanVien extends NguoiDung {
     public void XoaTaiKhoanNhanVienTheoTaiKhoan() throws IOException {
         File file = new File(FileNameNhanVien);
         File fileTmp = new File(FileTmp);
-        File fileTT = new File(FileThongTinNV);
         System.out.print("Moi nhap tai khoan Nhan Vien can xoa ");
         String sTaiKhoan = sc.nextLine();
         String fiNhanVien[] = new String[10]; //dung de quan ly thong tin nhan vien
@@ -321,19 +322,21 @@ public class NhanVien extends NguoiDung {
                 System.out.println(fiNhanVien[4]);
                 writer.write(fiNhanVien[0] + "," + fiNhanVien[1] + "," + fiNhanVien[2] + ",0," + fiNhanVien[4] + "\n");
             } else {
-                writer.write(fiNhanVien[0] + "," + fiNhanVien[1] + "," + fiNhanVien[2] + ",1," + fiNhanVien[4] + "\n");
+                writer.write(fiNhanVien[0] + "," + fiNhanVien[1] + "," + fiNhanVien[2] + "," + fiNhanVien[3] + "," + fiNhanVien[4] + "\n");
             }
         }
-        reader.close();
         writer.close();
-        if (bFound == true) {
+        reader.close();
+        if (bFound == true) {            
             file.delete();
             fileTmp.renameTo(new File(FileNameNhanVien));
             System.out.println("Da xoa nhan vien co tai khoan " + sTaiKhoan);
+            File fileTT = new File(FileThongTinNV);
+            File fileTmp2 = new File(FileTmp2);
             String sLine1;
             String fiNhanVien1[] = new String[10];
-            BufferedWriter writer1 = new BufferedWriter(new FileWriter(FileTmp, true));
             BufferedReader reader1 = new BufferedReader(new FileReader(FileThongTinNV));
+            BufferedWriter writer1 = new BufferedWriter(new FileWriter(FileTmp2, true));
             while ((sLine1 = reader1.readLine()) != null) {
                 fiNhanVien1 = sLine1.trim().split(",");
                 if (fiNhanVien1[4].equals("1") && fiNhanVien1[0].equals(ID)) {
@@ -345,17 +348,17 @@ public class NhanVien extends NguoiDung {
             writer1.close();
             reader1.close();
             fileTT.delete();
-            fileTmp.renameTo(new File(FileThongTinNV));
+            fileTmp2.renameTo(new File(FileThongTinNV));
         } else {
             System.out.println("Khong tim thay tai khoan Nhan Vien can xoa");
             fileTmp.delete();
+            fileTmp2.delete();
         }
     }
 
     public void XoaNhanVienTheoMa() throws IOException {
         File file = new File(FileNameNhanVien);
         File fileTmp = new File(FileTmp);
-        File fileTT = new File(FileThongTinNV);
         System.out.print("Moi nhap ID Nhan Vien can xoa ");
         sMaNhanVien = sc.nextLine();
         String fiNhanVien[] = new String[10]; //dung de quan ly thong tin nhan vien
@@ -374,22 +377,23 @@ public class NhanVien extends NguoiDung {
             fiNhanVien = sLine.split(",");
             if ((fiNhanVien[4].equals(sMaNhanVien) && fiNhanVien[3].equals("1"))) {
                 bFound = true;
-                System.out.println(fiNhanVien[4]);
                 writer.write(fiNhanVien[0] + "," + fiNhanVien[1] + "," + fiNhanVien[2] + ",0," + fiNhanVien[4] + "\n");
             } else {
-                writer.write(fiNhanVien[0] + "," + fiNhanVien[1] + "," + fiNhanVien[2] + ",1," + fiNhanVien[4] + "\n");
+                writer.write(fiNhanVien[0] + "," + fiNhanVien[1] + "," + fiNhanVien[2] + "," + fiNhanVien[3] + "," + fiNhanVien[4] + "\n");
             }
         }
-        reader.close();
         writer.close();
+        reader.close();
         if (bFound == true) {
             file.delete();
             fileTmp.renameTo(new File(FileNameNhanVien));
             System.out.println("Da xoa nhan vien co ID " + sMaNhanVien);
+            File fileTT = new File(FileThongTinNV);
+            File fileTmp2 = new File(FileTmp2);
             String sLine1;
             String fiNhanVien1[] = new String[10];
-            BufferedWriter writer1 = new BufferedWriter(new FileWriter(FileTmp, true));
             BufferedReader reader1 = new BufferedReader(new FileReader(FileThongTinNV));
+            BufferedWriter writer1 = new BufferedWriter(new FileWriter(FileTmp2, true));
             while ((sLine1 = reader1.readLine()) != null) {
                 fiNhanVien1 = sLine1.trim().split(",");
                 if (fiNhanVien1[4].equals("1") && fiNhanVien1[0].equals(sMaNhanVien)) {
@@ -401,21 +405,21 @@ public class NhanVien extends NguoiDung {
             writer1.close();
             reader1.close();
             fileTT.delete();
-            fileTmp.renameTo(new File(FileThongTinNV));
+            fileTmp2.renameTo(new File(FileThongTinNV));
         } else {
             System.out.println("Khong tim thay ID Nhan Vien can xoa!");
             fileTmp.delete();
+            fileTmp2.delete();
         }
     }
 
     public void XoaTatCaNhanVien() throws IOException {
         File file = new File(FileNameNhanVien);
         File fileTmp = new File(FileTmp);
-        File fileTT = new File(FileThongTinNV);
         String fiNhanVien[] = new String[10]; //dung de quan ly thong tin nhan vien
         String sLine;
         BufferedReader reader = new BufferedReader(new FileReader(FileNameNhanVien));
-        BufferedWriter writer = new BufferedWriter(new FileWriter(FileTmp));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(FileTmp,true));
         try {
             if (!file.exists()) {
                 file.createNewFile();
@@ -429,38 +433,40 @@ public class NhanVien extends NguoiDung {
             fiNhanVien = sLine.split(",");
             writer.write(fiNhanVien[0] + "," + fiNhanVien[1] + "," + fiNhanVien[2] + ",0," + fiNhanVien[4] + "\n");            
         }
+        writer.close();
+        reader.close();
         if (bFound == true) {
-            reader.close();
-            writer.close();
             file.delete();
             fileTmp.renameTo(new File(FileNameNhanVien));
+            File fileTT = new File(FileThongTinNV);
+            File fileTmp2 = new File(FileTmp2);
             String sLine1;
             String fiNhanVien1[] = new String[10];
-            BufferedWriter writer1 = new BufferedWriter(new FileWriter(FileTmp, true));
             BufferedReader reader1 = new BufferedReader(new FileReader(FileThongTinNV));
+            BufferedWriter writer1 = new BufferedWriter(new FileWriter(FileTmp2,true));
             while ((sLine1 = reader1.readLine()) != null) {
                 fiNhanVien1 = sLine1.trim().split(",");
-                writer1.write(fiNhanVien1[0] + "," + fiNhanVien1[1] + "," + fiNhanVien1[2] + "," + fiNhanVien1[3] + "," + 0 + "\n");
+                writer1.write(fiNhanVien1[0] + "," + fiNhanVien1[1] + "," + fiNhanVien1[2] + "," + fiNhanVien1[3] + ",0\n");
             }
             writer1.close();
             reader1.close();
             fileTT.delete();
-            fileTmp.renameTo(new File(FileThongTinNV));
+            fileTmp2.renameTo(new File(FileThongTinNV));
             System.out.println("Da xoa tat ca tai khoan Nhan Vien!");
         } else {
             System.out.println("Khong co tai khoan Nhan Vien can xoa!");
             fileTmp.delete();
+            fileTmp2.delete();
         }
     }
 
     public void HoanTacXoaTatCaNhanVien() throws IOException {
         File file = new File(FileNameNhanVien);
         File fileTmp = new File(FileTmp);
-        File fileTT = new File(FileThongTinNV);
         String fiNhanVien[] = new String[10]; //dung de quan ly thong tin nhan vien
         String sLine;
         BufferedReader reader = new BufferedReader(new FileReader(FileNameNhanVien));
-        BufferedWriter writer = new BufferedWriter(new FileWriter(FileTmp));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(FileTmp,true));
         try {
             if (!file.exists()) {
                 file.createNewFile();
@@ -474,27 +480,30 @@ public class NhanVien extends NguoiDung {
             writer.write(fiNhanVien[0] + "," + fiNhanVien[1] + "," + fiNhanVien[2] + ",1," + fiNhanVien[4] + "\n");
             bFound = true;
         }
-        if (bFound == true) {
             reader.close();
             writer.close();
+        if (bFound == true) {
             file.delete();
             fileTmp.renameTo(new File(FileNameNhanVien));
+            File fileTT = new File(FileThongTinNV);
+            File fileTmp2 = new File(FileTmp2);
             String sLine1;
             String fiNhanVien1[] = new String[10];
-            BufferedWriter writer1 = new BufferedWriter(new FileWriter(FileTmp, true));
             BufferedReader reader1 = new BufferedReader(new FileReader(FileThongTinNV));
+            BufferedWriter writer1 = new BufferedWriter(new FileWriter(FileTmp2,true));
             while ((sLine1 = reader1.readLine()) != null) {
                 fiNhanVien1 = sLine1.trim().split(",");
-                writer1.write(fiNhanVien1[0] + "," + fiNhanVien1[1] + "," + fiNhanVien1[2] + "," + fiNhanVien1[3] + "," + 1 + "\n");
+                writer1.write(fiNhanVien1[0] + "," + fiNhanVien1[1] + "," + fiNhanVien1[2] + "," + fiNhanVien1[3] + ",1\n");
             }
             writer1.close();
             reader1.close();
             fileTT.delete();
-            fileTmp.renameTo(new File(FileThongTinNV));
+            fileTmp2.renameTo(new File(FileThongTinNV));
             System.out.println("Da hoan tac xoa tat ca Nhan Vien!");
         } else {
             System.out.println("Khong co thong tin can hoa tac!");
             fileTmp.delete();
+            fileTmp2.delete();
         }
     }
 
