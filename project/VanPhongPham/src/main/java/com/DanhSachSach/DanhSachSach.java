@@ -90,8 +90,8 @@ public class DanhSachSach {
         }
     }
 
-    public SanPham[] docFileDSSach() {
-        SanPham[] tempArray = new SanPham[100];  // Adjust the size as needed
+    public Sach[] docFileDSSach() {
+        Sach[] tempArray = new Sach[100];  // Adjust the size as needed
         int count = 0;
 
         try {
@@ -118,12 +118,12 @@ public class DanhSachSach {
         }
 
         // Create a new array with the exact number of elements
-        SanPham[] sanPhamList = new SanPham[count];
+        Sach[] sachList = new Sach[count];
         for (int i = 0; i < count; i++) {
-            sanPhamList[i] = tempArray[i];
+            sachList[i] = tempArray[i];
         }
 
-        return sanPhamList;
+        return sachList;
     }
 
     public void printSachProducts() {
@@ -153,44 +153,70 @@ public class DanhSachSach {
     }
 
     public void addSach() {
-        SanPham a = new Sach();
-        a.nhapSanpham();
-        ds = Arrays.copyOf(ds, ds.length + 1);
-        ds[ds.length - 1] = (Sach) a;
+        Sach a = createSachFromUserInput();
+        if (ds == null) {
+            ds = new Sach[1];
+        } else {
+            ds = Arrays.copyOf(ds, ds.length + 1);
+        }
+        ds[ds.length - 1] = a;
         try {
             FileWriter fw = new FileWriter("DSSach.txt", true);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(a.toString());
+            bw.write(a.getIdSanpham() + ", " + a.getName() + ", " + a.getGia() + ", " + a.getSoluong() + ", " + a.getNgaySx() + ", " + a.getDonviSx());
             bw.newLine();
+            bw.close();
+            fw.close();
         } catch (IOException ex) {
+            System.out.println("An error occurred while writing to DSSach.txt.");
+            ex.printStackTrace();
         }
     }
 
     public void deleteSach() {
         System.out.println("Moi ban nhap ten Sach can xoa: ");
         String tmp = sc.nextLine();
-        for (int i = 0; i < ds.length; i++) {
-            if ((ds[i].getName().equals(tmp)) == true) {
-                if (i == ds.length - 1) {
-                    ds = Arrays.copyOf(ds, ds.length - 1);
-                } else {
-                    for (int j = i; j < ds.length - 1; j++) {
-                        ds[j] = ds[j + 1];
-                        ds = Arrays.copyOf(ds, ds.length - 1);
-                    }
+
+        // Read the file into the ds array
+        Sach[] ds = docFileDSSach();
+
+        if (ds != null) {  // Check if ds is not null
+            int indexToDelete = -1;
+            for (int i = 0; i < ds.length; i++) {
+                if ((ds[i].getName().equals(tmp)) == true) {
+                    indexToDelete = i;
+                    break;
                 }
             }
-        }
-        try {
-            FileWriter fr = new FileWriter("DSSach.txt");
-            BufferedWriter bw = new BufferedWriter(fr);
-            for (var x : ds) {
-                bw.write(x.toString());
-                bw.newLine();
+
+            if (indexToDelete != -1) {
+                Sach[] newDs = new Sach[ds.length - 1];
+                for (int i = 0, j = 0; i < ds.length; i++) {
+                    if (i != indexToDelete) {
+                        newDs[j++] = ds[i];
+                    }
+                }
+                ds = newDs;
+            } else {
+                System.out.println("Khong tim thay Sach co ten la " + tmp);
+                return;
             }
-            bw.close();
-            fr.close();
-        } catch (IOException ex) {
+
+            try {
+                FileWriter fr = new FileWriter("DSSach.txt");
+                BufferedWriter bw = new BufferedWriter(fr);
+                for (var x : ds) {
+                    bw.write(x.getIdSanpham() + ", " + x.getName() + ", " + x.getGia() + ", " + x.getSoluong() + ", " + x.getNgaySx() + ", " + x.getDonviSx());
+                    bw.newLine();
+                }
+                bw.close();
+                fr.close();
+            } catch (IOException ex) {
+                System.out.println("An error occurred while writing to DSSach.txt.");
+                ex.printStackTrace();
+            }
+        } else {
+            System.out.println("Khong co Sach nao trong danh sach.");
         }
     }
 
