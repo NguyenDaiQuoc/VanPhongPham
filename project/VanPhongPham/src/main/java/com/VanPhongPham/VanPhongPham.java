@@ -36,6 +36,9 @@ public class VanPhongPham {
     //static QuanLyFile quanly = new QuanLyFile("", "", "QuanLy");
     static QuanLyArray quanly = new QuanLyArray("", "", "QuanLy");
     static NhanVien nhanvien = new NhanVien("", "", "", 1, "");
+    static DanhSachSach danhSachSach = new DanhSachSach();
+    static DanhSachVo danhSachVo = new DanhSachVo();
+    static DanhSachBut danhSachBut = new DanhSachBut();
 
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
@@ -495,7 +498,7 @@ public class VanPhongPham {
                         break;
                     }
                 }
-                case 3: {                    
+                case 3: {
                     NhanVien nhanVien = new NhanVien();
                     int luaChon;
                     boolean isRunning = true;
@@ -513,7 +516,7 @@ public class VanPhongPham {
                             sc.nextLine();  // Consume newline left-over
                             switch (luaChon) {
                                 case 1:
-                                    try{
+                                    try {
                                     int iLogin = nhanVien.DangNhap();
                                     if (iLogin == -1) {
                                         System.out.println("Tai khoan hoac mat khau khong dung. Vui long thu lai.");
@@ -528,10 +531,10 @@ public class VanPhongPham {
                                         isLoggedIn = true;
                                     }
                                     break;
-                                    } catch(IOException e){
-                                        System.out.println("Da xay ra loi, khong the dang nhap");
-                                        break;
-                                    }
+                                } catch (IOException e) {
+                                    System.out.println("Da xay ra loi, khong the dang nhap");
+                                    break;
+                                }
                                 case 0:
                                     System.out.println("Thoat ung dung...");
                                     System.exit(0);
@@ -555,6 +558,36 @@ public class VanPhongPham {
                                     switch (luaChon) {
                                         case 1:
                                             // Thuc hien chuc nang 1 cho nhan vien Kho
+                                            System.out.println("Hay chon loai san pham muon sua so luong:");
+                                            System.out.println("1. Sach");
+                                            System.out.println("2. Vo");
+                                            System.out.println("3. But");
+                                            System.out.println("0.Dang xuat");
+
+                                            Scanner scanner = new Scanner(System.in);
+                                            int choice = scanner.nextInt();
+
+                                            switch (choice) {
+                                                case 1:
+                                                    
+                                                                                                   
+                                                    break;
+                                                case 2:
+                                                    
+                                                    break;
+                                                case 3:
+                                                    
+                                                    break;
+                                                case 0:
+                                                    System.out.println("Dang xuat...");
+                                                    isLoggedIn = false;
+                                                    isUserRunning = false;
+                                                    break;
+                                                default:
+                                                    System.out.println("Lua chon khong hop le. Vui long nhap lai.");
+                                                    break;
+                                            }
+
                                             break;
                                         case 0:
                                             System.out.println("Dang xuat...");
@@ -566,7 +599,7 @@ public class VanPhongPham {
                                     }
                                 } else if (vaiTro.equals("nhan vien Truc Quay")) {
                                     System.out.println("|Moi ban chon thao tac ung voi nhu cau cua minh  |");
-                                    System.out.println("|1. Nhap thong tin san pham                      |");
+                                    System.out.println("|1. Nhap, xoa hoac xem thong tin san pham                      |");
                                     System.out.println("|0. Dang xuat                                    |");
                                     System.out.println("==================================================");
                                     System.out.print("Moi ban nhap lua chon: ");
@@ -588,8 +621,7 @@ public class VanPhongPham {
                                 } else if (vaiTro.equals("nhan vien Thu Ngan")) {
                                     System.out.println("|Moi ban chon thao tac ung voi nhu cau cua minh  |");
                                     System.out.println("|1. Lap hoa don                                  |");
-                                    System.out.println("|2. Xem hoa don                                  |");
-                                    System.out.println("|3. Xuat hoa don                                 |");
+                                    System.out.println("|2. Xuat hoa don                                  |");
                                     System.out.println("|0. Dang xuat                                    |");
                                     System.out.println("==================================================");
                                     System.out.print("Moi ban nhap lua chon: ");
@@ -597,30 +629,11 @@ public class VanPhongPham {
                                     sc.nextLine();  // Consume newline left-over
                                     switch (luaChon) {
                                         case 1:
-                                            try{
                                             nhanvien.GhiHoaDon();
                                             break;
-                                            }
-                                            catch(IOException e){
-                                                System.out.println("Da xay ra loi, khong the nhap hoa don!");
-                                                break;
-                                            }
                                         case 2:
-                                            try{
-                                                nhanvien.XemHoaDon();
-                                                break;
-                                            }catch (IOException e){
-                                                System.out.println("Da xay ra loi, khong the xem hoa don!");
-                                                break;
-                                            }
-                                        case 3:
-                                            try{
-                                            nhanvien.XuatThongTinHoaDon();
+                                            nhanvien.XuatHoaDon();
                                             break;
-                                            } catch(IOException e){
-                                                System.out.println("Da xay ra loi, khong the xuat hoa don!");
-                                                break;
-                                            }
                                         case 0:
                                             System.out.println("Dang xuat...");
                                             isLoggedIn = false;
