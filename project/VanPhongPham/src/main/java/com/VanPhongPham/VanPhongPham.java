@@ -495,7 +495,7 @@ public class VanPhongPham {
                         break;
                     }
                 }
-                case 3: {
+                case 3: {                    
                     NhanVien nhanVien = new NhanVien();
                     int luaChon;
                     boolean isRunning = true;
@@ -513,6 +513,7 @@ public class VanPhongPham {
                             sc.nextLine();  // Consume newline left-over
                             switch (luaChon) {
                                 case 1:
+                                    try{
                                     int iLogin = nhanVien.DangNhap();
                                     if (iLogin == -1) {
                                         System.out.println("Tai khoan hoac mat khau khong dung. Vui long thu lai.");
@@ -527,6 +528,10 @@ public class VanPhongPham {
                                         isLoggedIn = true;
                                     }
                                     break;
+                                    } catch(IOException e){
+                                        System.out.println("Da xay ra loi, khong the dang nhap");
+                                        break;
+                                    }
                                 case 0:
                                     System.out.println("Thoat ung dung...");
                                     System.exit(0);
@@ -592,14 +597,30 @@ public class VanPhongPham {
                                     sc.nextLine();  // Consume newline left-over
                                     switch (luaChon) {
                                         case 1:
-                                            // Thuc hien chuc nang 1 cho nhan vien Thu Ngan
+                                            try{
+                                            nhanvien.GhiHoaDon();
                                             break;
+                                            }
+                                            catch(IOException e){
+                                                System.out.println("Da xay ra loi, khong the nhap hoa don!");
+                                                break;
+                                            }
                                         case 2:
-                                            // Thuc hien chuc nang 2 cho nhan vien Thu Ngan
-                                            break;
+                                            try{
+                                                nhanvien.XemHoaDon();
+                                                break;
+                                            }catch (IOException e){
+                                                System.out.println("Da xay ra loi, khong the xem hoa don!");
+                                                break;
+                                            }
                                         case 3:
-                                            // Thuc hien chuc nang 3 cho nhan vien Thu Ngan
+                                            try{
+                                            nhanvien.XuatThongTinHoaDon();
                                             break;
+                                            } catch(IOException e){
+                                                System.out.println("Da xay ra loi, khong the xuat hoa don!");
+                                                break;
+                                            }
                                         case 0:
                                             System.out.println("Dang xuat...");
                                             isLoggedIn = false;
