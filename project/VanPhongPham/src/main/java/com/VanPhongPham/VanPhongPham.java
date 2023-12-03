@@ -446,10 +446,9 @@ public class VanPhongPham {
                             System.out.println("4. Xem thong tin nguoi dung");
                             System.out.println("5. Dat don hang");
                             System.out.println("6. Xem don hang");
-                            System.out.println("7. Xem binh luan");
-                            System.out.println("8. Dang xuat va thoat chuong trinh");
+                            System.out.println("7. Dang xuat va thoat chuong trinh");
                             System.out.println("Hay nhap thong tin nguoi dung truoc khi mua hang nhe!");
-                            System.out.print("Nhap lua chon (1, 2, 3, 4, 5, 6, 7, hoac 8): ");
+                            System.out.print("Nhap lua chon (1, 2, 3, 4, 5, 6 hoac 7): ");
                             int userChoice = scanner.nextInt();
                             scanner.nextLine();
                             // Khởi tạo các đối tượng DanhSachBut, DanhSachVo, và DanhSachSach
@@ -487,52 +486,6 @@ public class VanPhongPham {
                             } else if (userChoice == 6) {
                                 gioHang.docDonHang(khachHang);
                             } else if (userChoice == 7) {
-                                // User chooses to view comments
-                                System.out.println("Xem binh luan cua:");
-                                System.out.println("1. Sach");
-                                System.out.println("2. Vo");
-                                System.out.println("3. But");
-                                System.out.print("Nhap lua chon (1, 2 hoac 3): ");
-                                int productType = scanner.nextInt();
-                                scanner.nextLine();
-
-                                if (productType >= 1 && productType <= 3) {
-                                    int startIndex = (productType - 1) * 10;
-                                    hienThiSanPham(Arrays.copyOfRange(sanPhamList, startIndex, startIndex + 10));
-                                    System.out.print("Nhap lua chon san pham (1 den 10): ");
-                                    int productChoice = scanner.nextInt();
-                                    scanner.nextLine();
-
-                                    boolean continueLoop = true;
-                                    while (loggedIn && continueLoop) {
-                                        if (productChoice >= 1 && productChoice <= 10) {
-                                            SanPham chosenProduct = sanPhamList[startIndex + productChoice - 1];
-                                            BinhLuan binhLuan = new BinhLuan("BL" + (taiKhoan.soLuongNguoiDung + 1), "", chosenProduct);
-                                            binhLuan.xemBinhLuan(chosenProduct);
-                                            while (true) {
-                                                System.out.print("Ban co muon binh luan san pham nay khong? (y/n): ");
-                                                String commentChoice = scanner.nextLine();
-
-                                                if (commentChoice.equalsIgnoreCase("y")) {
-                                                    System.out.print("Nhap noi dung binh luan: ");
-                                                    String commentContent = scanner.nextLine();
-                                                    binhLuan.setNoiDung(commentContent);  // Update the comment content
-                                                    binhLuan.luuBinhLuan();
-                                                } else if (commentChoice.equalsIgnoreCase("n")) {
-                                                    continueLoop = false;
-                                                    break;  // Return to the main menu
-                                                } else {
-                                                    System.out.println("Lua chon khong hop le.");
-                                                }
-                                            }
-                                        } else {
-                                            System.out.println("Lua chon khong hop le.");
-                                        }
-                                    }
-                                } else {
-                                    System.out.println("Lua chon khong hop le.");
-                                }
-                            } else if (userChoice == 8) {
                                 System.out.println("Dang dang xuat va thoat chuong trinh...");
                                 System.exit(0);
                                 System.out.println("Chuong trinh ket thuc.");
