@@ -5,6 +5,7 @@ import com.CKThueVAT.CKThueVAT;
 import com.SanPham.SanPham;
 import java.util.Date;
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
 
 public class But implements SanPham{
     private String idSanpham;
@@ -69,66 +70,66 @@ public class But implements SanPham{
     }
 
     public void setIdSanpham(String idSanpham) {
-        for(;;){
-            System.out.print("Moi ban nhap id But: ");
-            idSanpham = sc.nextLine();
-            if(idSanpham.length() != 0) break; 
-        }
+        //for(;;){
+            //System.out.print("Moi ban nhap id But: ");
+            //idSanpham = sc.nextLine();
+            //if(idSanpham.length() != 0) break; 
+        //}
         this.idSanpham = idSanpham;
     }
 
     public void setName(String name) {
-        for(;;){
-            System.out.print("Moi ban nhap ten But: ");
-            name = sc.nextLine();
-            if(name.length() != 0) break;
-        }
+        //for(;;){
+            //System.out.print("Moi ban nhap ten But: ");
+            //name = sc.nextLine();
+            //if(name.length() != 0) break;
+        //}
         this.name = name;
     }
 
     public void setGia(float gia) {
-        for(;;){
-            System.out.print("Moi ban nhap gia But: ");
-            gia = Float.parseFloat(sc.nextLine());
-            if(gia > 0.0) break;
-        }
+        //for(;;){
+            //System.out.print("Moi ban nhap gia But: ");
+            //gia = Float.parseFloat(sc.nextLine());
+            //if(gia > 0.0) break;
+        //}
         this.gia = gia;
     }
 
     public void setSoluong(int soluong) {
-        for(;;){
+        /*for(;;){
             System.out.print("Moi ban nhap so luong cua But: ");
             soluong = Integer.parseInt(sc.nextLine());
             if(soluong > 0) break;
-        }
+        }*/
         this.soluong = soluong;
     }
 
-    public String toString1(Date date){
-        return String.format("%tB %<te, %<tY", date);
-    }
-
     public void setNgaySx(String ngaySx) {
+    /*for(;;){
         Date date = new Date();
-        ngaySx = toString1(date);
-        this.ngaySx = ngaySx;
-    }
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        ngaySx = formatter.format(date);
+        if(ngaySx.length() != 0) break;
+    }*/
+    this.ngaySx = ngaySx;
+}
 
     public void setDonviSx(String donviSx) {
-        for(;;){
+        /*for(;;){
             System.out.print("Moi ban nhap don vi san xuat But: ");
             donviSx = sc.nextLine();
             if(donviSx.length() != 0) break;
-        }
+        }*/
         this.donviSx = donviSx;
     }
 
     public void setLoai(String loai) {
-        for(;;){
+        /*for(;;){
             System.out.print("Moi ban nhap loai But: ");
             loai = sc.nextLine();
             if(loai.length() != 0) break;
-        }
+        }*/
         this.loai = loai;
     }
     
@@ -144,9 +145,9 @@ public class But implements SanPham{
     }
 
     @Override
-    public String toString() {
-        return String.format("%-15s%-15s%-15f%-15d%-15s%-15s%-15s", idSanpham, name, gia, soluong, ngaySx, donviSx, loai);
-    }
+public String toString() {
+    return String.format("%s, %s, %.6f, %d, %s, %s, %s", idSanpham, name, gia, soluong, ngaySx, donviSx, loai);
+}
     
     @Override
     public void xuatSanpham(){
