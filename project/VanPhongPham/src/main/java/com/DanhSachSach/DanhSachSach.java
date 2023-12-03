@@ -8,7 +8,9 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Scanner;
 
 public class DanhSachSach {
@@ -31,14 +33,46 @@ public class DanhSachSach {
         this.ds = (Sach[]) ds;
     }
     
+    public Sach createSachFromUserInput() {
+    Scanner sc = new Scanner(System.in);
+    Sach sach = new Sach();
+
+    System.out.print("Moi ban nhap id Sach: ");
+    String idSanpham = sc.nextLine();
+    sach.setIdSanpham(idSanpham);
+
+    System.out.print("Moi ban nhap ten Sach: ");
+    String name = sc.nextLine();
+    sach.setName(name);
+
+    System.out.print("Moi ban nhap gia Sach: ");
+    float gia = Float.parseFloat(sc.nextLine());
+    sach.setGia(gia);
+
+    System.out.print("Moi ban nhap so luong cua Sach: ");
+    int soluong = Integer.parseInt(sc.nextLine());
+    sach.setSoluong(soluong);
+
+    Date date = new Date();
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    String ngaySx = formatter.format(date);
+    sach.setNgaySx(ngaySx);
+
+    System.out.print("Moi ban nhap don vi san xuat Sach: ");
+    String donviSx = sc.nextLine();
+    sach.setDonviSx(donviSx);
+
+    return sach;
+}
+    
     public void nhapDSSach(){
         int n;
-        System.out.print("Moi ban nhap so loai Sach: ");
+        System.out.print("Moi ban nhap tong so loai Sach can nhap: ");
         n = Integer.parseInt(sc.nextLine());
-        for(int i = 0; i < n; i++){
+        ds = new Sach[n];
+        for(int i = 0; i < ds.length; i++){
             System.out.println("Moi ban nhap loai Sach thu " + (i + 1));
-            ds[i] = new Sach();
-            ds[i].nhapSanpham();
+            ds[i] = createSachFromUserInput();
         }
     }
 
@@ -56,20 +90,41 @@ public class DanhSachSach {
         catch(IOException ex){}
     }
     
-    public void docFileDSSach(){
-        try{
-            FileReader fr = new FileReader("DSSach.txt");
-            BufferedReader br = new BufferedReader(fr);
-            String tmp = "";
-            while(tmp != null){
-                System.out.println(tmp);
-                tmp = br.readLine();
-            }
-            br.close();
-            fr.close();
+    public SanPham[] docFileDSSach() {
+    SanPham[] tempArray = new SanPham[100];  // Adjust the size as needed
+    int count = 0;
+
+    try {
+        FileReader fr = new FileReader("DSSach.txt");
+        BufferedReader br = new BufferedReader(fr);
+        String line;
+        while ((line = br.readLine()) != null && count < tempArray.length) {
+            // Parse the line to create a new Sach object
+            Sach sach = new Sach();
+            String[] parts = line.split(",");
+            sach.setIdSanpham(parts[0].trim());
+            sach.setName(parts[1].trim());
+            sach.setGia(Float.parseFloat(parts[2].trim()));
+            sach.setSoluong(Integer.parseInt(parts[3].trim()));
+            sach.setNgaySx(parts[4].trim());
+            sach.setDonviSx(parts[5].trim());
+            tempArray[count] = sach;
+            count++;
         }
-        catch(IOException ex){}
+        br.close();
+        fr.close();
+    } catch (IOException ex) {
+        // Handle exception
     }
+
+    // Create a new array with the exact number of elements
+    SanPham[] sanPhamList = new SanPham[count];
+    for (int i = 0; i < count; i++) {
+        sanPhamList[i] = tempArray[i];
+    }
+
+    return sanPhamList;
+}
 
     
     public void xuatDSSach(){
