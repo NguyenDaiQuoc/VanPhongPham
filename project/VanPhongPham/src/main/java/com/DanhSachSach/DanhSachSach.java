@@ -243,7 +243,17 @@ public class DanhSachSach {
     }
 
     public void timKiemSach(String keyword) {
-        for (Sach sach : ds) {
+        // Read the data from the file into a local Sach array
+        Sach[] sachList = this.docFileDSSach();
+
+        // Check if sachList is null
+        if (sachList == null) {
+            System.out.println("No data found.");
+            return;
+        }
+
+        // Now search for the keyword in the sachList array
+        for (Sach sach : sachList) {
             if (sach.getName().contains(keyword)) {
                 sach.xuatSanpham();
             }
