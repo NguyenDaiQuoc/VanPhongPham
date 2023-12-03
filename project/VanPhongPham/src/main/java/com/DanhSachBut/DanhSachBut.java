@@ -4,6 +4,7 @@ import com.But.But;
 import com.SanPham.SanPham;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,6 +14,9 @@ import java.util.Arrays;
 import java.util.Date;
 
 public class DanhSachBut {
+
+    String FileBut = "DSBut.txt";
+    String FileTmp = "Tmp.txt";
 
     private But[] ds;
 
@@ -261,6 +265,40 @@ public class DanhSachBut {
             }
         }
     }
-    
-    
+
+    public void ThayDoiBut() throws IOException {
+        File fileTmp = new File(FileTmp);
+        File file = new File(FileBut);
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileTmp));
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        String ID;
+        System.out.print("Moi nhap ID sach can thay doi ");
+        ID = sc.nextLine();
+        String sLine;
+        String fiBut[] = new String[10];
+        boolean bFound = false;
+        while ((sLine = reader.readLine()) != null) {
+            fiBut = sLine.split(",");
+            if (fiBut[0].equals(ID)) {
+                System.out.print("Moi nhap so luong but can thay doi ");
+                int sl = sc.nextInt();
+                writer.write(ID + "," + fiBut[1] + "," + fiBut[2] + "," + sl + "," + fiBut[4] + "," + fiBut[5] + "\n");
+                bFound = true;
+            } else {
+                writer.write(fiBut[0] + "," + fiBut[1] + "," + fiBut[2] + "," + fiBut[3] + "," + fiBut[4] + "," + fiBut[5] + "\n");
+            }
+        }
+        //}
+        writer.close();
+        reader.close();
+        if (bFound == true) {
+            file.delete();
+            fileTmp.renameTo(new File(FileBut));
+            System.out.println("Da cap nhat so luong But ID = " + ID);
+        } else {
+            fileTmp.delete();
+            System.out.println("Khong tim thay But mang ID = " + ID);
+        }
+    }
+
 }
