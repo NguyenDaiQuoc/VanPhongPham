@@ -258,7 +258,7 @@ public class DanhSachVo {
         }
     }
 
-    public void ThayDoiBut() throws IOException {
+    public void ThayDoiVo() throws IOException {
         File fileTmp = new File(FileTmp);
         File file = new File(FileVo);
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileTmp));
