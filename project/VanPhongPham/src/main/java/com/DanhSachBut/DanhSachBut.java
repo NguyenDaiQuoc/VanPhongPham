@@ -245,7 +245,17 @@ public class DanhSachBut {
     }
 
     public void timKiemBut(String keyword) {
-        for (But but : ds) {
+        // Read the data from the file into a local But array
+        But[] butList = this.docFileDSBut();
+
+        // Check if butList is null
+        if (butList == null) {
+            System.out.println("No data found.");
+            return;
+        }
+
+        // Now search for the keyword in the butList array
+        for (But but : butList) {
             if (but.getName().contains(keyword)) {
                 but.xuatSanpham();
             }
