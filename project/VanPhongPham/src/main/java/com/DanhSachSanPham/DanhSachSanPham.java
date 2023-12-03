@@ -19,7 +19,6 @@ public class DanhSachSanPham {
         System.out.println("2.Xuat Danh Sach San Pham");
         System.out.println("3.Them San Pham");
         System.out.println("4.Xoa San Pham");
-        System.out.println("5.Sua San Pham");
     }
 
     public void menu1() {
@@ -152,7 +151,7 @@ public class DanhSachSanPham {
                     }
                     break;
                 case 5:
-                    while (true) {
+                    /*while (true) {
                         menu1();
                         int choose5;
                         System.out.println();
@@ -173,7 +172,7 @@ public class DanhSachSanPham {
                                 break;
                         }
                     }
-                    break;
+                    break;*/
             }
         }
     }
