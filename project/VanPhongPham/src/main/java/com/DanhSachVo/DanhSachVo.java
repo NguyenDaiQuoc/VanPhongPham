@@ -8,7 +8,9 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Scanner;
 
 public class DanhSachVo {
@@ -27,14 +29,46 @@ public class DanhSachVo {
         this.ds = (Vo[]) ds;
     }
     
+    public Vo createVoFromUserInput() {
+    Scanner sc = new Scanner(System.in);
+    Vo vo = new Vo();
+
+    System.out.print("Moi ban nhap id Vo: ");
+    String idSanpham = sc.nextLine();
+    vo.setIdSanpham(idSanpham);
+
+    System.out.print("Moi ban nhap ten Vo: ");
+    String name = sc.nextLine();
+    vo.setName(name);
+
+    System.out.print("Moi ban nhap gia Vo: ");
+    float gia = Float.parseFloat(sc.nextLine());
+    vo.setGia(gia);
+
+    System.out.print("Moi ban nhap so luong cua Vo: ");
+    int soluong = Integer.parseInt(sc.nextLine());
+    vo.setSoluong(soluong);
+
+    Date date = new Date();
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    String ngaySx = formatter.format(date);
+    vo.setNgaySx(ngaySx);
+
+    System.out.print("Moi ban nhap don vi san xuat Vo: ");
+    String donviSx = sc.nextLine();
+    vo.setDonviSx(donviSx);
+
+    return vo;
+}
+    
     public void nhapDSVo(){
         int n;
-        System.out.print("Moi ban nhap so loai Vo: ");
+        System.out.print("Moi ban nhap tong so loai Vo can nhap: ");
         n = Integer.parseInt(sc.nextLine());
-        for(int i = 0; i < n; i++){
+        ds = new Vo[n];
+        for(int i = 0; i < ds.length; i++){
             System.out.println("Moi ban nhap loai Vo thu " + (i + 1));
-            ds[i] = new Vo();
-            ds[i].nhapSanpham();
+            ds[i] = createVoFromUserInput();
         }
     }
 
@@ -52,20 +86,41 @@ public class DanhSachVo {
         catch(IOException ex){}
     }
 
-    public void docFileDSVo(){
-        try{
-            FileReader fr = new FileReader("DSVo.txt");
-            BufferedReader br = new BufferedReader(fr);
-            String tmp = "";
-            while(tmp != null){
-                System.out.println(tmp);
-                tmp = br.readLine();
-            }
-            br.close();
-            fr.close();
+    public SanPham[] docFileDSVo() {
+    SanPham[] tempArray = new SanPham[100];  // Adjust the size as needed
+    int count = 0;
+
+    try {
+        FileReader fr = new FileReader("DSVo.txt");
+        BufferedReader br = new BufferedReader(fr);
+        String line;
+        while ((line = br.readLine()) != null && count < tempArray.length) {
+            // Parse the line to create a new Vo object
+            Vo vo = new Vo();
+            String[] parts = line.split(",");
+            vo.setIdSanpham(parts[0].trim());
+            vo.setName(parts[1].trim());
+            vo.setGia(Float.parseFloat(parts[2].trim()));
+            vo.setSoluong(Integer.parseInt(parts[3].trim()));
+            vo.setNgaySx(parts[4].trim());
+            vo.setDonviSx(parts[5].trim());
+            tempArray[count] = vo;
+            count++;
         }
-        catch(IOException ex){}
+        br.close();
+        fr.close();
+    } catch (IOException ex) {
+        // Handle exception
     }
+
+    // Create a new array with the exact number of elements
+    SanPham[] sanPhamList = new SanPham[count];
+    for (int i = 0; i < count; i++) {
+        sanPhamList[i] = tempArray[i];
+    }
+
+    return sanPhamList;
+}
     
     public void xuatDSVo(){
         if (ds == null) {
