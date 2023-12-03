@@ -1,4 +1,4 @@
-package com.VanPhongPham;
+package com.vanphongpham;
 
 import java.util.Scanner;
 import java.util.Arrays;
