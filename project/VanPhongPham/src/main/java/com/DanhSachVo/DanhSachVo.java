@@ -4,6 +4,7 @@ import com.SanPham.SanPham;
 import com.Vo.Vo;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,6 +15,8 @@ import java.util.Scanner;
 
 public class DanhSachVo {
 
+    String FileVo = "DSVo.txt";
+    String FileTmp = "Tmp.txt";
     private Vo[] ds;
 
     Scanner sc = new Scanner(System.in);
@@ -252,6 +255,41 @@ public class DanhSachVo {
             if (vo.getName().contains(keyword)) {
                 vo.xuatSanpham();
             }
+        }
+    }
+
+    public void ThayDoiBut() throws IOException {
+        File fileTmp = new File(FileTmp);
+        File file = new File(FileVo);
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileTmp));
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        String ID;
+        System.out.print("Moi nhap ID sach can thay doi ");
+        ID = sc.nextLine();
+        String sLine;
+        String fiVo[] = new String[10];
+        boolean bFound = false;
+        while ((sLine = reader.readLine()) != null) {
+            fiVo = sLine.split(",");
+            if (fiVo[0].equals(ID)) {
+                System.out.print("Moi nhap so luong but can thay doi ");
+                int sl = sc.nextInt();
+                writer.write(ID + "," + fiVo[1] + "," + fiVo[2] + "," + sl + "," + fiVo[4] + "," + fiVo[5] + "\n");
+                bFound = true;
+            } else {
+                writer.write(fiVo[0] + "," + fiVo[1] + "," + fiVo[2] + "," + fiVo[3] + "," + fiVo[4] + "," + fiVo[5] + "\n");
+            }
+        }
+        //}
+        writer.close();
+        reader.close();
+        if (bFound == true) {
+            file.delete();
+            fileTmp.renameTo(new File(FileVo));
+            System.out.println("Da cap nhat so luong Vo ID = " + ID);
+        } else {
+            fileTmp.delete();
+            System.out.println("Khong tim thay Vo mang ID = " + ID);
         }
     }
 }
