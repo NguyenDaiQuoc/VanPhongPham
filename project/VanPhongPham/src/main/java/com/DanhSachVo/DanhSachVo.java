@@ -87,40 +87,40 @@ public class DanhSachVo {
     }
 
     public Vo[] docFileDSVo() {
-    Vo[] tempArray = new Vo[100];  // Adjust the size as needed
-    int count = 0;
+        Vo[] tempArray = new Vo[100];  // Adjust the size as needed
+        int count = 0;
 
-    try {
-        FileReader fr = new FileReader("DSVo.txt");
-        BufferedReader br = new BufferedReader(fr);
-        String line;
-        while ((line = br.readLine()) != null && count < tempArray.length) {
-            // Parse the line to create a new Vo object
-            Vo vo = new Vo();
-            String[] parts = line.split(",");
-            vo.setIdSanpham(parts[0].trim());
-            vo.setName(parts[1].trim());
-            vo.setGia(Float.parseFloat(parts[2].trim()));
-            vo.setSoluong(Integer.parseInt(parts[3].trim()));
-            vo.setNgaySx(parts[4].trim());
-            vo.setDonviSx(parts[5].trim());
-            tempArray[count] = vo;
-            count++;
+        try {
+            FileReader fr = new FileReader("DSVo.txt");
+            BufferedReader br = new BufferedReader(fr);
+            String line;
+            while ((line = br.readLine()) != null && count < tempArray.length) {
+                // Parse the line to create a new Vo object
+                Vo vo = new Vo();
+                String[] parts = line.split(",");
+                vo.setIdSanpham(parts[0].trim());
+                vo.setName(parts[1].trim());
+                vo.setGia(Float.parseFloat(parts[2].trim()));
+                vo.setSoluong(Integer.parseInt(parts[3].trim()));
+                vo.setNgaySx(parts[4].trim());
+                vo.setDonviSx(parts[5].trim());
+                tempArray[count] = vo;
+                count++;
+            }
+            br.close();
+            fr.close();
+        } catch (IOException ex) {
+            // Handle exception
         }
-        br.close();
-        fr.close();
-    } catch (IOException ex) {
-        // Handle exception
-    }
 
-    // Create a new array with the exact number of elements
-    Vo[] voList = new Vo[count];
-    for (int i = 0; i < count; i++) {
-        voList[i] = tempArray[i];
-    }
+        // Create a new array with the exact number of elements
+        Vo[] voList = new Vo[count];
+        for (int i = 0; i < count; i++) {
+            voList[i] = tempArray[i];
+        }
 
-    return voList;
-}
+        return voList;
+    }
 
     public void printVoProducts() {
         SanPham[] sanPhamList = docFileDSVo();
@@ -149,72 +149,72 @@ public class DanhSachVo {
     }
 
     public void addVo() {
-    Vo a = createVoFromUserInput();
-    if (ds == null) {
-        ds = new Vo[1];
-    } else {
-        ds = Arrays.copyOf(ds, ds.length + 1);
-    }
-    ds[ds.length - 1] = a;
-    try {
-        FileWriter fw = new FileWriter("DSVo.txt", true);
-        BufferedWriter bw = new BufferedWriter(fw);
-        bw.write(a.getIdSanpham() + ", " + a.getName() + ", " + a.getGia() + ", " + a.getSoluong() + ", " + a.getNgaySx() + ", " + a.getDonviSx());
-        bw.newLine();
-        bw.close();
-        fw.close();
-    } catch (IOException ex) {
-        System.out.println("An error occurred while writing to DSVo.txt.");
-        ex.printStackTrace();
-    }
-}
-
-    public void deleteVo() {
-    System.out.println("Moi ban nhap ten Vo can xoa: ");
-    String tmp = sc.nextLine();
-    
-    // Read the file into the ds array
-    Vo[] ds = docFileDSVo();
-    
-    if (ds != null) {  // Check if ds is not null
-        int indexToDelete = -1;
-        for (int i = 0; i < ds.length; i++) {
-            if ((ds[i].getName().equals(tmp)) == true) {
-                indexToDelete = i;
-                break;
-            }
-        }
-        
-        if (indexToDelete != -1) {
-            Vo[] newDs = new Vo[ds.length - 1];
-            for (int i = 0, j = 0; i < ds.length; i++) {
-                if (i != indexToDelete) {
-                    newDs[j++] = ds[i];
-                }
-            }
-            ds = newDs;
+        Vo a = createVoFromUserInput();
+        if (ds == null) {
+            ds = new Vo[1];
         } else {
-            System.out.println("Khong tim thay Vo co ten la " + tmp);
-            return;
+            ds = Arrays.copyOf(ds, ds.length + 1);
         }
-        
+        ds[ds.length - 1] = a;
         try {
-            FileWriter fr = new FileWriter("DSVo.txt");
-            BufferedWriter bw = new BufferedWriter(fr);
-            for (var x : ds) {
-                bw.write(x.getIdSanpham() + ", " + x.getName() + ", " + x.getGia() + ", " + x.getSoluong() + ", " + x.getNgaySx() + ", " + x.getDonviSx());
-                bw.newLine();
-            }
+            FileWriter fw = new FileWriter("DSVo.txt", true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(a.getIdSanpham() + ", " + a.getName() + ", " + a.getGia() + ", " + a.getSoluong() + ", " + a.getNgaySx() + ", " + a.getDonviSx());
+            bw.newLine();
             bw.close();
-            fr.close();
+            fw.close();
         } catch (IOException ex) {
             System.out.println("An error occurred while writing to DSVo.txt.");
             ex.printStackTrace();
         }
-    } else {
-        System.out.println("Khong co Vo nao trong danh sach.");
     }
-}
+
+    public void deleteVo() {
+        System.out.println("Moi ban nhap ten Vo can xoa: ");
+        String tmp = sc.nextLine();
+
+        // Read the file into the ds array
+        Vo[] ds = docFileDSVo();
+
+        if (ds != null) {  // Check if ds is not null
+            int indexToDelete = -1;
+            for (int i = 0; i < ds.length; i++) {
+                if ((ds[i].getName().equals(tmp)) == true) {
+                    indexToDelete = i;
+                    break;
+                }
+            }
+
+            if (indexToDelete != -1) {
+                Vo[] newDs = new Vo[ds.length - 1];
+                for (int i = 0, j = 0; i < ds.length; i++) {
+                    if (i != indexToDelete) {
+                        newDs[j++] = ds[i];
+                    }
+                }
+                ds = newDs;
+            } else {
+                System.out.println("Khong tim thay Vo co ten la " + tmp);
+                return;
+            }
+
+            try {
+                FileWriter fr = new FileWriter("DSVo.txt");
+                BufferedWriter bw = new BufferedWriter(fr);
+                for (var x : ds) {
+                    bw.write(x.getIdSanpham() + ", " + x.getName() + ", " + x.getGia() + ", " + x.getSoluong() + ", " + x.getNgaySx() + ", " + x.getDonviSx());
+                    bw.newLine();
+                }
+                bw.close();
+                fr.close();
+            } catch (IOException ex) {
+                System.out.println("An error occurred while writing to DSVo.txt.");
+                ex.printStackTrace();
+            }
+        } else {
+            System.out.println("Khong co Vo nao trong danh sach.");
+        }
+    }
 
     public void updateSach() {
         System.out.print("Moi ban nhap id Sach can sua: ");
