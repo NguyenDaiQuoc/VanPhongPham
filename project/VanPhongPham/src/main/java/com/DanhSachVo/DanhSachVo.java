@@ -264,7 +264,7 @@ public class DanhSachVo {
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileTmp));
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String ID;
-        System.out.print("Moi nhap ID sach can thay doi ");
+        System.out.print("Moi nhap ID vo can thay doi ");
         ID = sc.nextLine();
         String sLine;
         String fiVo[] = new String[10];
@@ -272,12 +272,12 @@ public class DanhSachVo {
         while ((sLine = reader.readLine()) != null) {
             fiVo = sLine.split(",");
             if (fiVo[0].equals(ID)) {
-                System.out.print("Moi nhap so luong but can thay doi ");
+                System.out.print("Moi nhap so luong vo can thay doi ");
                 int sl = sc.nextInt();
-                writer.write(ID + "," + fiVo[1] + "," + fiVo[2] + "," + sl + "," + fiVo[4] + "," + fiVo[5] + "\n");
+                writer.write(ID + "," + fiVo[1] + "," + fiVo[2] + "," + sl + "," + fiVo[4] + "," + fiVo[5] + "," + fiVo[6] + "\n");
                 bFound = true;
             } else {
-                writer.write(fiVo[0] + "," + fiVo[1] + "," + fiVo[2] + "," + fiVo[3] + "," + fiVo[4] + "," + fiVo[5] + "\n");
+                writer.write(fiVo[0] + "," + fiVo[1] + "," + fiVo[2] + "," + fiVo[3] + "," + fiVo[4] + "," + fiVo[5] + "," + fiVo[6] +"\n");
             }
         }
         //}
