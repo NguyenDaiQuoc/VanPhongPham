@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class NhanVien extends NguoiDung {
-    
+
     Scanner sc = new Scanner(System.in);
     String sTaiKhoanNhanVien, sMatKhauNhanVien, sHoTenNhanVien, sDiaChiNhanVien, sSoDienThoaiNhanVien, sMaNhanVien, sVaiTroNhanVien;
     String FileNameNhanVien = "Tai Khoan Nhan Vien.txt";
@@ -328,9 +328,9 @@ public class NhanVien extends NguoiDung {
                 writer.write(fiNhanVien[0] + "," + fiNhanVien[1] + "," + fiNhanVien[2] + "," + fiNhanVien[3] + "," + fiNhanVien[4] + "\n");
             }
         }
-        writer.close();
         reader.close();
-        if (bFound == true) {            
+        writer.close();
+        if (bFound == true) {
             file.delete();
             fileTmp.renameTo(new File(FileNameNhanVien));
             System.out.println("Da xoa nhan vien co tai khoan " + sTaiKhoan);
@@ -348,8 +348,8 @@ public class NhanVien extends NguoiDung {
                     writer1.write(fiNhanVien1[0] + "," + fiNhanVien1[1] + "," + fiNhanVien1[2] + "," + fiNhanVien1[3] + "," + fiNhanVien1[4] + "\n");
                 }
             }
-            writer1.close();
             reader1.close();
+            writer1.close();
             fileTT.delete();
             fileTmp2.renameTo(new File(FileThongTinNV));
         } else {
@@ -385,8 +385,8 @@ public class NhanVien extends NguoiDung {
                 writer.write(fiNhanVien[0] + "," + fiNhanVien[1] + "," + fiNhanVien[2] + "," + fiNhanVien[3] + "," + fiNhanVien[4] + "\n");
             }
         }
-        writer.close();
         reader.close();
+        writer.close();
         if (bFound == true) {
             file.delete();
             fileTmp.renameTo(new File(FileNameNhanVien));
@@ -422,7 +422,7 @@ public class NhanVien extends NguoiDung {
         String fiNhanVien[] = new String[10]; //dung de quan ly thong tin nhan vien
         String sLine;
         BufferedReader reader = new BufferedReader(new FileReader(FileNameNhanVien));
-        BufferedWriter writer = new BufferedWriter(new FileWriter(FileTmp,true));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(FileTmp, true));
         try {
             if (!file.exists()) {
                 file.createNewFile();
@@ -434,10 +434,10 @@ public class NhanVien extends NguoiDung {
         while ((sLine = reader.readLine()) != null) {
             bFound = true;
             fiNhanVien = sLine.split(",");
-            writer.write(fiNhanVien[0] + "," + fiNhanVien[1] + "," + fiNhanVien[2] + ",0," + fiNhanVien[4] + "\n");            
+            writer.write(fiNhanVien[0] + "," + fiNhanVien[1] + "," + fiNhanVien[2] + ",0," + fiNhanVien[4] + "\n");
         }
-        writer.close();
         reader.close();
+        writer.close();
         if (bFound == true) {
             file.delete();
             fileTmp.renameTo(new File(FileNameNhanVien));
@@ -446,13 +446,13 @@ public class NhanVien extends NguoiDung {
             String sLine1;
             String fiNhanVien1[] = new String[10];
             BufferedReader reader1 = new BufferedReader(new FileReader(FileThongTinNV));
-            BufferedWriter writer1 = new BufferedWriter(new FileWriter(FileTmp2,true));
+            BufferedWriter writer1 = new BufferedWriter(new FileWriter(FileTmp2, true));
             while ((sLine1 = reader1.readLine()) != null) {
                 fiNhanVien1 = sLine1.trim().split(",");
                 writer1.write(fiNhanVien1[0] + "," + fiNhanVien1[1] + "," + fiNhanVien1[2] + "," + fiNhanVien1[3] + ",0\n");
             }
-            writer1.close();
             reader1.close();
+            writer1.close();
             fileTT.delete();
             fileTmp2.renameTo(new File(FileThongTinNV));
             System.out.println("Da xoa tat ca tai khoan Nhan Vien!");
@@ -469,7 +469,7 @@ public class NhanVien extends NguoiDung {
         String fiNhanVien[] = new String[10]; //dung de quan ly thong tin nhan vien
         String sLine;
         BufferedReader reader = new BufferedReader(new FileReader(FileNameNhanVien));
-        BufferedWriter writer = new BufferedWriter(new FileWriter(FileTmp,true));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(FileTmp, true));
         try {
             if (!file.exists()) {
                 file.createNewFile();
@@ -483,8 +483,8 @@ public class NhanVien extends NguoiDung {
             writer.write(fiNhanVien[0] + "," + fiNhanVien[1] + "," + fiNhanVien[2] + ",1," + fiNhanVien[4] + "\n");
             bFound = true;
         }
-            reader.close();
-            writer.close();
+        reader.close();
+        writer.close();
         if (bFound == true) {
             file.delete();
             fileTmp.renameTo(new File(FileNameNhanVien));
@@ -493,13 +493,13 @@ public class NhanVien extends NguoiDung {
             String sLine1;
             String fiNhanVien1[] = new String[10];
             BufferedReader reader1 = new BufferedReader(new FileReader(FileThongTinNV));
-            BufferedWriter writer1 = new BufferedWriter(new FileWriter(FileTmp2,true));
+            BufferedWriter writer1 = new BufferedWriter(new FileWriter(FileTmp2, true));
             while ((sLine1 = reader1.readLine()) != null) {
                 fiNhanVien1 = sLine1.trim().split(",");
                 writer1.write(fiNhanVien1[0] + "," + fiNhanVien1[1] + "," + fiNhanVien1[2] + "," + fiNhanVien1[3] + ",1\n");
             }
-            writer1.close();
             reader1.close();
+            writer1.close();
             fileTT.delete();
             fileTmp2.renameTo(new File(FileThongTinNV));
             System.out.println("Da hoan tac xoa tat ca Nhan Vien!");
@@ -550,8 +550,8 @@ public class NhanVien extends NguoiDung {
             }
         }
         //}
-        writer.close();
         reader1.close();
+        writer.close();
         if (bFound == true) {
             //reader.close();
             fileTT.delete();
@@ -665,38 +665,39 @@ public class NhanVien extends NguoiDung {
     }
 
     public int DangNhap() throws IOException {
-    setTaiKhoanNhanVien(sTaiKhoanNhanVien);
-    setMatKhauNhanVien(sMatKhauNhanVien);
-    File file = new File(FileNameNhanVien);
-    try {
-        if (!file.exists()) {
-            file.createNewFile();
+        setTaiKhoanNhanVien(sTaiKhoanNhanVien);
+        setMatKhauNhanVien(sMatKhauNhanVien);
+        File file = new File(FileNameNhanVien);
+        try {
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-    int iLogin = -1;
-    
-    BufferedReader reader = new BufferedReader(new FileReader(FileNameNhanVien));
-    String sline;
-    String fiNhanVien[] = new String[10];
-    while ((sline = reader.readLine()) != null) {
-        fiNhanVien = sline.split(",");
-        if (fiNhanVien[0].trim().equals(sTaiKhoanNhanVien) && fiNhanVien[1].trim().equals(sMatKhauNhanVien)) {
-            if (fiNhanVien[2].trim().equals("Kho")) {
-                iLogin = 1;
-                ID = fiNhanVien[4];
-            } else if (fiNhanVien[2].trim().equals("ThuNgan")) {
-                iLogin = 2;
-                ID = fiNhanVien[4];
-            } else if (fiNhanVien[2].trim().equals("TrucQuay")) {
-                iLogin = 3;
-                ID = fiNhanVien[4];
+        int iLogin = -1;
+
+        BufferedReader reader = new BufferedReader(new FileReader(FileNameNhanVien));
+        String sline;
+        String fiNhanVien[] = new String[10];
+        while ((sline = reader.readLine()) != null) {
+            fiNhanVien = sline.split(",");
+            if (fiNhanVien[0].trim().equals(sTaiKhoanNhanVien) && fiNhanVien[1].trim().equals(sMatKhauNhanVien)) {
+                if (fiNhanVien[2].trim().equals("Kho")) {
+                    iLogin = 1;
+                    ID = fiNhanVien[4];
+                } else if (fiNhanVien[2].trim().equals("ThuNgan")) {
+                    iLogin = 2;
+                    ID = fiNhanVien[4];
+                } else if (fiNhanVien[2].trim().equals("TrucQuay")) {
+                    iLogin = 3;
+                    ID = fiNhanVien[4];
+                }
             }
         }
+        return iLogin;
     }
-    return iLogin;
-}
+
     public void GhiHoaDon() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hay nhap ma don hang muon lap hoa don(Ma don hang gom 4 ky tu): ");
@@ -714,11 +715,11 @@ public class NhanVien extends NguoiDung {
                 if (donHang[1].equals(maDonHang)) {
                     // Generate a random 8-character bill code
                     String maHoaDon = new Random().ints(48, 122)
-                        .filter(i -> (i < 57 || i > 65) && (i < 90 || i > 97))
-                        .mapToObj(i -> (char) i)
-                        .limit(8)
-                        .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
-                        .toString();
+                            .filter(i -> (i < 57 || i > 65) && (i < 90 || i > 97))
+                            .mapToObj(i -> (char) i)
+                            .limit(8)
+                            .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
+                            .toString();
 
                     // Get the current date
                     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -748,7 +749,7 @@ public class NhanVien extends NguoiDung {
             e.printStackTrace();
         }
     }
-    
+
     public void XuatHoaDon() {
         try {
             File file = new File("hoaDon.txt");
