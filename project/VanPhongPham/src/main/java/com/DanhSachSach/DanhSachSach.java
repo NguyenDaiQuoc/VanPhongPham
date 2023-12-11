@@ -280,10 +280,10 @@ public class DanhSachSach {
             if (fiSach[0].equals(ID)) {
                 System.out.print("Moi nhap so luong sach can thay doi ");
                 int sl = sc.nextInt();
-                writer.write(ID + "," + fiSach[1] + "," + fiSach[2] + "," + sl + "," + fiSach[4] + "," + fiSach[5] + "\n");
+                writer.write(ID + "," + fiSach[1] + "," + fiSach[2] + "," + sl + "," + fiSach[4] + "," + fiSach[5] + "," + fiSach[6] + "\n");
                 bFound = true;
             } else {
-                writer.write(fiSach[0] + "," + fiSach[1] + "," + fiSach[2] + "," + fiSach[3] + "," + fiSach[4] + "," + fiSach[5] + "\n");
+                writer.write(fiSach[0] + "," + fiSach[1] + "," + fiSach[2] + "," + fiSach[3] + "," + fiSach[4] + "," + fiSach[5] + "," + fiSach[6] + "\n");
             }
         }
         //}
