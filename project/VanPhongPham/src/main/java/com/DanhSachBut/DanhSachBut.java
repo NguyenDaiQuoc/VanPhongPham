@@ -272,7 +272,7 @@ public class DanhSachBut {
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileTmp));
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String ID;
-        System.out.print("Moi nhap ID sach can thay doi ");
+        System.out.print("Moi nhap ID but can thay doi ");
         ID = sc.nextLine();
         String sLine;
         String fiBut[] = new String[10];
@@ -282,10 +282,10 @@ public class DanhSachBut {
             if (fiBut[0].equals(ID)) {
                 System.out.print("Moi nhap so luong but can thay doi ");
                 int sl = sc.nextInt();
-                writer.write(ID + "," + fiBut[1] + "," + fiBut[2] + "," + sl + "," + fiBut[4] + "," + fiBut[5] + "\n");
+                writer.write(ID + "," + fiBut[1] + "," + fiBut[2] + "," + sl + "," + fiBut[4] + "," + fiBut[5] + "," + fiBut[6] + "\n");
                 bFound = true;
             } else {
-                writer.write(fiBut[0] + "," + fiBut[1] + "," + fiBut[2] + "," + fiBut[3] + "," + fiBut[4] + "," + fiBut[5] + "\n");
+                writer.write(fiBut[0] + "," + fiBut[1] + "," + fiBut[2] + "," + fiBut[3] + "," + fiBut[4] + "," + fiBut[5] + "," + fiBut[6] + "\n");
             }
         }
         //}
